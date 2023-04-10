@@ -2,26 +2,36 @@
 <html lang="fr"> 
     <head>
         <meta charset="utf-8">
-        <title>Nom réseau</title> 
+        <title>InstaPets</title> 
+        <link href="accueil.css" rel="stylesheet">
     </head>
-<body> 
-    <header> 
-        <h1>Nom réseau</h1>
-        
-    </header>
+<body>
+	<header>
+		<h1>Bienvenue sur InstaPets</h1>
+	</header>
 
-    <nav>
+	<main>
+		<h2>Recent Posts</h2>
+		<?php
+			// Connect to the database
+			$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-    </nav>
+			// Get the 20 most recent posts
+			$stmt = $pdo->prepare('SELECT * FROM posts ORDER BY created_at DESC LIMIT 20');
+			$stmt->execute();
+			$posts = $stmt->fetchAll();
 
-    <main>
-    <article>
-        <h2>Récement : </h2>
-        <hr>
-        <p> abonnement</p>
-    </article>
+			// Display each post
+			foreach ($posts as $post) {
+				echo '<article>';
+				echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
+				echo '<p>' . htmlspecialchars($post['content']) . '</p>';
+				echo '<p class="meta">Posted by ' . htmlspecialchars($post['author']) . ' on ' . htmlspecialchars($post['created_at']) . '</p>';
+				echo '</article>';
+			}
+		?>
+	</main>
 
-    
     <aside>
         <form>
           <input type="search" name="q" placeholder="Rechercher">
@@ -33,6 +43,11 @@
           <li><a href="#">MonCompte</a></li>
         </ul>
       </aside>
+
+	<footer>
+		<p>&copy; 2023 InstaPets</p>
+	</footer>
+
     </main>
 
     

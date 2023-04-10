@@ -1,22 +1,49 @@
-/* Set up a container to hold the main content and aside */
-.container {
+  .container {
     display: flex;
-    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  aside {
+    width: 300px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 1px solid #e6e6e6;
+    margin-left: auto; /* Add margin to the left to align the aside element to the right of the container */
   }
   
-  /* Style the main content area */
-  .main-content {
+  
+  main {
     flex: 1;
     padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 50px; /* Add some margin to the left of the main element */
+    margin-right: 50px; /* Add some margin to the right of the main element */
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f7f7f7;
   }
   
-  /* Style the aside */
-  .aside {
-    width: 350px;
-    background-color: #fafafa;
-    padding: 20px;
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
   }
   
+  
+
   /* Style the main content area to resemble Instagram */
   .main-content {
     background-color: #f8f8f8;
@@ -24,6 +51,19 @@
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     margin: 10px;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f7f7f7;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
   }
   
   /* Style the header of the main content area */
@@ -58,13 +98,18 @@
   }
   
   /* Style the footer of the main content area */
-  .main-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
   }
+  
   
   /* Style the like and comment icons in the footer */
   .like-icon, .comment-icon {
@@ -79,29 +124,8 @@
     font-weight: bold;
   }
   
-  /* Style the aside to resemble Instagram */
-  .aside {
-    background-color: #fafafa;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    margin: 10px;
-  }
   
-  /* Style the header of the aside */
-  .aside-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #e6e6e6;
-  }
   
-  /* Style the title of the aside */
-  .aside-title {
-    font-weight: bold;
-  }
   
   /* Style the list of suggested users */
   .user-list {
