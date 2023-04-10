@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  aside {
+    width: 300px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 1px solid #e6e6e6;
+    margin-left: auto; /* Add margin to the left to align the aside element to the right of the container */
+  }
+  
+  
+  main {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 50px; /* Add some margin to the left of the main element */
+    margin-right: 50px; /* Add some margin to the right of the main element */
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f7f7f7;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  

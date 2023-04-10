@@ -19,6 +19,7 @@
         <hr>
     </article>
 
+    </main>
     
     <aside>
         <form>
@@ -34,7 +35,6 @@
           <li><a href="#">MonCompte</a></li>
         </ul>
       </aside>
-    </main>
 
     
     
