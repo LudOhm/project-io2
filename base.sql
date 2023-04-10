@@ -1,6 +1,5 @@
 CREATE DATABASE instapets
   CHARACTER SET = 'UTF8';
-
 USE instapets; 
 
 CREATE TABLE users (
