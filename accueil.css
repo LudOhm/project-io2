@@ -1,0 +1,120 @@
+/* Set up a container to hold the main content and aside */
+.container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Style the main content area */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Style the aside */
+  .aside {
+    width: 350px;
+    background-color: #fafafa;
+    padding: 20px;
+  }
+  
+  /* Style the main content area to resemble Instagram */
+  .main-content {
+    background-color: #f8f8f8;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin: 10px;
+  }
+  
+  /* Style the header of the main content area */
+  .main-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  /* Style the profile picture in the header */
+  .profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Style the username in the header */
+  .username {
+    font-weight: bold;
+  }
+  
+  /* Style the post content */
+  .post-content {
+    padding: 10px;
+  }
+  
+  /* Style the post image */
+  .post-image {
+    max-width: 100%;
+  }
+  
+  /* Style the footer of the main content area */
+  .main-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  /* Style the like and comment icons in the footer */
+  .like-icon, .comment-icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+  }
+  
+  /* Style the number of likes and comments in the footer */
+  .like-count, .comment-count {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Style the aside to resemble Instagram */
+  .aside {
+    background-color: #fafafa;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin: 10px;
+  }
+  
+  /* Style the header of the aside */
+  .aside-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  
+  /* Style the title of the aside */
+  .aside-title {
+    font-weight: bold;
+  }
+  
+  /* Style the list of suggested users */
+  .user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Style the suggested user profile pictures */
+  .user-pic {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
