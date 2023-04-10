@@ -1,0 +1,57 @@
+/* Apply box-sizing property to all elements */
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Style for the header */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  /* Style for the main content */
+  main {
+    margin: 20px;
+  }
+  
+  /* Style for the form */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Style for the labels */
+  label {
+    margin-bottom: 5px;
+  }
+  
+  /* Style for the input fields */
+  input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  
+  /* Style for the submit button */
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 16px;
+    width: auto;
+  }
+  
+  /* Style for the form error messages */
+  input:invalid {
+    border: 1px solid red;
+  }
+  

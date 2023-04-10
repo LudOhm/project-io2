@@ -2,47 +2,43 @@
 <html lang="fr"> 
     <head>
         <meta charset="utf-8">
-        <title>Nom réseau</title> 
+        <title>InstaPets</title> 
+        <link rel="stylesheet" href="inscription.css">
     </head>
 <body> 
+
+
     <header> 
-        <h1>Nom réseau</h1>
+        <h1>InstaPets</h1>
         <hr>
     </header>
-
-    <nav>
-
-    </nav>
 
     <main>
         <h2>S'inscrire</h2>
 
-        <p>Pseudo
+      <form>
+      <label for="pseudo">Pseudo :</label>
+        <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">
         <br>
-        <form>
-          <input type="text" name="q" placeholder="Pseudo">
-        </form>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" placeholder="Nom" required="required" name="nom">
         <br>
-        Mot de Passe
-        <form>
-          <input type="password" name="q" placeholder="mot de passe">
-        </form>
+        <label for="prenom">Prenom :</label>
+        <input type="text" id="prenom" placeholder="Prenom" required="required" name="prenom">
         <br>
-        Confirmer le Mot de Passe
+        <label for="mail">Adresse mail : </label>
+        <input type="email" id ="mail" name="mail" required="required">
         <br>
-        <form>
-          <input type="password" name="q" placeholder="mot de passe">
-        </form>
+        <label for="mdp">Mot de passe : </label>
+        <input type="password" name="mdp" placeholder="mot de passe">
         <br>
-        <form>
+        <label for="mdp2">Confirmer le mot de passe : </label>
+        <input type="password" name="mdp2" placeholder="mot de passe">
+        <br>
         <input type="submit" value="Valider">
-        </form>
-
-        </p>
+      </form>
 
     </main>
 
-    
-    
 </body>
 </html>
