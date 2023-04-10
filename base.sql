@@ -1,6 +1,7 @@
 CREATE DATABASE instapets
   CHARACTER SET = 'UTF8';
 
+USE instapets; 
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY NOT NULL,
