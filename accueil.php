@@ -38,9 +38,9 @@
           <input type="submit" value="Ok !">
         </form>
         <ul>
-          <li><a href="#">Comptes</a></li>
-          <li><a href="#">Publier</a></li>
-          <li><a href="#">MonCompte</a></li>
+          <!-- <li><a href="#">Comptes</a></li> -->
+          <li><a href="publier.php">Publier</a></li>
+          <li><a href="profil.php">MonCompte</a></li>
         </ul>
       </aside>
 
@@ -48,7 +48,6 @@
 		<p>&copy; 2023 InstaPets</p>
 	</footer>
 
-    </main>
 
     
     
