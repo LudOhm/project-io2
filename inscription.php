@@ -16,9 +16,9 @@
     <main>
         <h2>S'inscrire</h2>
 
-      <form>
+      <form action="traitement.php" method="post">
       <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">
+        <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">;
         <br>
         <label for="nom">Nom :</label>
         <input type="text" id="nom" placeholder="Nom" required="required" name="nom">
