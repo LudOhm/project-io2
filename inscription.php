@@ -18,7 +18,7 @@
 
       <form action="traitement.php" method="post">
       <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">;
+        <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">
         <br>
         <label for="nom">Nom :</label>
         <input type="text" id="nom" placeholder="Nom" required="required" name="nom">
@@ -31,9 +31,6 @@
         <br>
         <label for="mdp">Mot de passe : </label>
         <input type="password" name="mdp" placeholder="mot de passe">
-        <br>
-        <label for="mdp2">Confirmer le mot de passe : </label>
-        <input type="password" name="mdp2" placeholder="mot de passe">
         <br>
         <input type="submit" value="Valider">
       </form>
