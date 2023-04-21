@@ -9,8 +9,17 @@ CREATE TABLE users (
   user_nom VARCHAR(50) NOT NULL,
   user_email VARCHAR(50) NOT NULL,
   user_motdepasse VARCHAR(50) NOT NULL,
-  user_date_naissance VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE followings (
+  following_id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER NOT NULL,
+)
+
+CREATE TABLE followers (
+  followers_id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER NOT NULL,
+)
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY NOT NULL,
@@ -19,7 +28,7 @@ CREATE TABLE posts (
 );
 
 CREATE TABLE likes(
-  like_od SERIAL PRIMARY KEY NOT NULL,
+  like_id SERIAL PRIMARY KEY NOT NULL,
   post_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
   is_liked BOOLEAN NOT NULL
