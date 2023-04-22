@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html> 
 <html lang="fr"> 
     <head>
@@ -27,6 +29,8 @@
       </form>
 
     </main>
+
+    <?php include("footer.php") ?>
 
 </body>
 </html>
