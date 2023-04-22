@@ -9,7 +9,7 @@
 
     <main>
         <h2>Bienvenue sur Instapets, le réseau sociale pour les détenteurs d'animaux qui veulent partager 
-            et communiquer avec les autres détenteurs d'animaux qui partage un intérêt commun. 
+            et communiquer avec les autres détenteurs d'animaux qui partagent un intérêt commun. 
         </h2>
         <br>
         <form action="connexion.php" method="post">
