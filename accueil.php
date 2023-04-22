@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html> 
 <html lang="fr"> 
     <head>
@@ -11,16 +13,17 @@
 	</header>
 
 	<main>
-			<?php if(!isset($loggedUser)): ?>
-				<?php include("bienvenue.php") ?>
-
-			<?php else: ?>
-				<h2>Postes récents</h2>
+		<?php 
+		if (!isset($loggedUser)) {
+			include_once("bienvenue.php");
+		}
+		?>
+			<h2>Postes récents</h2>
 			<?php
 				// Connecter à la base de donnée
 				$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-				$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY DESC LIMIT 20');
+				$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY Posts.post_id DESC LIMIT 20');
 				$stmt->execute();
 				$posts = $stmt->fetchAll();
 
@@ -33,7 +36,6 @@
 					echo '</article>';
 				}
 			?>
-		<?php endif; ?>
 	</main>
 
     <aside>
