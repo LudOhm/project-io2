@@ -13,24 +13,29 @@
 	</header>
 
 	<main>
-		<h2>Postes récents</h2>
-		<?php
-			// Connecter à la base de donnée
-			$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+			<?php if(!isset($loggedUser)): ?>
+				<?php include("bienvenue.php") ?>
 
-			$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY DESC LIMIT 20');
-			$stmt->execute();
-			$posts = $stmt->fetchAll();
+			<?php else: ?>
+				<h2>Postes récents</h2>
+			<?php
+				// Connecter à la base de donnée
+				$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-			foreach ($posts as $post) {
-				echo '<article>';
-				echo '<h3>' . htmlspecialchars($post['post_title']) . '</h3>';
-				echo '<p>' . $post['post_picture'] . '</p>';
-				echo '<p>' . htmlspecialchars($post['post_contenu']) . '</p>';
-				echo '<p class="meta">Posted by ' . htmlspecialchars($post['user_id']) . '</p>';
-				echo '</article>';
-			}
-		?>
+				$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY DESC LIMIT 20');
+				$stmt->execute();
+				$posts = $stmt->fetchAll();
+
+				foreach ($posts as $post) {
+					echo '<article>';
+					echo '<h3>' . htmlspecialchars($post['post_title']) . '</h3>';
+					echo '<p>' . $post['post_picture'] . '</p>';
+					echo '<p>' . htmlspecialchars($post['post_contenu']) . '</p>';
+					echo '<p class="meta">Posted by ' . htmlspecialchars($post['user_id']) . '</p>';
+					echo '</article>';
+				}
+			?>
+		<?php endif; ?>
 	</main>
 
     <aside>

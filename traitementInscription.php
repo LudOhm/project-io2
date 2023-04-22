@@ -16,13 +16,8 @@
         $userpassword = $_POST['mdp'];
     }   
     
-    // Ecriture de la requête
     $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_email,:user_motdepasse);';
-
-    // Préparation
     $insertUsers = $pdo->prepare($sqlQuery);
-
-    // Exécution ! Le user est maintenant en base de données
     $insertUsers->execute([
         'user_pseudo' => $userPseudo,
         'user_prenom' => $userprenom,
