@@ -15,15 +15,13 @@
 	<main>
 		<h2>Postes récents</h2>
 		<?php
-			// Connect to the database
+			// Connecter à la base de donnée
 			$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-			// Get the 20 most recent posts
 			$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY DESC LIMIT 20');
 			$stmt->execute();
 			$posts = $stmt->fetchAll();
 
-			// Display each post
 			foreach ($posts as $post) {
 				echo '<article>';
 				echo '<h3>' . htmlspecialchars($post['post_title']) . '</h3>';
