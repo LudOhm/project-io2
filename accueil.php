@@ -18,7 +18,7 @@
 	else{
 		$html .="<h2>Publications Récentes</h2>";
             	$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-		$stmt = $pdo->prepare('SELECT * FROM posts ORDER BY created_at DESC LIMIT 20');
+		$stmt = $pdo->prepare('SELECT * FROM posts ORDER BY Posts.post_id DESC LIMIT 20');
 		$stmt->execute();
 		$posts = $stmt->fetchAll();
 		foreach ($posts as $post) {
