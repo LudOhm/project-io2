@@ -14,6 +14,10 @@
     }  
     if(isset($_POST['mdp'])){
         $userpassword = $_POST['mdp'];
-    }    
+    }   
+    
 
+    'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_email,user_motdepasse) VALUES ($userPseudo,$userprenom,$usernom,$usermail,$userpassword);'
+
+    
 ?>
