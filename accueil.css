@@ -43,25 +43,16 @@
   }
   
   input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #b3b3b3;
     color: #fff;
     cursor: pointer;
-    border: none;
-    border-radius: 3px;
-    padding: 10px;
-    font-size: 16px;
+    border:#333;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 13px;
     width: auto;
   }
   
-
-  /* Style the main content area to resemble Instagram */
-  .main-content {
-    background-color: #f8f8f8;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    margin: 10px;
-  }
 
   body {
     font-family: Arial, sans-serif;
@@ -76,7 +67,6 @@
     padding: 10px;
   }
   
-  /* Style the footer of the main content area */
   footer {
     position: fixed;
     bottom: 0;

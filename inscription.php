@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html> 
 <html lang="fr"> 
     <head>
@@ -16,7 +18,7 @@
     <main>
         <h2>S'inscrire</h2>
 
-      <form action="traitement.php" method="post">
+      <form action="traitementInscription.php" method="post">
       <label for="pseudo">Pseudo :</label>
         <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">
         <br>

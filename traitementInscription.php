@@ -1,5 +1,4 @@
 <?php 
-    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     if(isset($_POST['Pseudo'])){
         $userPseudo= $_POST['Pseudo'];
     } 
@@ -16,6 +15,7 @@
         $userpassword = $_POST['mdp'];
     }   
     
+    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_email,:user_motdepasse);';
     $insertUsers = $pdo->prepare($sqlQuery);
     $insertUsers->execute([
@@ -25,7 +25,10 @@
         'user_email' => $usermail,
         'user_motdepasse' => $userpassword
     ]);
+    $loggedUser = [
+        'mail' => $_POST['mail']
+    ];
 
-
-
+    header("Location: http://localhost:8888/project-io2/accueil.php");
+    exit();
 ?>
