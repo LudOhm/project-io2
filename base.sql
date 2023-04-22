@@ -18,8 +18,9 @@ CREATE TABLE followings (
 )
 
 CREATE TABLE followers (
-  followers_id SERIAL PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id_wers SERIAL PRIMARY KEY NOT NULL AUTO_INCREMENT,
   user_id INTEGER NOT NULL,
+  followers_id INTEGER NOT NULL,
 )
 
 CREATE TABLE posts (
