@@ -48,4 +48,4 @@ CREATE TABLE Likes(
   FOREIGN KEY (post_id) REFERENCES Posts(post_id)
 );
 
-INSERT INTO Users VALUES(1,'Meow','Lud','Perrier','10/03/2004','ludivine.perrier.babin@gmail.com','Lud04Meow');
+INSERT INTO Users VALUES(1,'Meow','Lud','Perrier','10/03/2004','ludivine.perrier.babin@gmail.com','Lud04Meow',1);
