@@ -8,7 +8,10 @@
     }   
     if(isset($_POST['prenom'])){
         $userprenom= $_POST['prenom'];
-    }   
+    }  
+    if(isset($_POST['date'])){
+        $userdate = $_POST['date'];
+    }    
     if(isset($_POST['mail'])){
         $stmt = $pdo->prepare('SELECT user_email FROM `Users`');
         $stmt->execute();
@@ -28,12 +31,13 @@
         $userpassword = $_POST['mdp'];
     }   
 
-    $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_email,:user_motdepasse);';
+    $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
     $insertUsers = $pdo->prepare($sqlQuery);
     $insertUsers->execute([
         'user_pseudo' => $userPseudo,
         'user_prenom' => $userprenom,
         'user_nom' => $usernom,
+        'user_naissance' => $userdate,
         'user_email' => $usermail,
         'user_motdepasse' => $userpassword
     ]);
