@@ -1,36 +1,26 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html> 
-<html lang="fr"> 
-    <head>
-        <meta charset="utf-8">
+<?php
+    function print_Login(){
+        $html = "<html lang=\"fr\"> 
+        <head>
+        <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
         <title>InstaPets</title> 
-        <link rel="stylesheet" href="inscription.css">
-    </head>
-<body> 
-
-
-    <header> 
-        <h1>InstaPets</h1>
-        <hr>
-    </header>
-
-    <main>
+        <link href=\"connexion.css\" rel=\"stylesheet\">
+        </head>
+        <body>
+	    <header>
+	    </header>
+        <main>
         <h2>Connexion :</h2>
-
-      <form action="traitementConnexion.php" method="post">
-        <label for="mail">Adresse mail : </label>
-        <input type="email" id ="mail" name="mail" required="required">
+        <form action=\"index.php?action=check\" method=\"post\">
+        <label for=\"mail\">Adresse mail ou nom d'utilisateur: </label>
+        <input type=\"text\" id =\"login\" name=\"login\" required=\"required\">
         <br>
-        <label for="mdp">Mot de passe : </label>
-        <input type="password" name="mdp" placeholder="mot de passe">
+        <label for=\"mdp\">Mot de passe : </label>
+        <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
         <br>
-        <input type="submit" value="Valider">
-      </form>
-
-    </main>
-
-    <?php include("footer.php") ?>
-
-</body>
-</html>
+        <input type=\"submit\" value=\"Valider\">
+        </form>
+        </main></body></html>";
+        return $html;
+    }
+?>
