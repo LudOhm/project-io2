@@ -7,8 +7,6 @@
         <link href=\"connexion.css\" rel=\"stylesheet\">
         </head>
         <body>
-	    <header>
-	    </header>
         <main>
         <h2>Connexion :</h2>
         <form action=\"index.php?action=check\" method=\"post\">
