@@ -13,7 +13,7 @@ include_once('traitementConnexion.php');
 include_once('traitementInscription.php');
 include_once('publier.php');
 include_once('recherche.php');
-include_once('profil.php')
+include_once('profil.php');
 
 if(/* utilisateur connecte*/){
   //attribution variables;
@@ -21,7 +21,7 @@ if(/* utilisateur connecte*/){
     $nom=$prenom=$pseudo=$date=$mail='';
 }
 
-if(!isset $_REQUEST['action']){
+if(!isset($_REQUEST['action'])){
     //display acceuil
 }else{
     switch($_REQUEST['action']){
