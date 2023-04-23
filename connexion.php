@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 
 <!DOCTYPE html> 
 <html lang="fr"> 
@@ -16,6 +15,9 @@
     </header>
 
     <main>
+
+    <?php if(!isset($_SESSION['LOGGED_USER'])): ?>
+
         <h2>Connexion :</h2>
 
       <form action="traitementConnexion.php" method="post">
@@ -28,6 +30,7 @@
         <input type="submit" value="Valider">
       </form>
 
+    <?php endif; ?>
     </main>
 
     <?php include("footer.php") ?>
