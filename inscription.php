@@ -1,45 +1,43 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html> 
-<html lang="fr"> 
+<?php
+function print_form($modifier) {
+  $mot = $modifier ? "Modifier mes informations" : "S'inscrire";
+  $destination = $modifier ? "update" : "sauvegarder";
+  //$valDate = strlen($date) > 0 ? '$date' : 'jj/mm/aaaa';
+  $html =
+    "<html>
     <head>
-        <meta charset="utf-8">
-        <title>InstaPets</title> 
-        <link rel="stylesheet" href="inscription.css">
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <title>Inscription</title>
+    <link rel=\"stylesheet\" href=\"inscription.css\">
     </head>
-<body> 
-
-
-    <header> 
-        <h1>InstaPets</h1>
-        <hr>
-    </header>
-
+    <body>
+    <h2>$mot</h2>
     <main>
-        <h2>S'inscrire</h2>
-
-      <form action="traitementInscription.php" method="post">
-      <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" placeholder="Pseudo" required="required" name="Pseudo">
-        <br>
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" placeholder="Nom" required="required" name="nom">
-        <br>
-        <label for="prenom">Prenom :</label>
-        <input type="text" id="prenom" placeholder="Prenom" required="required" name="prenom">
-        <br>
-        <label for="mail">Adresse mail : </label>
-        <input type="email" id ="mail" name="mail" required="required">
-        <br>
-        <label for="mdp">Mot de passe : </label>
-        <input type="password" name="mdp" placeholder="mot de passe">
-        <br>
-        <input type="submit" value="Valider">
-      </form>
-
+    <form action='index.php?action=$destination' method='post'>
+    <label for=\"pseudo\">Pseudo :</label>
+    <input type=\"text\" id=\"pseudo\" placeholder=\"pseudo\" required=\"required\" name=\"Pseudo\">
+    <br>
+    <label for=\"nom\">Nom :</label>
+    <input type=\"text\" id=\"nom\" placeholder=\"nom\" required=\"required\" name=\"nom\">
+    <br>
+    <label for=\"prenom\">Prenom :</label>
+    <input type=\"text\" id=\"prenom\" placeholder=\"prenom\" required=\"required\" name=\"prenom\">
+    <br>
+    <br>
+    <label for=\"date\">Date de naissance :</label>
+    <input type=\"date\" id=\"date\" required=\"required\" name=\"date\">
+    <br>
+    <label for=\"mail\">Adresse mail : </label>
+    <input type=\"email\" id =\"mail\" name=\"mail\" required=\"required\" pattern=\"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\">
+    <br>
+    <label for=\"mdp\">Mot de passe : </label>
+    <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
+    <br>
+    <input type=\"submit\" value=\"$mot\">
+    </form>
     </main>
-
-    <?php include("footer.php") ?>
-
-</body>
-</html>
+    </body>
+    </html>";
+  return $html;
+}
+?>
