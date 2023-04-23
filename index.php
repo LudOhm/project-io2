@@ -8,7 +8,7 @@
 <h1> Insta Pets</h1>
 <?php
 
-include ('acceuil.php');
+include('accueil.php');
 include('inscription.php');
 
 include('traitementInscription.php');
