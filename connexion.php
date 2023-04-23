@@ -20,7 +20,7 @@
         <br>
         <input type=\"submit\" value=\"Valider\">
         </form>
-        </main></body></html>";
+        </main><aside><p>Pas encore inscrit ? </p><a href=\"index.php?action=inscription\"> Rejoignez-nous!</a></aside></body></html>";
         return $html;
     }
 ?>
