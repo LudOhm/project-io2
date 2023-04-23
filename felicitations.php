@@ -2,6 +2,7 @@
   function felicitations(){
    $html = "<html lang=\"fr\"> <head>
 <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link href=\"felicitation.css\" rel=\"stylesheet\">
 <title>Inscription Réussie!</title>
  <script src=\"https://kit.fontawesome.com/b1ff4425a2.js\" crossorigin=\"anonymous\"></script>
 </head>
