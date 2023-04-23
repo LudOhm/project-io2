@@ -10,8 +10,10 @@
 
 include ('acceuil.php');
 include('inscription.php');
-//include_once('traitementConnexion.php');
+
 include('traitementInscription.php');
+include('connexion.php');
+include('traitementConnexion.php');
 //include_once('publier.php');
 //include_once('recherche.php');
 //include_once('profil.php')
@@ -29,19 +31,27 @@ if(!isset ($_REQUEST['action'])){
             break;
        case 'sauvergarder' :
             if(inscriptionValidee()){
-                echo 'felicitations' // ajouter un fichier felicitations.php??
+                echo 'felicitations';// ajouter un fichier felicitations.php??
                 break;
-
             }else{
                 echo print_form(false);
                 break;
             }
-            
+        case 'connexion' :
+            echo print_Login();
+            break;
+        case 'check' :
+            if(connexion_check()){
+                echo display_Acceuil(); // ou bien profil??
+                break;
+            }
+            else {
+                echo print_Login();
+                break;
+            }
+
          /*case 'update' :
             //creer un fichier update.php
-            break;
-        case 'connexion' :
-            // traitementConnexion.php
             break;
         case 'publier' :
             // publier.php
