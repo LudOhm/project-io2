@@ -9,6 +9,7 @@ CREATE TABLE Users (
   user_nom VARCHAR(50) NOT NULL,
   user_email VARCHAR(50) NOT NULL,
   user_motdepasse VARCHAR(50) NOT NULL,
+  user_admin BOOLEAN NOT NULL,
   UNIQUE(user_pseudo, user_email)
 );
 
