@@ -52,6 +52,7 @@ if(!isset ($_REQUEST['action'])){
 
          /*case 'update' :
             //creer un fichier update.php
+
             break;
         case 'publier' :
             // publier.php
