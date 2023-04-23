@@ -10,7 +10,7 @@ CREATE TABLE Users (
   user_naissance VARCHAR(50) NOT NULL,
   user_email VARCHAR(50) NOT NULL,
   user_motdepasse VARCHAR(50) NOT NULL,
-  user_admin BOOLEAN NOT NULL DEFAULT 0,
+  user_admin BOOLEAN NOT NULL,
   UNIQUE(user_pseudo, user_email)
 );
 
@@ -47,5 +47,3 @@ CREATE TABLE Likes(
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (post_id) REFERENCES Posts(post_id)
 );
-
-INSERT INTO Users VALUES(1,'Meow','Lud','Perrier','10/03/2004','ludivine.perrier.babin@gmail.com','Lud04Meow',1);

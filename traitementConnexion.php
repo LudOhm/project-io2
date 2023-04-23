@@ -1,32 +1,28 @@
-<?php
-    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-    // Validation du formulaire
-    if (isset($_POST['mail']) &&  isset($_POST['mdp'])) {
-
-        $stmt = $pdo->prepare('SELECT * FROM `Users`');
-        $stmt->execute();
-        $user = $stmt->fetchAll();
-
-
-    if (!empty($user)) {
-        foreach ($user as $users) {
-            if (!empty($users['user_email']) && !empty($users['user_motdepasse'])) {
-                if ($users['user_email'] == $_POST['mail'] && $users['user_motdepasse'] == $_POST['mdp']) {
-                    $_SESSION['LOGGED_USER']= $users['user_email'];
-                    $loggedUser = [
-                        'mail' => $_POST['mail']
-                    ];
-                    break;
-                }
-            }
-        }
-    }
+<?php 
+    function connexion_check(){
+        $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+        // Validation du formulaire
+        if (isset($_POST['login']) &&  isset($_POST['mdp'])) {
     
-    if (empty($loggedUser)) {
-        header("Location: http://localhost:8888/project-io2/inscription.php");
-        exit();
+            $stmt = $pdo->prepare('SELECT user_pseudo, user_email, user_motdepasse FROM `Users`');
+            $stmt->execute();
+            $user = $stmt->fetchAll();
+    
+            foreach ($user as $users) {
+                if (( $users['user_email'] === $_POST['login'] ||  $users['user_pseudo'] === $_POST['login'] ) &&
+                $users['user_motdepasse'] === $_POST['mdp']) {
+                        $loggedUser = [
+                            'mail' => $users['user_mail']
+                        ];
+                    return true;
+                } 
+            } 
+            $errorMessage =  "Mot de passe et/ou nom d'utilisateur incorrect(s)";
+            echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+            return false;
+    
+        }else return false;
+
+       
     }
-    header("Location: http://localhost:8888/project-io2/accueil.php");
-    exit();
-}
-    ?>
+?>
