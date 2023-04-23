@@ -1,0 +1,65 @@
+<?php session_start() ?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Profil utilisateur</title>
+</head>
+<body>
+<h1> Insta Pets</h1>
+<?php
+
+include ('acceuil.php');
+include('inscription.php');
+//include_once('traitementConnexion.php');
+include('traitementInscription.php');
+//include_once('publier.php');
+//include_once('recherche.php');
+//include_once('profil.php')
+
+ 
+if(!isset ($_REQUEST['action'])){
+    echo display_Acceuil();
+}else{
+    switch($_REQUEST['action']){
+        case 'inscription' :
+            echo print_form(false);
+            break;
+        case 'modifier' :
+            echo print_form(true); // a ameliorer (preremplissage des champs sauf mdp pr plus de sécurité?)
+            break;
+       case 'sauvergarder' :
+            if(inscriptionValidee()){
+                echo 'felicitations' // ajouter un fichier felicitations.php??
+                break;
+
+            }else{
+                echo print_form(false);
+                break;
+            }
+            
+         /*case 'update' :
+            //creer un fichier update.php
+            break;
+        case 'connexion' :
+            // traitementConnexion.php
+            break;
+        case 'publier' :
+            // publier.php
+            break;
+        case 'search' :
+            break;
+        case 'profil' :
+            // la cv etre technique je sens
+            break;*/
+        default :
+          echo display_Acceuil();  
+    }
+}
+?>
+<footer>
+		<p>&copy; 2023 InstaPets</p>
+        <p>KACI Amel & PERRIER-BABIN Ludivine</p>
+</footer>
+</body>
+</html>
+
