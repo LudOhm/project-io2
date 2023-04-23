@@ -14,6 +14,7 @@ include('inscription.php');
 include('traitementInscription.php');
 include('connexion.php');
 include('traitementConnexion.php');
+include('felicitations.php');
 //include_once('publier.php');
 //include_once('recherche.php');
 //include_once('profil.php')
@@ -31,7 +32,7 @@ if(!isset ($_REQUEST['action'])){
             break;
        case 'sauvergarder' :
             if(inscriptionValidee()){
-                echo 'felicitations';// ajouter un fichier felicitations.php??
+                echo felicitations();
                 break;
             }else{
                 echo print_form(false);
