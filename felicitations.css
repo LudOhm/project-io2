@@ -1,1 +1,28 @@
+body{
+  background-color : #ECA37E;
+  
+  
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn{
+  font-size: 24px;
+  padding: 14px 40px;
+  border-radius: 8px;
+  border: 2px solid #B67645;
+  background-color: white;
+  transition-duration: 0.4s;
+  color : #B67645;
+  
+}
+.btn:hover {
+  background-color: #ECA37E; 
+  color: white;
+}
+
 
