@@ -10,7 +10,7 @@ CREATE TABLE Users (
   user_naissance VARCHAR(50) NOT NULL,
   user_email VARCHAR(50) NOT NULL,
   user_motdepasse VARCHAR(50) NOT NULL,
-  user_admin BOOLEAN NOT NULL,
+  user_admin BOOLEAN NOT NULL DEFAULT 0,
   UNIQUE(user_pseudo, user_email)
 );
 
