@@ -18,7 +18,7 @@
                 } 
             } 
             $errorMessage =  "Mot de passe et/ou nom d'utilisateur incorrect(s)";
-            echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+            echo '<script type="text/javascript">window.alert("'.$errorMessage.'");</script>';
             return false;
     
         }else return false;
