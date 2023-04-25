@@ -22,7 +22,6 @@
 
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-    // il faut remplace pour mettre une variable qui prend l'id de la personne logged in
     $user_id = $_COOKIE['LOGGED_USER'];;
     if(isset ($_POST['submit'])){
         $post_title = $_POST['post_title'];
@@ -46,6 +45,7 @@
         $stmt = $pdo->prepare('INSERT INTO posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
         $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
         echo "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script>";
+        //A REPRENDRE UN PEU SURTOUT POUR GERER LES REDIRECTIONS 
 
         }
        
