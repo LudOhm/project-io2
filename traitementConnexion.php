@@ -11,14 +11,16 @@
             foreach ($user as $users) {
                 if (( $users['user_email'] === $_POST['login'] ||  $users['user_pseudo'] === $_POST['login'] ) &&
                 $users['user_motdepasse'] === $_POST['mdp']) {
-                        $loggedUser = [
-                            'mail' => $users['user_mail']
-                        ];
+                    $_SESSION['LOGGED_USER']= $_POST['user_id'];
+                    $loggedUser = [
+                        'user_id' => $_POST['user_id']
+                    ];
+                    setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
                     return true;
                 } 
             } 
             $errorMessage =  "Mot de passe et/ou nom d'utilisateur incorrect(s)";
-            echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+            echo '<script type="text/javascript">window.alert("'.$errorMessage.'");</script>';
             return false;
     
         }else return false;
