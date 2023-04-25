@@ -21,7 +21,7 @@ include('felicitations.php');
 
  
 if(!isset ($_REQUEST['action'])){
-    echo display_Acceuil();
+    echo display_Accueil();
 }else{
     switch($_REQUEST['action']){
         case 'inscription' :
@@ -43,7 +43,7 @@ if(!isset ($_REQUEST['action'])){
             break;
         case 'check' :
             if(connexion_check()){
-                echo display_Acceuil(); // ou bien profil??
+                echo display_Accueil(); // ou bien profil??
                 break;
             }
             else {
@@ -64,7 +64,7 @@ if(!isset ($_REQUEST['action'])){
             // la cv etre technique je sens
             break;*/
         default :
-          echo display_Acceuil();  
+          echo display_Accueil();  
     }
 }
 ?>
