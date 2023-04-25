@@ -2,6 +2,7 @@ faire un site web style réseau social un peu comme instagram pour un projet d'u
 
 -il faut faire publier qui est l'endroit ou les publication sont mises. --> publier c'est juste une fonction qui ajoute un post à la base
 -Sur le profil, tous les posts du profil; Sur Acceuil: seulement les posts des profils auxquels l'utilisateur connecté est abonné
+-pour le profil il faudra que l'url soit 'profil.php?user_id=' avec l'id du user qui viendra de la base pour que ça soit plus facile avec les Followers et Followings.
 
 -la page Rechercher aussi.
 -le css est a refaire partout.
