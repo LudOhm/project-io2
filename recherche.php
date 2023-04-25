@@ -1,36 +1,36 @@
-<!DOCTYPE html> 
-<html lang="fr"> 
-    <head>
-        <meta charset="utf-8">
+<?php
+    function search(){
+        echo "<html lang=\"fr\"> 
+        <head>
+        <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
         <title>InstaPets</title> 
-    </head>
-<body> 
-    <header> 
-        <h1>InstaPets </h1>
-        
-    </header>
-
-    <main>
-    <?php
+        </head>
+        <body>
+        <form method=\"get\">
+       <label for="recherche">Rechercher un utilisateur:</label><input type=\"search\" name=\"q\" placeholder=\"saisir un pseudo\">
+        <input type =\"submit\" name=envoyer>
+        </form>
+        <section class=\"afficher utilisateur\">";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-
-
-        $stmt = $pdo->prepare('SELECT user_pseudo FROM `users`');
+        $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` ORDER BY id DESC');
 		$stmt->execute();
-		$users_pseudo = $stmt->fetchAll();
+		$utilisateurs = $stmt->fetchAll();
+        if(isset($_GET['q']) && !empty($_GET['q'])){
+            $recherche = htmlspecialchars($_GET['q']);
+            $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` WHERE user_pseudo LIKE "%'.$recherche.'%" ORDER BY id DESC'); 
+            $stmt->execute();
+		    $utilisateurs = $stmt->fetchAll();
 
-        foreach ($users_pseudo as $user) {
-            if($users_pseudo==$_POST['recherche']){
-                echo '<article>';
-                //il faut mettre le lien vers le profil du compte associer
-                echo '<p>' . htmlspecialchars($user['user_pseudo']) . '</p>';
-                echo '</article>';
-            }
         }
-
-    ?>
-    </main>
-
-    <?php include("footer.php") ?>
-</body>
-</html>
+        if($utilisateurs->rowCount() > 0){
+            while($user = $utilisateurs->fetchAll()){
+            echo "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\" >".$user['user_pseudo']."</a>";
+	    }
+        } else{
+           echo "<p> Aucun utilisateur trouvé</p>";
+        }
+        echo "</section>
+        </body>
+        </html>";
+    } // remplacer par $ html et return $html ???? voir deja si comme ça ça marche bien
+?>
