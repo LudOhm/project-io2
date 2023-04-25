@@ -1,6 +1,6 @@
 <?php
     function publier(){
-        $html = "<html lang=\"fr\"> <head><meta charset="utf-8">
+        $html = "<html lang=\"fr\"> <head><meta charset=\"utf-8\">
         <title>InstaPets</title></head>
         <body><main>
         <h2>Nouvelle publication</h2>
@@ -52,5 +52,5 @@
        
     }
 
-}
+
     ?>
