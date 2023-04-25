@@ -23,8 +23,9 @@
 
         }
         if($utilisateurs->rowCount() > 0){
-            while($user = $utilisateurs->fetchAll())
+            while($user = $utilisateurs->fetchAll()){
             echo "<li><a href=\"index.php?action=profil&id=" .$user['user_id']."\" >".$user['user_pseudo']."</a>";
+	    }
         } else{
            echo "<p> Aucun utilisateur trouvé</p>";
         }
