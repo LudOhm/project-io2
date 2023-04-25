@@ -32,7 +32,7 @@ if(!isset ($_REQUEST['action'])){
             break;
        case 'sauvergarder' :
             if(inscriptionValidee()){
-                echo felicitations();
+                echo felicitations(false);
                 break;
             }else{
                 echo print_form(false);
