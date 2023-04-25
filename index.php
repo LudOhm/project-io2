@@ -15,7 +15,7 @@ include('traitementInscription.php');
 include('connexion.php');
 include('traitementConnexion.php');
 include('felicitations.php');
-//include_once('publier.php');
+include('publier.php');
 //include_once('recherche.php');
 //include_once('profil.php')
 
@@ -32,7 +32,7 @@ if(!isset ($_REQUEST['action'])){
             break;
        case 'sauvergarder' :
             if(inscriptionValidee()){
-                echo felicitations();
+                echo felicitations(false);
                 break;
             }else{
                 echo print_form(false);
@@ -50,14 +50,15 @@ if(!isset ($_REQUEST['action'])){
                 echo print_Login();
                 break;
             }
+	case 'publier' :
+            publier() ;
+            break;
 
          /*case 'update' :
             //creer un fichier update.php
 
             break;
-        case 'publier' :
-            // publier.php
-            break;
+        
         case 'search' :
             break;
         case 'profil' :

@@ -10,12 +10,12 @@
     
             foreach ($user as $users) {
                 if (( $users['user_email'] === $_POST['login'] ||  $users['user_pseudo'] === $_POST['login'] ) &&
-                $users['user_motdepasse'] === $_POST['mdp']) {
-                    $_SESSION['LOGGED_USER']= $_POST['user_id'];
-                    $loggedUser = [
-                        'user_id' => $_POST['user_id']
-                    ];
-                    setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
+                $users['user_motdepasse'] === $_POST['mdp']) {=
+                 $_SESSION['LOGGED_USER']= $_POST['user_id'];
+                     $loggedUser = [
+                         'user_id' => $_POST['user_id']
+                     ];
+                     setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
                     return true;
                 } 
             } 
