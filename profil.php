@@ -1,23 +1,8 @@
-<!--
-<!DOCTYPE html> 
-<html lang="fr"> 
-    <head>
-        <meta charset="utf-8">
-        <title>Nom réseau</title> 
-    </head>
-<body> 
-    <header> 
-        <h1>Nom réseau</h1>
-        
-    </header>
+<?php if(!isset($loggedUser)){ header("Location : index.php");} ?>
+<?php
 
-    <nav>
-    </nav>
-
-    <main>
--->
-    <?php
-      function display_Profil(){
+include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
+      function display_Profil($id){
        $html =  "<html lang=\"fr\"> 
         <head>
         <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
@@ -25,23 +10,17 @@
         <link href=\"profil.css\" rel=\"stylesheet\">
         </head>
         <body>
-	<header>
-	<h1>InstaPets</h1>
-	</header>";
-	
-    if(!isset($loggedUser)){
-            // presentation du site a jouter ¿fonction readme d'un readme.php?
-            $html .= "<li><a href=\"index.php?action=inscription\">Rejoignez-nous!</a></li><li><a href=\"index.php?action=connexion\">J'ai déjà un compte!</a></li>";
-        }else{
-		$html .="<h2>Dernière publication</h2>";
-    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-    //faire une variable avec l'id ou l'email du user logged et le comparer dans le prepare 
-		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY DESC LIMIT 20');
-		$stmt->execute();
+        <h2>Publications</h2>";
+
+        $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+        $user_id = $_COOKIE['LOGGED_USER'];
+        // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
+		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
+		$stmt->execute($user_id);
 		$posts = $stmt->fetchAll();
 		foreach ($posts as $post) {
 				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
-                		"</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_id'])."</p></article>";
+                		"</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";
 				}
 	
 	    	$html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
@@ -51,32 +30,23 @@
         	<li><a href=\"index.php?action=profil\">MonCompte</a></li>
         	</ul>
        		</aside>";
-    }
+        if($id != $user_id){
+            /*afficher le bouton s'abonner / désabonner 
+                appel a une fonction subscribe.php;
+            */
+            
+        }else{
+            /* on est sur le profil de l'user courant
+            <li><a href=index.php?action=publier>Ajouter une nouvelle publication>
+            */ 
+        }
 
     $html .="</body></html>";
  
     return $html;
     }
     ?>
-
-    </main>
-    <!--  sera a mettre dans le $html après 
-    <aside>
-        <form>
-          <input type="submit" value="S'abonner">
-        </form>
-        <form>
-          <input type="search" name="q" placeholder="Rechercher">
-          <input type="submit" value="Ok !">
-        </form>
-        <ul>
-          <li><a href="#">Comptes</a></li>
-          <li><a href="#">Publier</a></li>
-          <li><a href="#">MonCompte</a></li>
-        </ul>
-      </aside> -->
+    
 
     
     
-</body>
-</html>
