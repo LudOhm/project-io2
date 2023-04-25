@@ -57,20 +57,15 @@ if(!isset ($_REQUEST['action'])){
             search();
             break;
         case 'profil' :
-	    
+	    $id=$_GET['id'];
             echo display_profil($id);
             break;
 
          /*case 'update' :
             //creer un fichier update.php
 
-            break;
-        
-        case 'search' :
-            break;
-        case 'profil' :
-            // la cv etre technique je sens
             break;*/
+       
         default :
           echo display_Accueil();  
     }
