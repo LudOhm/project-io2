@@ -1,13 +1,15 @@
 <?php 
-  function felicitations(){
+  function felicitations($modif){
+   $message = $modif ? "Modifications enregistrées !" : "Merci pour votre inscription !";
+   $mot = $modif ? "Modification" : "Inscription !";
    $html = "<html lang=\"fr\"> <head>
 <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
 <link href=\"felicitation.css\" rel=\"stylesheet\">
-<title>Inscription Réussie!</title>
+<title>".$mot ."Réussie!</title>
  <script src=\"https://kit.fontawesome.com/b1ff4425a2.js\" crossorigin=\"anonymous\"></script>
 </head>
 <body>
-  <h1>Merci pour votre inscription !<h1>
+  <h1>".$message."<h1>
   <form action=\"index.php?action=profil\" method=\"post\">
   <button type=\"submit\" class=\"btn1\"><i class=\"fa-sharp fa-solid fa-cat fa-lg\" style=\"color: #B67645;\"></i>Voir mon profil</button></form>
 <form action=\"index.php\" method=\"post\">
