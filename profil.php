@@ -1,4 +1,4 @@
-<?php if(!isset($loggedUser)){ header("Location : index.php");} ?>
+<?php if(!isset($loggedUser)){ header("Location : index.php?action=inscription");} ?>
 <?php
 
 include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
