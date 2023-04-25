@@ -1,5 +1,6 @@
 <?php
     function display_Accueil(){
+	// include('suppression.php')
        $html =  "<html lang=\"fr\"> 
         <head>
         <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
