@@ -12,7 +12,7 @@
   <button type=\"submit\" class=\"btn1\"><i class=\"fa-sharp fa-solid fa-cat fa-lg\" style=\"color: #B67645;\"></i>Voir mon profil</button></form>
 <form action=\"index.php\" method=\"post\">
 <button type=\"submit\" formaction=\"index.php\" class=\"btn2\">
-<i class=\"fa-sharp fa-solid fa-dog fa-flip-horizontal fa-lg\" style=\"color: #B67645;\"></i>Retour à l'acceuil</button> </form>
+<i class=\"fa-sharp fa-solid fa-dog fa-flip-horizontal fa-lg\" style=\"color: #B67645;\"></i>Retour à l'accueil</button> </form>
 </body></html>";
     return $html;
   }
