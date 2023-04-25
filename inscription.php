@@ -3,6 +3,7 @@ function print_form($modifier) {
   $mot = $modifier ? "Modifier mes informations" : "S'inscrire";
   $destination = $modifier ? "update" : "sauvegarder";
   //$valDate = strlen($date) > 0 ? '$date' : 'jj/mm/aaaa';
+  // AJOUT PHOTO DE PROFIL ???? vrmnt si on a le temps
 
   $html =
     "<html>

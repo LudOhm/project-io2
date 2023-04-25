@@ -1,5 +1,6 @@
 <?php
     function display_Accueil(){
+	// include('suppression.php')
        $html =  "<html lang=\"fr\"> 
         <head>
         <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
@@ -26,6 +27,8 @@
 			foreach ($posts as $post) {
 				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
                 "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_id'])."</p></article>";
+				 /* verifier si l'utilisateur courant est admin, si oui ajout d'un bouton "suppression" apres chaque post
+	      --> creation d'une fonction supprimer dans un fichier supprimer.php*/
 			}
 	
 	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">

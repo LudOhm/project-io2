@@ -10,7 +10,7 @@
 </head>
 <body>
   <h1>".$message."<h1>
-  <form action=\"index.php?action=profil\" method=\"post\">
+  <form action=\"index.php?action=profil&amp;id=".$_COOKIE['user_id']."\" method=\"post\">
   <button type=\"submit\" class=\"btn1\"><i class=\"fa-sharp fa-solid fa-cat fa-lg\" style=\"color: #B67645;\"></i>Voir mon profil</button></form>
 <form action=\"index.php\" method=\"post\">
 <button type=\"submit\" formaction=\"index.php\" class=\"btn2\">

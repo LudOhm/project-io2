@@ -19,3 +19,5 @@ source /Applications/MAMP/htdocs/project-io2/base.sql
 
 quand il y a un changement dans le fichier de la base il faut la supp et la recréer :
 DROP DATABASE instapets;
+
+/!\ LA FONCTION SETCOOKIE IL FAUDRA LA METTRE AU TOUT DEBUT DE INDEX.PHP AVEC LE SESSION START SINON PROBLEME /!\

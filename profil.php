@@ -1,6 +1,6 @@
 <?php if(!isset($loggedUser)){ header("Location : index.php?action=inscription");} ?>
 <?php
-
+// include('suppression.php');
 include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
       function display_Profil($id){
        $html =  "<html lang=\"fr\"> 
@@ -22,6 +22,8 @@ include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
 				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
                 		"</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";
 				}
+	      /* verifier si l'utilisateur courant est admin, si oui ajout d'un bouton "suppression" apres chaque post
+	      --> creation d'une fonction supprimer dans un fichier supprimer.php*/
 	
 	    	$html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
   		<input type=\"submit\" value=\"Ok !\"></form>

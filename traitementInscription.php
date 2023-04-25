@@ -61,7 +61,7 @@
             'user_id' => $_POST['user_id']
         ];
         
-        setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
+    
     
         return true;
 }

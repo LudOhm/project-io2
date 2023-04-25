@@ -1,4 +1,6 @@
-<?php session_start() ?>
+<?php session_start() 
+setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
+?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
