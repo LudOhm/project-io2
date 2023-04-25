@@ -53,6 +53,13 @@ if(!isset ($_REQUEST['action'])){
 	case 'publier' :
             publier() ;
             break;
+	 case 'search' :
+            search();
+            break;
+        case 'profil' :
+	    
+            echo display_profil($id);
+            break;
 
          /*case 'update' :
             //creer un fichier update.php
