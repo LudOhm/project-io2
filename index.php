@@ -8,7 +8,7 @@
 <h1> Insta Pets</h1>
 <?php
 
-include ('acceuil.php');
+include('accueil.php');
 include('inscription.php');
 
 include('traitementInscription.php');
@@ -52,7 +52,8 @@ if(!isset ($_REQUEST['action'])){
             }
 
          /*case 'update' :
-            //creer un fichier traitementModification.php
+            //creer un fichier update.php
+
             break;
         case 'publier' :
             // publier.php
