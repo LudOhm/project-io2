@@ -51,7 +51,7 @@ if(!isset ($_REQUEST['action'])){
                 break;
             }
 	case 'publier' :
-            publier();
+            publier() ;
             break;
 
          /*case 'update' :
