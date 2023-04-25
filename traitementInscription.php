@@ -56,10 +56,12 @@
             'user_email' => $usermail,
             'user_motdepasse' => $userpassword
         ]);
-        $_SESSION['LOGGED_USER']= $_POST['mail'];
+        $_SESSION['LOGGED_USER']= $_POST['user_id'];
         $loggedUser = [
-            'mail' => $_POST['mail']
+            'user_id' => $_POST['user_id']
         ];
+        
+        setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
     
         return true;
 }
