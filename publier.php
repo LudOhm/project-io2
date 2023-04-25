@@ -23,7 +23,7 @@
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
     // il faut remplace pour mettre une variable qui prend l'id de la personne logged in
-    $user_id = 1;
+    $user_id = $_COOKIE['LOGGED_USER'];;
     if(isset ($_POST['submit'])){
         $post_title = $_POST['post_title'];
         $post_contenu = $_POST['post_contenu'];
