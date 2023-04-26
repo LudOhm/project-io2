@@ -15,8 +15,10 @@
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
       $affichageH2 .= $pseudo_profil;
+	if($isAdmin){$affichageH2.=" &#9733;"}; // petie étoile de certification ;)
     } else{
       $affichageH2 .= "Moi";
+	if($isAdmin){$affichageH2.=" &#9733;"}; 
     }
 
     $html = "<html lang=\"fr\"> <head><meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
