@@ -13,15 +13,15 @@
                     return false;
                 }
             }
-            $userPseudo= $_POST['Pseudo'];
+            $userPseudo= htmlspecialchars($_POST['Pseudo']);
         } else return false;
         
         if(isset($_POST['nom'])){
-            $usernom= $_POST['nom'];
+            $usernom= htmlspecialchars($_POST['nom']);
         } else return false;
         
         if(isset($_POST['prenom'])){
-            $userprenom= $_POST['prenom'];
+            $userprenom= htmlspecialchars($_POST['prenom']);
         }else return false;
         
         if(isset($_POST['date'])){
@@ -39,11 +39,11 @@
                     return false;
                 }
             }
-            $usermail= $_POST['mail'];
+            $usermail= htmlspecialchars($_POST['mail']);
         } else return false;
     
         if(isset($_POST['mdp'])){
-            $userpassword = $_POST['mdp'];
+            $userpassword = htmlspecialchars($_POST['mdp']);
         } else return false; 
 
         $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
