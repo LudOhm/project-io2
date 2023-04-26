@@ -1,6 +1,22 @@
 <?php 
   include('suppressionPublication.php');
-  include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
+
+  function count_Followers($id){
+    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+    $followers = $pdo->prepare('SELECT count(*) FROM Followers WHERE user_id = ?');
+    $followers->execute(array($id));
+    $num = $followers->fetchAll();
+    return $num;
+  }
+
+  function is_Logged_User_Subscribed($id){
+    // si la fonction est appelée c que id != userLoggedID donc pas besoin de revérifier
+    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+    $followers = $pdo->prepare('SELECT count(*) FROM Followings WHERE following_id = ? AND user_id = ?');
+    $followers->execute(array($id, $_SESSION['LOGGED_ID']));
+    $num = $followers->fetchAll();
+    return ($num > 0 );
+  }
   
   function display_Profil($id){
 
@@ -9,14 +25,18 @@
     // on recupere l'utilisateur en parametres
     $Recup = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
     $Recup->execute(array($id));
+    // on vérifie que l'id correspond bien à un utilisateur
+    if($Recup->rowCount()==0){header('Location: index.php');} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
     $isAdmin = $Recup->fetch()['user_admin'] ;
     // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
       $affichageH2 .= $pseudo_profil;
+	if($isAdmin){$affichageH2.=" &#9733;"}; // petie étoile de certification ;)
     } else{
       $affichageH2 .= "Moi";
+	if($isAdmin){$affichageH2.=" &#9733;"}; 
     }
 
     $html = "<html lang=\"fr\"> <head><meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
@@ -25,6 +45,8 @@
 
         
     // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
+
+    $html.="<p>".(string)count_Followers($id)." abonné(s)</p>";
 
     // afficher les posts du profil
 		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
@@ -45,20 +67,15 @@
         	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         	</ul>
        		</aside>";
-        if($id != $user_id){
-            $html .= "<button onclick=\"subscribe.php()\">S'abonner</button>";
-            $html .= "<button onclick=\"unfollow.php()\">Se désabonner</button>";
-            //je pense qu'il faut faire un test sur ce fichier pour avoir le bouton différent selon si la personne est deja abo ou non
-            /*afficher le bouton s'abonner / désabonner 
-                appel a une fonction subscribe.php;
-                ou unfollow.php?
-            */
-            
+        if($id != $_SESSION['LOGGED_ID']){
+            if(is_Logged_User_Subscribed($id)){
+              $html .= "<li><a href=\"index.php?action=unfollow&ampid=;".$id."\">Se désabonner</a></li>";
+            }else{
+              $html .= "<li><a href=\"index.php?action=subscribe&ampid=;".$id."\">Suivre</a></li>";
+            }
         }else{
-          $html .= "<button onclick=\"publier.php()\">Poster</button>";
-            /* on est sur le profil de l'user courant
-            <li><a href=index.php?action=publier>Ajouter une nouvelle publication>
-            */ 
+          $html .=  "<li><a href=\"index.php?action=publier\">Ajouter une nouvelle publication></a></li>
+          <li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>";
         }
 
     $html .="</body></html>";
