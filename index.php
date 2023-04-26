@@ -1,5 +1,5 @@
 <?php session_start() 
-setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
+//setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
 ?>
 <html>
 <head>

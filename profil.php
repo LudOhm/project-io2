@@ -33,11 +33,16 @@ include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
         	</ul>
        		</aside>";
         if($id != $user_id){
+            $html .= "<button onclick=\"subscribe.php()\">S'abonner</button>";
+            $html .= "<button onclick=\"unfollow.php()\">Se désabonner</button>";
+            //je pense qu'il faut faire un test sur ce fichier pour avoir le bouton différent selon si la personne est deja abo ou non
             /*afficher le bouton s'abonner / désabonner 
                 appel a une fonction subscribe.php;
+                ou unfollow.php?
             */
             
         }else{
+          $html .= "<button onclick=\"publier.php()\">Poster</button>";
             /* on est sur le profil de l'user courant
             <li><a href=index.php?action=publier>Ajouter une nouvelle publication>
             */ 

@@ -3,7 +3,31 @@
     gerer cote base;
     dans les tests il faudra bien verifier que la publication disparait de l'acceuil et du profil
 */
-  function delete(//jsp encore si y aura des parametres)
+  function delete($id){//jsp si cet argument est bien mais je pense qu'il en faut un, cça serait l'id du post
+
+    echo "<html lang=\"fr\"> <head><meta charset=\"utf-8\">
+    <title>InstaPets</title></head>
+  <body>
+	<h1>Suppression du post</h1>";
+
+		// il faut changer les GET
+		if (!isset($_GET['id'])) {
+			echo "<p>Error: pas de post selectionner.</p>";
+		} else {
+			$id = $_GET['id'];
+
+			// supprime da la base de donnée
+			$db = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+			$stmt = $db->prepare("DELETE FROM Posts WHERE post_id = ?");
+			$stmt->execute([$id]);
+
+			echo "<p>Le post a été supprimé</p>";
+		}
+
+
+	echo "<a href=\"index.php\">retour à l'acceuil</a></body></html>";
+
+  }
 
 
 ?>
