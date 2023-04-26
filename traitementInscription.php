@@ -56,18 +56,22 @@
             'user_email' => $usermail,
             'user_motdepasse' => $userpassword
         ]);
-        $_SESSION['LOGGED_ID']= $_POST['user_id']; // a venir modifier
+        
+        $recupID = $pdo->prepare('SELECT * FROM users WHERE user_pseudo = ? AND user_motdepasse = ?');
+        $recupID->execute(array($userPseudo, $userpassword));
+        
+        $_SESSION['LOGGED_ID']= $recupID->fetch()['user_id'];
         $_SESSION['LOGGED_PSEUDO']= $user_pseudo;
         $_SESSION['LOGGED_MDP'] = $userpassword;
-        
+        return true;
        
         
-        $loggedUser = [ /// mais ça sert à quoi ça en fait???
+        /*$loggedUser = [ /// mais ça sert à quoi ça en fait???
             'user_id' => $_POST['user_id']
-        ];
+        ];*/
         
     
-    
-        return true;
+ 
+        
 }
 ?>
