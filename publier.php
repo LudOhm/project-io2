@@ -28,6 +28,7 @@
         $post_contenu = $_POST['post_contenu'];
         $post_picture = null;
 
+
         if (isset($_FILES['post_picture'])) {
             $fileName = $_FILES['post_picture']['name'];
             $fileExtension = explode('.',$fileName);

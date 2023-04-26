@@ -7,7 +7,7 @@
         </head>
         <body>
         <form method=\"get\">
-       <label for="recherche">Rechercher un utilisateur:</label><input type=\"search\" name=\"q\" placeholder=\"saisir un pseudo\">
+       <label for=\"recherche\">Rechercher un utilisateur:</label><input type=\"search\" name=\"q\" placeholder=\"saisir un pseudo\">
         <input type =\"submit\" name=envoyer>
         </form>
         <section class=\"afficher utilisateur\">";
