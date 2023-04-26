@@ -23,3 +23,5 @@ DROP DATABASE instapets;
 /!\ LA FONCTION SETCOOKIE IL FAUDRA LA METTRE AU TOUT DEBUT DE INDEX.PHP AVEC LE SESSION START SINON PROBLEME /!\
 
 $_SESSION['LOGGED_USER'] existe plus ; remplacé par $_SESSION['LOGGED_ID']
+
+j'ai un doute si les header vont fonctionner dans les autres du coup je pense les enlever
