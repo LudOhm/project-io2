@@ -13,15 +13,15 @@
                     return false;
                 }
             }
-            $userPseudo= $_POST['Pseudo'];
+            $userPseudo= htmlspecialchars($_POST['Pseudo']);
         } else return false;
         
         if(isset($_POST['nom'])){
-            $usernom= $_POST['nom'];
+            $usernom= htmlspecialchars($_POST['nom']);
         } else return false;
         
         if(isset($_POST['prenom'])){
-            $userprenom= $_POST['prenom'];
+            $userprenom= htmlspecialchars($_POST['prenom']);
         }else return false;
         
         if(isset($_POST['date'])){
@@ -39,11 +39,11 @@
                     return false;
                 }
             }
-            $usermail= $_POST['mail'];
+            $usermail= htmlspecialchars($_POST['mail']);
         } else return false;
     
         if(isset($_POST['mdp'])){
-            $userpassword = $_POST['mdp'];
+            $userpassword = sha1($_POST['mdp']); //crypter le mdp
         } else return false; 
 
         $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
@@ -56,13 +56,22 @@
             'user_email' => $usermail,
             'user_motdepasse' => $userpassword
         ]);
-        $_SESSION['LOGGED_USER']= $_POST['user_id'];
-        $loggedUser = [
+        
+        $recupID = $pdo->prepare('SELECT * FROM users WHERE user_pseudo = ? AND user_motdepasse = ?');
+        $recupID->execute(array($userPseudo, $userpassword));
+        
+        $_SESSION['LOGGED_ID']= $recupID->fetch()['user_id'];
+        $_SESSION['LOGGED_PSEUDO']= $user_pseudo;
+        $_SESSION['LOGGED_MDP'] = $userpassword;
+        return true;
+       
+        
+        /*$loggedUser = [ /// mais ça sert à quoi ça en fait???
             'user_id' => $_POST['user_id']
-        ];
+        ];*/
         
     
-    
-        return true;
+ 
+        
 }
 ?>

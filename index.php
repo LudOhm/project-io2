@@ -1,5 +1,7 @@
 <?php session_start() 
-//setcookie('LOGGED_USER', $_SESSION['LOGGED_USER'], time()+3600, '/');
+if(!isset($_SESSION['LOGGED_MDP'])){
+    header('Location: index.php?action=bienvenue');
+}
 ?>
 <html>
 <head>
@@ -12,18 +14,18 @@
 
 include('accueil.php');
 include('inscription.php');
-
+include('bienvenue.php');
 include('traitementInscription.php');
 include('connexion.php');
 include('traitementConnexion.php');
 include('felicitations.php');
 include('publier.php');
-//include_once('recherche.php');
+include_once('recherche.php');
 //include_once('profil.php')
 
  
 if(!isset ($_REQUEST['action'])){
-    echo display_Accueil();
+    echo display_Accueil(); // si le script arrive ici c'est que l'user est connecté
 }else{
     switch($_REQUEST['action']){
         case 'inscription' :
@@ -62,6 +64,8 @@ if(!isset ($_REQUEST['action'])){
 	    $id=$_GET['id'];
             echo display_profil($id);
             break;
+        case 'bienvenue' :
+            echo display_Bienvenue();
 
          /*case 'update' :
             //creer un fichier update.php

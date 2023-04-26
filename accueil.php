@@ -11,14 +11,12 @@
 	    <header>
 	    </header>
 	    <main>";
-        if(!isset($_SESSION['LOGGED_USER'])&&!isset($_COOKIE['LOGGED_USER'])){ 
-            $html .= " <h2>Bienvenue sur Instapets, le réseau social pour les détenteurs d'animaux qui veulent partager 
-            et communiquer avec les autres détenteurs d'animaux qui partagent un intérêt commun.</h2><br>
-            <li><a href=\"index.php?action=inscription\">Rejoignez-nous!</a></li><li><a href=\"index.php?action=connexion\">J'ai déjà un compte!</a></li>";
+        if(!isset($_SESSION['LOGGED_MDP'])&&!isset($_SESSION['LOGGED_PSEUDO'])){ 
+            header('Location: index.php?action=bienvenue');
         }
         
 		else{
-			$loggedUser = $_SESSION['LOGGED_USER'];
+			$loggedUser = $_SESSION['LOGGED_ID'];
             $html.="<h2>Recent Posts</h2>";
             $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 			//pour avoir les posts
