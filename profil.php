@@ -42,7 +42,7 @@
   		<input type=\"submit\" value=\"Ok !\"></form> 
         	<ul>
         	<li><a href=\"index.php?action=publier\">Publier</a></li>
-        	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']\">MonCompte</a></li>
+        	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         	</ul>
        		</aside>";
         if($id != $user_id){
