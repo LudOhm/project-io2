@@ -21,7 +21,8 @@ include('traitementConnexion.php');
 include('felicitations.php');
 include('publier.php');
 include_once('recherche.php');
-//include_once('profil.php')
+include_once('profil.php');
+include_once('abonnerment.php');
 
  
 if(!isset ($_REQUEST['action'])){
@@ -34,43 +35,55 @@ if(!isset ($_REQUEST['action'])){
         case 'modifier' :
             echo print_form(true); // a ameliorer (preremplissage des champs sauf mdp pr plus de sécurité?)
             break;
+        case 'update' :
+            if(modificationValidee()){ //À CREER
+                echo felicitations(true);
+                break;
+            } else{
+                header('Location: index.php?action=modifer');
+            }
        case 'sauvergarder' :
             if(inscriptionValidee()){
                 echo felicitations(false);
                 break;
             }else{
-                echo print_form(false);
-                break;
+                header('Location: index.php?action=inscription');
             }
         case 'connexion' :
             echo print_Login();
             break;
         case 'check' :
             if(connexion_check()){
-                echo display_Accueil(); // ou bien profil??
+                echo display_Accueil();
                 break;
             }
             else {
                 echo print_Login();
                 break;
             }
-	case 'publier' :
-            publier() ;
+	    case 'publier' :
+            publier() ; // je dois revenir dessus
             break;
-	 case 'search' :
-            search();
+	    case 'search' :
+            search(); // je dois revenir dessus
             break;
         case 'profil' :
 	        $id=$_GET['id'];
             echo display_profil($id);
             break;
+        case 'unfollow':
+            $id=$_GET['id'];
+            unFollow($id);
+            echo display_profil($id);
+            break;
+        case 'subscribe':
+            $id=$_GET['id'];
+            follow($id);
+            echo display_profil($id);
+            break;
         case 'bienvenue' :
             echo display_Bienvenue();
 
-         /*case 'update' :
-            //creer un fichier update.php
-
-            break;*/
        
         default :
           echo display_Accueil();  
