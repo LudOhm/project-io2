@@ -56,8 +56,13 @@
             'user_email' => $usermail,
             'user_motdepasse' => $userpassword
         ]);
-        $_SESSION['LOGGED_USER']= $_POST['user_id'];
-        $loggedUser = [
+        $_SESSION['LOGGED_ID']= $_POST['user_id']; // a venir modifier
+        $_SESSION['LOGGED_LOGIN']= $login;
+        $_SESSION['LOGGED_MDP'] = $mdp;
+        
+       
+        
+        $loggedUser = [ /// mais ça sert à quoi ça en fait???
             'user_id' => $_POST['user_id']
         ];
         
