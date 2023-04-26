@@ -40,14 +40,14 @@ if(!isset ($_REQUEST['action'])){
                 echo felicitations(true);
                 break;
             } else{
-                header('Location: index.php?action=modifer');
+                echo print_form(true);
             }
        case 'sauvergarder' :
             if(inscriptionValidee()){
                 echo felicitations(false);
                 break;
             }else{
-                header('Location: index.php?action=inscription');
+              echo print_form(false);
             }
         case 'connexion' :
             echo print_Login();
