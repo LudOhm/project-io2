@@ -21,3 +21,5 @@ quand il y a un changement dans le fichier de la base il faut la supp et la recr
 DROP DATABASE instapets;
 
 /!\ LA FONCTION SETCOOKIE IL FAUDRA LA METTRE AU TOUT DEBUT DE INDEX.PHP AVEC LE SESSION START SINON PROBLEME /!\
+
+$_SESSION['LOGGED_USER'] existe plus ; remplacé par $_SESSION['LOGGED_ID']
