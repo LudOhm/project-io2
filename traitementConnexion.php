@@ -5,17 +5,23 @@
         if (isset($_POST['login']) &&  isset($_POST['mdp'])) {
             $login = htmlspecialchars($_POST['login']);
             $mdp = sha1($_POST['mdp']);
-            $stmt = $pdo->prepare('SELECT user_pseudo, user_email, user_motdepasse FROM `Users`');
+            $stmt = $pdo->prepare('SELECT * FROM `Users`');
             $stmt->execute();
             $user = $stmt->fetchAll();
     
             foreach ($user as $users) {
                 if (( $users['user_email'] === $login ||  $users['user_pseudo'] === $login ) &&
                 $users['user_motdepasse'] === $mdp) {
-                        $_SESSION['LOGGED_USER']= $_POST['user_id'];
-                        $loggedUser = [
+                    
+                        $_SESSION['LOGGED_ID']= $users['user_id'];
+                        
+                        $_SESSION['LOGGED_PSEUDO']= $users['user_pseudo'];
+                        $_SESSION['LOGGED_MDP'] = $mdp;
+                       
+                        /*$loggedUser = [
                          'user_id' => $_POST['user_id']
-                        ];
+                        ];*/
+                    
                         return true;
                 } 
             } 
