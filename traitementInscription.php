@@ -43,7 +43,7 @@
         } else return false;
     
         if(isset($_POST['mdp'])){
-            $userpassword = htmlspecialchars($_POST['mdp']);
+            $userpassword = sha1($_POST['mdp']); //crypter le mdp
         } else return false; 
 
         $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
