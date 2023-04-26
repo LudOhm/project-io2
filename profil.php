@@ -1,35 +1,48 @@
-<?php if(!isset($loggedUser)){ header("Location : index.php?action=inscription");} ?>
-<?php
-// include('suppression.php');
-include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
-      function display_Profil($id){
-       $html =  "<html lang=\"fr\"> 
-        <head>
-        <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
-        <title>InstaPets</title> 
-        <link href=\"profil.css\" rel=\"stylesheet\">
-        </head>
-        <body>
-        <h2>Publications</h2>";
+<?php 
+  include('suppressionPublication.php');
+  include('subscribe.php'); // dans ce fichier on gere abonnement et desabonnement
+  
+  function display_Profil($id){
 
-        $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-        $user_id = $_COOKIE['LOGGED_USER'];
-        // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
-		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
-		$stmt->execute($user_id);
-		$posts = $stmt->fetchAll();
+    if(!(isset($_SESSION['LOGGED_MDP'] ) && !isset( $_SESSION['LOGGED_PSEUDO']))){ header("Location : index.php?action=bienvenue");}
+    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+    // on recupere l'utilisateur en parametres
+    $Recup = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
+    $Recup->execute(array($id));
+    $pseudo_profil = $Recup->fetch()['user_pseudo'];
+    $isAdmin = $Recup->fetch()['user_admin'] ;
+    // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
+    $affichageH2 ="&commat;"; //'@'
+    if($id != $_SESSION['LOGGED_ID']){
+      $affichageH2 .= $pseudo_profil;
+    } else{
+      $affichageH2 .= "Moi";
+    }
+
+    $html = "<html lang=\"fr\"> <head><meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>InstaPets</title><link href=\"profil.css\" rel=\"stylesheet\"></head><body>
+    <h2>".$affichageH2."</h2><h3>Publications</h3><main>";
+
+        
+    // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
+
+    // afficher les posts du profil
+		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
+		$stmt2->execute($id);
+		$posts = $stmt2->fetchAll();
 		foreach ($posts as $post) {
 				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
-                		"</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";
-				}
-	      /* verifier si l'utilisateur courant est admin, si oui ajout d'un bouton "suppression" apres chaque post
-	      --> creation d'une fonction supprimer dans un fichier supprimer.php*/
-	
-	    	$html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
-  		<input type=\"submit\" value=\"Ok !\"></form>
+        "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
+        if($isAdmin){
+          $html.=suppression(); // a créer
+        } 
+		}
+	// en dessous je vais m'occuper d'un peu réorganiser tout ça je fais une petite pause
+	  $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+  		<input type=\"submit\" value=\"Ok !\"></form> 
         	<ul>
         	<li><a href=\"index.php?action=publier\">Publier</a></li>
-        	<li><a href=\"index.php?action=profil\">MonCompte</a></li>
+        	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']\">MonCompte</a></li>
         	</ul>
        		</aside>";
         if($id != $user_id){

@@ -46,7 +46,7 @@
             $userpassword = sha1($_POST['mdp']); //crypter le mdp
         } else return false; 
 
-        $sqlQuery = 'INSERT INTO users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
+        $sqlQuery = 'INSERT INTO Users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
         $insertUsers = $pdo->prepare($sqlQuery);
         $insertUsers->execute([
             'user_pseudo' => $userPseudo,
@@ -57,7 +57,7 @@
             'user_motdepasse' => $userpassword
         ]);
         
-        $recupID = $pdo->prepare('SELECT * FROM users WHERE user_pseudo = ? AND user_motdepasse = ?');
+        $recupID = $pdo->prepare('SELECT * FROM Users WHERE user_pseudo = ? AND user_motdepasse = ?');
         $recupID->execute(array($userPseudo, $userpassword));
         
         $_SESSION['LOGGED_ID']= $recupID->fetch()['user_id'];

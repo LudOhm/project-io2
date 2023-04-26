@@ -61,7 +61,7 @@ if(!isset ($_REQUEST['action'])){
             search();
             break;
         case 'profil' :
-	    $id=$_GET['id'];
+	        $id=$_GET['id'];
             echo display_profil($id);
             break;
         case 'bienvenue' :
