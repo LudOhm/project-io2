@@ -61,7 +61,7 @@
         $recupID->execute(array($userPseudo, $userpassword));
         
         $_SESSION['LOGGED_ID']= $recupID->fetch()['user_id'];
-        $_SESSION['LOGGED_PSEUDO']= $user_pseudo;
+        $_SESSION['LOGGED_PSEUDO']= $userPseudo;
         $_SESSION['LOGGED_MDP'] = $userpassword;
         return true;
        
