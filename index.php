@@ -20,8 +20,8 @@
                     break;
                 case 'sauvegarder' :
                     if(inscriptionValidee()){
-                        $fonction =felicitations(false);
-                        break;
+                        header(Location : 'index.php?action=inscriptionValidee');
+                        exit();
                     }else{
                         $fonction = print_form(false);
                         break;
@@ -39,6 +39,17 @@
         }else{
             $fonction = display_Bienvenue();
         }
+   } else {
+    if(isset($_GET['action'])){
+        switch($_GET['action']){
+            case 'inscriptionValidee' :
+                $fonction =felicitations(false);
+                break;
+            default : $fonction = "EN CONSTRUCTION";
+        }
+    }else{
+        $fonction = "EN CONSTRUCTION";
+    }
    }
 ?>
 <html>
