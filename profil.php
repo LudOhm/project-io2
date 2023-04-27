@@ -33,11 +33,13 @@
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
       $affichageH2 .= $pseudo_profil;
-	if($isAdmin){$affichageH2.=" &#9733;"}; // petie étoile de certification ;)
+	  if($isAdmin){$affichageH2.=" &#9733;"; // petie étoile de certification ;)
     } else{
       $affichageH2 .= "Moi";
-	if($isAdmin){$affichageH2.=" &#9733;"}; 
+	if($isAdmin){$affichageH2.=" &#9733;"; 
     }
+  }
+}
 
     $html = "<html lang=\"fr\"> <head><meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
     <title>InstaPets</title><link href=\"profil.css\" rel=\"stylesheet\"></head><body>
@@ -56,7 +58,7 @@
 				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
         "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
         if($isAdmin){
-          $html.=suppression(); // a créer
+          $html.=delete(); // a créer
         } 
 		}
 	// en dessous je vais m'occuper d'un peu réorganiser tout ça je fais une petite pause

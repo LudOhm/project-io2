@@ -2,6 +2,7 @@
 	
 	function isAdmin($usertoCheck){
 		//pour savoir si admin
+		$pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root'); //il faut appeler la base avant
 		$stm = $pdo->prepare('SELECT user_id, user_admin FROM Users WHERE user_id = ?');
 		$stm->execute(array($usertoCheck));
 		$isadmin = $stm->fetch()['user_admin'] ;
