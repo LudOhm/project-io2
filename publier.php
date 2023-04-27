@@ -16,9 +16,8 @@
         <input type=\"file\" accept=\".jpeg, .jpg, .png, .mp4, .avi, .mov, .flv\" name=\"post_picture\">
         
         <button type=\"submit\" name=\"submit\">Publier</button>
-        </form></main></body></html>";
+        </form></main>";
 
-        echo $html;
 
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
@@ -33,24 +32,29 @@
             $fileName = $_FILES['post_picture']['name'];
             $fileExtension = explode('.',$fileName);
             $validExtensions = ['jpg','jpeg','png', 'mp4', 'avi', 'mov', 'flv'];
-            if(!(in_array($fileExtension,$validExtensions))){echo  "<script type=\"text/javascript\">window.alert('Format du fichier invalide')</script>";}
+            if(!(in_array($fileExtension,$validExtensions))){
+                $html.=  "<script type=\"text/javascript\">window.alert('Format du fichier invalide')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button></body></html>";
+                return $html;
+            }
 
             if($_FILES['post_picture']['error'] === 0) {
                 $post_picture = file_get_contents($_FILES['post_picture']['tmp_name']);
                
             } else{
-                echo "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script>";
+                $html.= "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button></body></html>";
+                return $html;
 
             }
         }
         $stmt = $pdo->prepare('INSERT INTO posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
         $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
-        echo "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script>";
+        $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button></body></html>";
+        return $html;
         //A REPRENDRE UN PEU SURTOUT POUR GERER LES REDIRECTIONS 
 
         }
        
-    }
+    }   
 
 
     ?>
