@@ -1,6 +1,39 @@
 <?php session_start();
+include_once('inscription.php');
+include_once('bienvenue.php');
+include_once('traitementInscription.php');
+include_once('connexion.php');
+include_once('traitementConnexion.php');
 if((!isset($_SESSION['LOGGED_MDP'])) && ($_GET['action'] != 'bienvenue')){
-    header('Location: index.php?action=bienvenue');
+    if(isset($_GET['action']){
+        switch($_GET['action']){
+            case 'inscription' :
+                echo print_form(false);
+                break;
+            case 'sauvergarder' :
+                if(inscriptionValidee()){
+                    echo felicitations(false);
+                    break;
+                }else{
+                    echo print_form(false);
+                    }
+            case 'connexion' :
+                echo print_Login();
+                break;
+            case 'check' :
+                if(connexion_check()){
+                    echo display_Accueil();
+                    break;
+                }else {
+                    echo print_Login();
+                    break;
+                }
+            default : header('Location: index.php?action=bienvenue');
+        }
+    }else{
+        echo display_Bienvenue();
+    }
+    
 }
 ?>
 <html>
@@ -12,26 +45,18 @@ if((!isset($_SESSION['LOGGED_MDP'])) && ($_GET['action'] != 'bienvenue')){
 <h1> Insta Pets</h1>
 <?php
 
-include('accueil.php');
-include('inscription.php');
-include('bienvenue.php');
-include('traitementInscription.php');
-include('connexion.php');
-include('traitementConnexion.php');
-include('felicitations.php');
-include('publier.php');
+include_once('accueil.php');
+include_once('felicitations.php');
+include_once('publier.php');
 include_once('recherche.php');
 include_once('profil.php');
 include_once('abonnerment.php');
 
  
-if(!isset ($_REQUEST['action'])){
+if(!isset ($_GET['action'])){
     echo display_Accueil(); // si le script arrive ici c'est que l'user est connecté
 }else{
-    switch($_REQUEST['action']){
-        case 'inscription' :
-            echo print_form(false);
-            break;
+    switch($_GET['action']){
         case 'modifier' :
             echo print_form(true); // a ameliorer (preremplissage des champs sauf mdp pr plus de sécurité?)
             break;
@@ -41,25 +66,6 @@ if(!isset ($_REQUEST['action'])){
                 break;
             } else{
                 echo print_form(true);
-            }
-       case 'sauvergarder' :
-            if(inscriptionValidee()){
-                echo felicitations(false);
-                break;
-            }else{
-              echo print_form(false);
-            }
-        case 'connexion' :
-            echo print_Login();
-            break;
-        case 'check' :
-            if(connexion_check()){
-                echo display_Accueil();
-                break;
-            }
-            else {
-                echo print_Login();
-                break;
             }
 	    case 'publier' :
             publier() ; // je dois revenir dessus
@@ -81,9 +87,6 @@ if(!isset ($_REQUEST['action'])){
             follow($id);
             echo display_profil($id);
             break;
-        case 'bienvenue' :
-            echo display_Bienvenue();
-
        
         default :
           echo display_Accueil();  
