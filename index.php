@@ -20,8 +20,8 @@
                     break;
                 case 'sauvegarder' :
                     if(inscriptionValidee()){
-                        header(Location : 'index.php?action=inscriptionValidee');
-                        exit();
+                        $fonction =felicitations(false);
+                        break;
                     }else{
                         $fonction = print_form(false);
                         break;
