@@ -20,27 +20,24 @@
   
   function display_Profil($id){
 
-    if(!(isset($_SESSION['LOGGED_MDP'] ) && !isset( $_SESSION['LOGGED_PSEUDO']))){ header("Location : index.php?action=bienvenue");}
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     // on recupere l'utilisateur en parametres
     $Recup = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
     $Recup->execute(array($id));
     // on vérifie que l'id correspond bien à un utilisateur
-    if($Recup->rowCount()==0){header('Location: index.php');} 
+    if($Recup->rowCount()==0){/*message erreur profil inexistant*/} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
     $isAdmin = $Recup->fetch()['user_admin'] ;
     // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
-      $affichageH2 .= $pseudo_profil;
-	  if($isAdmin){$affichageH2.=" &#9733;"; // petie étoile de certification ;)
+	$affichageH2 .= $pseudo_profil;
+	if($isAdmin) {$affichageH2.=" &#9733;"; }// petie étoile de certification ;)
     } else{
-      $affichageH2 .= "Moi";
-	if($isAdmin){$affichageH2.=" &#9733;"; 
+      	$affichageH2 .= "Moi";
+	if($isAdmin){$affichageH2.=" &#9733;"; }
     }
-  }
-}
-
+ 
     $html = "<html lang=\"fr\"> <head><meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
     <title>InstaPets</title><link href=\"profil.css\" rel=\"stylesheet\"></head><body>
     <h2>".$affichageH2."</h2><h3>Publications</h3><main>";
