@@ -1,5 +1,5 @@
 <?php
  $_SESSION = array();
  session_destroy();
- header('Location: index.php?action=connexion');
+ header('Location: index.php');
 ?>
