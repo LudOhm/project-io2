@@ -4,8 +4,8 @@ include_once('bienvenue.php');
 include_once('traitementInscription.php');
 include_once('connexion.php');
 include_once('traitementConnexion.php');
-if(!isset($_SESSION['LOGGED_MDP']){
-    if(isset($_GET['action']){
+if(!isset($_SESSION['LOGGED_MDP'])){
+    if(isset($_GET['action'])){
         switch($_GET['action']){
             case 'bienvenue' :
                 echo display_Bienvenue();
@@ -19,6 +19,7 @@ if(!isset($_SESSION['LOGGED_MDP']){
                     break;
                 }else{
                     echo print_form(false);
+                    break;
                     }
             case 'connexion' :
                 echo print_Login();
