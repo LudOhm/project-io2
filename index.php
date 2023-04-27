@@ -1,5 +1,5 @@
 <?php session_start();
-if(!isset($_SESSION['LOGGED_MDP'])){
+if((!isset($_SESSION['LOGGED_MDP'])) && ($_GET['action'] != 'bienvenue')){
     header('Location: index.php?action=bienvenue');
 }
 ?>
