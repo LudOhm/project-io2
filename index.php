@@ -4,6 +4,13 @@ include_once('bienvenue.php');
 include_once('traitementInscription.php');
 include_once('connexion.php');
 include_once('traitementConnexion.php');
+include_once('accueil.php');
+include_once('felicitations.php');
+include_once('publier.php');
+include_once('recherche.php');
+include_once('profil.php');
+include_once('abonnerment.php');
+
 if(!isset($_SESSION['LOGGED_MDP'])){
     if(isset($_GET['action'])){
         switch($_GET['action']){
@@ -39,22 +46,8 @@ if(!isset($_SESSION['LOGGED_MDP'])){
     }
     
 }
-?>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Profil utilisateur</title>
-</head>
-<body>
-<h1> Insta Pets</h1>
-<?php
+else{
 
-include_once('accueil.php');
-include_once('felicitations.php');
-include_once('publier.php');
-include_once('recherche.php');
-include_once('profil.php');
-include_once('abonnerment.php');
 
  
 if(!isset ($_GET['action'])){
@@ -96,7 +89,17 @@ if(!isset ($_GET['action'])){
           echo display_Accueil();  
     }
 }
+}
 ?>
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Profil utilisateur</title>
+</head>
+<body>
+<h1> Insta Pets</h1>
 <footer>
 		<p>&copy; 2023 InstaPets</p>
         <p>KACI Amel & PERRIER-BABIN Ludivine</p>
