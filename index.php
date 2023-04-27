@@ -5,6 +5,7 @@
     include_once('traitementInscription.php');
     include_once('connexion.php');
     include_once('traitementConnexion.php');
+    include_once('felicitations.php');
    if(!isset($_SESSION['LOGGED_MDP'])){
         if(isset($_GET['action'])){
             switch($_GET['action']){
@@ -25,7 +26,6 @@
                         $fonction = print_form(false);
                         break;
                         }
-                
                case 'check' :
                     if(connexion_check()){
                         $fonction = display_Accueil();
@@ -41,7 +41,6 @@
         }
    }
 ?>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
