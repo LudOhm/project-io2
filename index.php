@@ -18,7 +18,7 @@
                 case 'connexion' :
                     $fonction = print_Login();
                     break;
-                case 'sauvergarder' :
+                case 'sauvegarder' :
                     if(inscriptionValidee()){
                         $fonction =felicitations(false);
                         break;
