@@ -39,7 +39,7 @@ if(!isset($_SESSION['LOGGED_MDP'])){
                     echo print_Login();
                     break;
                 }
-            default : header('Location: index.php?action=bienvenue');
+            default : header('Location: index.php?action=bienvenue'); exit();
         }
     }else{
         echo display_Bienvenue();
@@ -47,9 +47,6 @@ if(!isset($_SESSION['LOGGED_MDP'])){
     
 }
 else{
-
-
- 
 if(!isset ($_GET['action'])){
     echo display_Accueil(); // si le script arrive ici c'est que l'user est connecté
 }else{
