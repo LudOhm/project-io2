@@ -1,4 +1,4 @@
-<?php session_start() 
+<?php session_start();
 if(!isset($_SESSION['LOGGED_MDP'])){
     header('Location: index.php?action=bienvenue');
 }
