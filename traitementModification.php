@@ -4,7 +4,7 @@ function modificationValidee(){
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 //d'abord extraire les informations de l'utilisateur connecté
     $infosLogged = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
-    $infosLogged = $infosLogged->execute(array($_SESSION['']))
+    $infosLogged = $infosLogged->execute(array($_SESSION['']));
 
 // recuperer les données du formulaire ->htmlspecialchars ; sha1(); comparer avec données précedentes utiliser des arrays?
 
