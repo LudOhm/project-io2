@@ -13,15 +13,23 @@ faire un site web style réseau social un peu comme instagram pour un projet d'u
 -pareil pour les likes a rajouter dans publier le lien vers le fichier like je pense
 
 
-aussi les commande a faire sur terminale dans le fichier du projet pour démarrer la base de donnée avec mamp:
-/Applications/MAMP/Library/bin/mysql -u root -p
-source /Applications/MAMP/htdocs/project-io2/base.sql
 
-quand il y a un changement dans le fichier de la base il faut la supp et la recréer :
-DROP DATABASE instapets;
 
 /!\ LA FONCTION SETCOOKIE IL FAUDRA LA METTRE AU TOUT DEBUT DE INDEX.PHP AVEC LE SESSION START SINON PROBLEME /!\
 
 $_SESSION['LOGGED_USER'] existe plus ; remplacé par $_SESSION['LOGGED_ID']
 
 j'ai un doute si les header vont fonctionner dans les autres du coup je pense les enlever
+
+
+Début du texte pour faire fonctionner le site : 
+
+Si la base de donnée n'a pas été créer :
+[ Sur un terminal dans /Applications/MAMP/htdocs/project-io2 faire :
+/Applications/MAMP/Library/bin/mysql -u root -p
+mdp = root
+( quand il y a un changement dans le fichier de la base il faut la supp et la recréer :
+DROP DATABASE instapets; )
+source /Applications/MAMP/htdocs/project-io2/base.sql
+exit(); pour sortir du sql. la base de donnée a été créé on peut donc aller sur le site ]
+

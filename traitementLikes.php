@@ -23,7 +23,8 @@ function isPostLiked($post_id, $user_id) {
   
 
 //compte le nb de likes pour un post donné
-function countPostLikes($post_id, $pdo, ) {
+function countPostLikes($post_id) {
+    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM Likes WHERE post_id = ?");
     $stmt->execute([$post_id]);
     return $stmt->fetchColumn();
