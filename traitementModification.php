@@ -15,13 +15,19 @@ function modificationValidee(){
     //d'abord extraire les informations de l'utilisateur connecté
     $infosLogged = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
     $infosLogged = $infosLogged->execute(array($_SESSION['LOGGED_ID']));
+    $pseudo =  $infosLogged->fetch()['user_pseudo'];
+    $nom = $infosLogged->fetch()['user_nom'];
+    $prenom = $infosLogged->fetch()['user_prenom'];
+    $mail= $infosLogged->fetch()['user_email'];
+    $mdp = $infosLogged->fetch()['user_motdepasse'];
+    $date = $infosLogged->fetch()['user_naissance'];
     $oldInfo = array(
-        "oldPseudo" => $infosLogged->fetch()['user_pseudo'],
-        "oldMail" =>$infosLogged->fetch()['user_email'],
-        "oldMdp" =>$infosLogged->fetch()['user_motdepasse'],
-        "oldPrenom" =>$infosLogged->fetch()['user_prenom'],
-        "oldNom" =>$infosLogged->fetch()['user_nom'],
-        "oldDate" =>$infosLogged->fetch()['user_naissance'] // faire attention au format recuperer
+        "oldPseudo" => $pseudo,
+        "oldMail" => $mail,
+        "oldMdp" => $mdp,
+        "oldPrenom" => $prenom,
+        "oldNom" => $nom,
+        "oldDate" => $date // faire attention au format recuperer
     );
 
     // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 
