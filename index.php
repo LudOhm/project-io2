@@ -52,8 +52,13 @@
     if(isset($_GET['action'])){
         switch($_GET['action']){
             case 'modifier' :
+                $fonction = print_form(true);
+                $title = "Modification des informations";
+                break;
+            case 'update' :
                 if(modificationValidee()){
                     $fonction =felicitations(true);
+                    $title = "Modifications des informations enregistrée";
                     break;
                 }else{
                     $fonction = print_form(true);

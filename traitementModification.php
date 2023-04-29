@@ -4,7 +4,7 @@
 function modificationValidee(){
 
     //verifier pr vrmt etre sures mais en principe dans le html les champs sont marqués 'required'
-    if(!isset($_POST['Pseudo'])|| !isset($_POST['mail'])|| !isset($_POST['mdp'])|| !isset($_POST)['prenom']|| !isset($_POST['nom'])|| !isset($_POST['date'])){
+    if(!isset($_POST['Pseudo'])|| !isset($_POST['mail'])|| !isset($_POST['mdp'])|| !isset($_POST['prenom'])|| !isset($_POST['nom'])|| !isset($_POST['date'])){
         $message = "Merci de remplir tous les champs";
         echo "<script type=\"text/javascript\">window.alert(\"".$message."\");</script>";
         return false;
@@ -14,8 +14,8 @@ function modificationValidee(){
 
     //d'abord extraire les informations de l'utilisateur connecté
     $infosLogged = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
-    $infosLogged = $infosLogged->execute(array($_SESSION['LOGGED_ID']));
-    $pseudo =  $infosLogged->fetch()['user_pseudo'];
+    $infosLogged->execute(array($_SESSION['LOGGED_ID']));
+    $pseudo = $infosLogged->fetch()['user_pseudo'];
     $nom = $infosLogged->fetch()['user_nom'];
     $prenom = $infosLogged->fetch()['user_prenom'];
     $mail= $infosLogged->fetch()['user_email'];
@@ -27,7 +27,7 @@ function modificationValidee(){
         "oldMdp" => $mdp,
         "oldPrenom" => $prenom,
         "oldNom" => $nom,
-        "oldDate" => $date // faire attention au format recuperer
+        "oldDate" => // faire attention au format recuperer
     );
 
     // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 
