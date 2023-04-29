@@ -43,7 +43,6 @@ CREATE TABLE Likes(
   like_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   post_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
-  is_liked BOOLEAN NOT NULL,
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (post_id) REFERENCES Posts(post_id)
 );
