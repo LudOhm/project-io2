@@ -35,17 +35,7 @@ function modificationValidee(){
         "newDate" => $_POST['date']
     );
 
-    // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 
-
-    $newInfo = array(
-        "newPseudo"=> htmlspecialchars($_POST['Pseudo']),
-        "newMail"=> htmlspecialchars($_POST['mail']),
-        "newMdp"=> sha1($_POST['mdp']),
-        "newPrenom"=> htmlspecialchars($_POST['prenom']),
-        "newNom"=> htmlspecialchars($_POST['nom']),
-        "newDate" => $_POST['date']
-    );
-
+ 
     // Modifier les infos dans la base (si differentes nouvelles);
 
     // si nouveau pseudo/mail verifier qu'il n'est pas dans la base de données avant de modifer
