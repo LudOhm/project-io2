@@ -4,7 +4,7 @@ function likePost($post_id, $user_id, $is_liked) {
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
     if(!isPostExist($post_id,$user_id)){
-        //si le post n'existe pas on le like direct
+        //si la personne n'a jms like on créé la ligne
         $stmt = $pdo->prepare("INSERT INTO Likes (post_id, user_id, is_liked) VALUES (?, ?, ?) ");
         $stmt->execute([$post_id, $user_id, true]);
         return;
