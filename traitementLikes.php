@@ -3,13 +3,26 @@
 function likePost($post_id, $user_id, $is_liked) {
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-    if(!isPostLiked($post_id,$user_id))
-    //si le post est pas encore like on ajoute un like
-    $stmt = $pdo->prepare("INSERT INTO Likes (post_id, user_id, is_liked) VALUES (?, ?, ?) ");
-    $stmt->execute([$post_id, $user_id, true]);
+    if(!isPostExist($post_id,$user_id)){
+        //si le post n'existe pas on le like direct
+        $stmt = $pdo->prepare("INSERT INTO Likes (post_id, user_id, is_liked) VALUES (?, ?, ?) ");
+        $stmt->execute([$post_id, $user_id, true]);
+        return;
+    }else{
+        if(!isPostLiked($post_id,$user_id)){
+            $stmt = $pdo->prepare("UPDATE Likes SET is_liked = ? WHERE post_id = ? AND user_id = ?");
+            $stmt->execute([true, $post_id, $user_id]);
+            return;
+        }else{
+            //pour dislike le post si il avait été like avant
+            $stmt = $pdo->prepare("UPDATE Likes SET is_liked = ? WHERE post_id = ? AND user_id = ?");
+            $stmt->execute([false, $post_id, $user_id]);
+        }
+    }
 
 }
 
+//test si le post est like
 function isPostLiked($post_id, $user_id) {
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     $stmt = $pdo->prepare("SELECT * FROM Likes WHERE post_id = ? AND user_id = ? AND is_liked = ?");
