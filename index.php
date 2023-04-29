@@ -51,13 +51,18 @@
    } else {
     if(isset($_GET['action'])){
         switch($_GET['action']){
-            case 'modifier' :
-                if(modificationValidee()){
-                    $fonction =felicitations(true);
-                    break;
-                }else{
-                    $fonction = print_form(true);
-                    break;
+		case 'modifier' :
+			$fonction = print_form(true);
+			$title = "Modifier mes informations";
+		
+           	 case 'update' :
+                	if(modificationValidee()){
+                    		$fonction =felicitations(true);
+		    		$title = "Modifications enregistrées";
+                    		break;
+                	}else{
+                    	$fonction = print_form(true);
+                    	break;
                 }
                 
             default : $fonction = "EN CONSTRUCTION";
