@@ -79,12 +79,14 @@ function modificationValidee(){
 
         $modif = $pdo->prepare('UPDATE Users SET user_pseudo = ? WHERE user_id = ? ');
         $modif->execute(array($newInfo['newPseudo'], $_SESSION['LOGGED_ID']));
+        $_SESSION['LOGGED_PSEUDO'] = $newInfo['newPseudo'];
         
     }
 
     if($oldInfo['oldMdp'] != $newInfo['newMdp']){
         $modif = $pdo->prepare('UPDATE Users SET user_motdepasse = ? WHERE user_id = ? ');
         $modif->execute(array($newInfo['newMdp'], $_SESSION['LOGGED_ID']));
+        $_SESSION['LOGGED_MDP'] = $newInfo['newMdp'];
     }
 
     if($oldInfo['oldPrenom'] != $newInfo['newPrenom']){
