@@ -13,21 +13,14 @@ function modificationValidee(){
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
     //d'abord extraire les informations de l'utilisateur connecté
-    $infosLogged = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
-    $infosLogged->execute(array($_SESSION['LOGGED_ID']));
-    $pseudo = $infosLogged->fetch()['user_pseudo'];
-    $nom = $infosLogged->fetch()['user_nom'];
-    $prenom = $infosLogged->fetch()['user_prenom'];
-    $mail= $infosLogged->fetch()['user_email'];
-    $mdp = $infosLogged->fetch()['user_motdepasse'];
-    $date = $infosLogged->fetch()['user_naissance'];
+    
     $oldInfo = array(
-        "oldPseudo" => $pseudo,
-        "oldMail" => $mail,
-        "oldMdp" => $mdp,
-        "oldPrenom" => $prenom,
-        "oldNom" => $nom,
-        "oldDate" => // faire attention au format recuperer
+        "oldPseudo" =>  $_SESSION['LOGGED_PSEUDO'],
+        "oldMail" =>  $_SESSION['LOGGED_MAIL'] ,
+        "oldMdp" =>   $_SESSION['LOGGED_MDP'] ,
+        "oldPrenom" =>  $_SESSION['LOGGED_PRENOM'] 
+        "oldNom" => $_SESSION['LOGGED_NOM'],
+        "oldDate" => $_SESSION['LOGGED_DATE']// faire attention au format recuperer
     );
 
     // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 
@@ -79,12 +72,14 @@ function modificationValidee(){
 
         $modif = $pdo->prepare('UPDATE Users SET user_pseudo = ? WHERE user_id = ? ');
         $modif->execute(array($newInfo['newPseudo'], $_SESSION['LOGGED_ID']));
+        $_SESSION['LOGGED_PSEUDO'] = $newInfo['newPseudo'];
         
     }
 
     if($oldInfo['oldMdp'] != $newInfo['newMdp']){
         $modif = $pdo->prepare('UPDATE Users SET user_motdepasse = ? WHERE user_id = ? ');
         $modif->execute(array($newInfo['newMdp'], $_SESSION['LOGGED_ID']));
+        $_SESSION['LOGGED_MDP'] = $newInfo['newMdp'];
     }
 
     if($oldInfo['oldPrenom'] != $newInfo['newPrenom']){

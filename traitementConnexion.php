@@ -14,11 +14,13 @@
                 $users['user_motdepasse'] === $mdp) {
                     
                         $_SESSION['LOGGED_ID']= $users['user_id'];
-                        
                         $_SESSION['LOGGED_PSEUDO']= $users['user_pseudo'];
-                        $_SESSION['LOGGED_MDP'] = $mdp;
+                        $_SESSION['LOGGED_MDP'] = $users['user_motdepasse'];
+                        $_SESSION['LOGGED_PRENOM'] =  $users['user_prenom'];
+                        $_SESSION['LOGGED_NOM']=$users['user_nom'];
+                        $_SESSION['LOGGED_DATE'] = $users['user_naissance'];
+                        $_SESSION['LOGGED_MAIL'] = $users['user_email'] ;
                        
-                    
                         return true;
                 } 
             } 

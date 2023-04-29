@@ -63,6 +63,10 @@
         $_SESSION['LOGGED_ID']= $recupID->fetch()['user_id'];
         $_SESSION['LOGGED_PSEUDO']= $userPseudo;
         $_SESSION['LOGGED_MDP'] = $userpassword;
+        $_SESSION['LOGGED_PRENOM'] =  $userprenom ;
+        $_SESSION['LOGGED_NOM']= $usernom;
+        $_SESSION['LOGGED_DATE'] = $userdate ;
+        $_SESSION['LOGGED_MAIL'] = $usermail ;
         return true;
        
     
