@@ -42,9 +42,15 @@
    } else {
     if(isset($_GET['action'])){
         switch($_GET['action']){
-            case 'inscriptionValidee' :
-                $fonction =felicitations(false);
-                break;
+            case 'modifier' :
+                if(modificationValidee()){
+                    $fonction =felicitations(true);
+                    break;
+                }else{
+                    $fonction = print_form(true);
+                    break;
+                }
+                
             default : $fonction = "EN CONSTRUCTION";
         }
     }else{

@@ -18,9 +18,6 @@
                         $_SESSION['LOGGED_PSEUDO']= $users['user_pseudo'];
                         $_SESSION['LOGGED_MDP'] = $mdp;
                        
-                        /*$loggedUser = [
-                         'user_id' => $_POST['user_id']
-                        ];*/
                     
                         return true;
                 } 

@@ -5,9 +5,9 @@
         if(isset($_POST['Pseudo'])){
             $stmt = $pdo -> prepare('SELECT user_pseudo FROM `Users`');
             $stmt -> execute();
-            $user = $stmt -> fetchAll();
-            foreach($user as $users){
-                if($user == $_POST['Pseudo']){
+            $users = $stmt -> fetchAll();
+            foreach($users as $pseudo){
+                if($pseudo == $_POST['Pseudo']){
                     $message = "Ce nom d'utilisateur est déjà pris!";
                     echo "<script type=\"text/javascript\">window.alert(\"".$message."\");</script>";
                     return false;
@@ -31,9 +31,9 @@
         if(isset($_POST['mail'])){
             $stmt = $pdo->prepare('SELECT user_email FROM `Users`');
             $stmt->execute();
-            $user = $stmt->fetchAll();
-            foreach($user as $users){
-                if($users == $_POST['mail']){
+            $users = $stmt->fetchAll();
+            foreach($users as $mail){
+                if($mail == $_POST['mail']){
                     $message="Cette adresse mail est déjà associée à un compte !";
                     echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
                     return false;
@@ -65,11 +65,6 @@
         $_SESSION['LOGGED_MDP'] = $userpassword;
         return true;
        
-        
-        /*$loggedUser = [ /// mais ça sert à quoi ça en fait???
-            'user_id' => $_POST['user_id']
-        ];*/
-        
     
  
         
