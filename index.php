@@ -54,6 +54,7 @@
             case 'modifier' :
                 if(modificationValidee()){
                     $fonction =felicitations(true);
+                    $title = "Modifications des informations";
                     break;
                 }else{
                     $fonction = print_form(true);
