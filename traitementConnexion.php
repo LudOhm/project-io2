@@ -21,7 +21,6 @@
                         $_SESSION['LOGGED_DATE'] = $users['user_naissance'];
                         $_SESSION['LOGGED_MAIL'] = $users['user_email'] ;
                        
-                    
                         return true;
                 } 
             } 
