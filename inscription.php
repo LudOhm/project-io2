@@ -6,40 +6,54 @@ function print_form($modifier) {
   // AJOUT PHOTO DE PROFIL ???? vrmnt si on a le temps
 
   $html =
-    "<html>
-    <head>
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-    <title>Inscription</title>
-    <link rel=\"stylesheet\" href=\"inscription.css\">
-    </head>
-    <body>
-    <h2>$mot</h2>
-    <main>
+    "<h2>$mot</h2>
+    
     <form action='index.php?action=$destination' method='post'>
     <label for=\"pseudo\">Pseudo :</label>
-    <input type=\"text\" id=\"pseudo\" placeholder=\"pseudo\" required=\"required\" name=\"Pseudo\">
-    <br>
+    <input type=\"text\" id=\"pseudo\"  required=\"required\" name=\"Pseudo\" ";
+    if($modifier) {
+      $html .= "value= \"".$_SESSION['LOGGED_PSEUDO']."\">";
+    }else{
+     $html .= "placeholder=\"Votre pseudo\">";
+    }
+    $html.= "<br>
     <label for=\"nom\">Nom :</label>
-    <input type=\"text\" id=\"nom\" placeholder=\"nom\" required=\"required\" name=\"nom\">
-    <br>
+    <input type=\"text\" id=\"nom\" required=\"required\" name=\"nom\"";
+    if($modifier) {
+      $html .= "value= \"".$_SESSION['LOGGED_NOM']."\">";
+    }else{
+     $html .= "placeholder=\"Votre nom\">";
+    }
+    $html.= "<br>
     <label for=\"prenom\">Prenom :</label>
-    <input type=\"text\" id=\"prenom\" placeholder=\"prenom\" required=\"required\" name=\"prenom\">
-    <br>
-    <br>
+    <input type=\"text\" id=\"prenom\"  required=\"required\" name=\"prenom\"";
+    if($modifier) {
+      $html .= "value= \"".$_SESSION['LOGGED_PRENOM']."\">";
+    }else{
+     $html .= "placeholder=\"Votre prénom\">";
+    }
+    $html.="<br>
     <label for=\"date\">Date de naissance :</label>
-    <input type=\"date\" id=\"date\" required=\"required\" name=\"date\">
-    <br>
+    <input type=\"date\" id=\"date\" required=\"required\" name=\"date\"";
+    if($modifier) {
+      $html .= "value= \"".$_SESSION['LOGGED_DATE']."\">";
+    } else{
+      $html .= ">";
+    }
+    $html .="<br>
     <label for=\"mail\">Adresse mail : </label>
-    <input type=\"email\" id =\"mail\" name=\"mail\" required=\"required\" pattern=\"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\">
-    <br>
+    <input type=\"email\" id =\"mail\" name=\"mail\" required=\"required\" pattern=\"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\"";
+    if($modifier) {
+      $html .= "value= \"".$_SESSION['LOGGED_MAIL']."\">";
+    }else{
+     $html .= "placeholder=\"ex: toto@mail.com\">";
+    }
+    $html.="<br>
     <label for=\"mdp\">Mot de passe : </label>
     <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
     <br>
     <input type=\"submit\" value=\"$mot\">
-    </form>
-    </main>
-    </body>
-    </html>";
+    </form>";
   return $html;
 }
 ?>
