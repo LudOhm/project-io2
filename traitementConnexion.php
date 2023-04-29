@@ -4,7 +4,7 @@
         // Validation du formulaire
         if (isset($_POST['login']) &&  isset($_POST['mdp'])) {
             $login = htmlspecialchars($_POST['login']);
-            $mdp = sha1($_POST['mdp']);
+            $mdp = sha1($_POST['mdp']);//decrypter le mdp
             $stmt = $pdo->prepare('SELECT * FROM `Users`');
             $stmt->execute();
             $user = $stmt->fetchAll();
