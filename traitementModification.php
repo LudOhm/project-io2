@@ -23,6 +23,18 @@ function modificationValidee(){
         "oldNom" =>$infosLogged->fetch()['user_nom'],
         "oldDate" =>$infosLogged->fetch()['user_naissance'] // faire attention au format recuperer
     );
+
+    // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 
+
+    $newInfo = array(
+        "newPseudo"=> htmlspecialchars($_POST['Pseudo']),
+        "newMail"=> htmlspecialchars($_POST['mail']),
+        "newMdp"=> sha1($_POST['mdp']),
+        "newPrenom"=> htmlspecialchars($_POST['prenom']),
+        "newNom"=> htmlspecialchars($_POST['nom']),
+        "newDate" => $_POST['date']
+    );
+
     // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 
 
     $newInfo = array(
