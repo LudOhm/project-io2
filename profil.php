@@ -1,4 +1,5 @@
 <?php 
+ include_once('traitementLikes.php');
 
   function count_Followers($id){
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
