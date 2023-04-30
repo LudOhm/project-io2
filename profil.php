@@ -52,13 +52,15 @@
     $html.="<p>".count_Followers($id)." abonné(s)</p>";
 
     // afficher les posts du profil
-		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
-		$stmt2->execute([$id]);
-		$posts = $stmt2->fetchAll();
-		foreach ($posts as $post) {
-			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
-       				 "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
-       			 if($isAdmin){
+		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = ? ORDER BY Posts.post_id DESC LIMIT 20');
+    $stmt->execute([$id]);
+    $posts = $stmt->fetchAll();
+    foreach ($posts as $post) {
+        $html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']); "\" alt=\"Post Picture\">";
+        $html .= "<br>" . htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$id."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
+      
+        if($isAdmin){
           			$html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
         		} 
 		}
@@ -66,6 +68,7 @@
 	  $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"get\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
   		<input type=\"submit\" value=\"Ok !\"></form> 
         	<ul>
+          <li><a href=\"index.php?action=accueil\">Accueil</a></li>
         	<li><a href=\"index.php?action=publier\">Publier</a></li>
         	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         	</ul>

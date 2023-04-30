@@ -19,12 +19,13 @@ include_once('traitementLikes.php');
         $html.="<h2>Recent Posts</h2>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
-		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY DESC LIMIT 20');
+		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY Posts.post_id DESC LIMIT 20');
 		$stmt->execute();
 		$posts = $stmt->fetchAll();
 		foreach ($posts as $post) {
-			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
-            "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
+			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']); "\" alt=\"Post Picture\">";
+			$html .= "<br>" . htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
 				
 			//ajout du bouton seulement si admin
 			//on peut faire un test si le post appartient au user logged il peut supprimer son post
@@ -37,6 +38,7 @@ include_once('traitementLikes.php');
 	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form>
         <ul>
+		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
       <li><a href=\"index.php?action=publier\">Publier</a></li>
       <li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         </ul>

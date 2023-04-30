@@ -117,7 +117,7 @@
 				break;
 			case 'delete':
 				$id=$_GET['id'];
-				delete($id);
+				delet($id);
 				$fonction = display_Accueil(); 
 				$title = "Mon fil d'actualité"; 
 				$style = "accueil.css";
