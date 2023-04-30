@@ -8,9 +8,9 @@
     include_once('felicitations.php');
     include_once('traitementModification.php');
     include_once('accueil.php');
+    include_once('deconnexion.php');
     include_once('profil.php');
     include_once('publier.php');
-    include_once('deconnexion.php');
     include_once('recherche.php');
     include_once('suppressionPublication.php');
     include_once('abonnement.php');
