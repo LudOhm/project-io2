@@ -94,8 +94,9 @@
                 		break;
 			
 			case 'search':
-				// a reprendre
-				$fonction =
+				$fonction = search();
+				$style = "recherche.css";
+				$title = "Rechercher un utilisateur"
 				break;
 				
 			case 'subscribe':
