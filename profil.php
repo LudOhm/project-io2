@@ -52,12 +52,12 @@
     $html.="<p>".count_Followers($id)." abonné(s)</p>";
 
     // afficher les posts du profil
-		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
+		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
 		$stmt2->execute([$id]);
 		$posts = $stmt2->fetchAll();
 		foreach ($posts as $post) {
-			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
-       				 "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
+			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_contenu']) . "</p><img src=\"data:image/jpg;charset=utf8;base64,\"" . base64_encode($post['post_picture']) ."/>"
+       				 "<p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
        			 if($isAdmin){
           			$html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
         		} 
