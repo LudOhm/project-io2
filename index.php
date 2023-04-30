@@ -10,6 +10,10 @@
     include_once('accueil.php');
     include_once('profil.php');
     include_once('publier.php');
+    include_once('deconnexion.php');
+    include_once('recherche.php');
+    include_once('suppressionPublication.php');
+    include_once('abonnement.php');
    if(!isset($_SESSION['LOGGED_MDP'])){
         if(isset($_GET['action'])){
             switch($_GET['action']){
@@ -75,6 +79,7 @@
                     break;
                 }else{
                     $fonction = print_form(true);
+                    $title = "Inscription";
                     $style = "inscription.css";
                     break;
                 }
