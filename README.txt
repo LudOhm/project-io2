@@ -21,6 +21,8 @@ $_SESSION['LOGGED_USER'] existe plus ; remplacé par $_SESSION['LOGGED_ID']
 
 j'ai un doute si les header vont fonctionner dans les autres du coup je pense les enlever
 
+UPDATE : maintenant il va juste falloir gerer les fichiers css; pour si il en faut des nouveaux -> se référer à index.php (une fonction(celle qui font de l'affichage seulement) = un style et pas un fichier=un style)
+
 
 Début du texte pour faire fonctionner le site : 
 
