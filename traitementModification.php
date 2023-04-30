@@ -18,7 +18,7 @@ function modificationValidee(){
         "oldPseudo" =>  $_SESSION['LOGGED_PSEUDO'],
         "oldMail" =>  $_SESSION['LOGGED_MAIL'] ,
         "oldMdp" =>   $_SESSION['LOGGED_MDP'] ,
-        "oldPrenom" =>  $_SESSION['LOGGED_PRENOM'] 
+        "oldPrenom" =>  $_SESSION['LOGGED_PRENOM'], 
         "oldNom" => $_SESSION['LOGGED_NOM'],
         "oldDate" => $_SESSION['LOGGED_DATE']// faire attention au format recuperer
     );

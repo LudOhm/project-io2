@@ -35,7 +35,7 @@ CREATE TABLE Posts (
   user_id INTEGER NOT NULL,
   post_title VARCHAR(500) NOT NULL,
   post_contenu VARCHAR(5000) NOT NULL,
-  post_picture LONGBLOB NOT NULL,
+  post_picture LONGBLOB NULL,
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
@@ -43,7 +43,6 @@ CREATE TABLE Likes(
   like_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   post_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
-  is_liked BOOLEAN NOT NULL,
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (post_id) REFERENCES Posts(post_id)
 );

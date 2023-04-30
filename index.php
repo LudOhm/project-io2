@@ -8,13 +8,12 @@
     include_once('felicitations.php');
     include_once('traitementModification.php');
     include_once('accueil.php');
-    include_once('deconnexion.php');
     include_once('profil.php');
     include_once('publier.php');
-    include_once('recherche.php');
-    include_once('suppressionPublication.php');
-    include_once('abonnement.php');
-
+    //include_once('recherche.php');
+    //include_once('suppressionPublication.php');
+    //include_once('abonnement.php');
+    //include_once('deconnexion.php');
    if(!isset($_SESSION['LOGGED_MDP'])){
         if(isset($_GET['action'])){
             switch($_GET['action']){
@@ -84,8 +83,17 @@
                     $style = "inscription.css";
                     break;
                 }
-                
-            default : $fonction = "EN CONSTRUCTION";
+            case 'profil' :
+                $fonction = display_profil($_SESSION['LOGGED_ID']);
+                $style = "profil.css";
+                $title = "Votre profil";
+                break;
+            case 'publier' :
+                $fonction = publier();
+                $style = "accueil.css";
+                $title = "Nouvelle publication";
+                break;
+            default : $fonction = $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
         }
     }else{
         $fonction = "EN CONSTRUCTION";
