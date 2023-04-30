@@ -2,11 +2,8 @@
     session_start();
     include_once('inscription.php');
     include_once('bienvenue.php');
-    include_once('traitementInscription.php');
     include_once('connexion.php');
-    include_once('traitementConnexion.php');
     include_once('felicitations.php');
-    include_once('traitementModification.php');
     include_once('accueil.php');
     include_once('profil.php');
     include_once('publier.php');
@@ -82,7 +79,8 @@
                     break;
                 }
             case 'profil' :
-                $fonction = display_profil($_SESSION['LOGGED_ID']);
+		$id = $_GET['id'];
+                $fonction = display_profil($id);
                 $style = "profil.css";
                 $title = "Votre profil";
                 break;
