@@ -59,7 +59,7 @@ function count_Followings($id){
     // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
 
     $html.="<p>".count_Followers($id)." abonné(s) &emsp;";
-    $html.=count_Followers($id)." abonnement(s)</p>";
+    $html.=count_Followings($id)." abonnement(s)</p>";
 
     // afficher les posts du profil
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = ? ORDER BY Posts.post_id DESC LIMIT 20');
