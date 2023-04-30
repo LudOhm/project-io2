@@ -9,6 +9,15 @@
     return (string) $num;
 }
 
+function count_Followings($id){
+  $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+  $followers = $pdo->prepare('SELECT count(*) FROM Followings WHERE user_id = ?');
+  $followers->execute(array($id));
+  $num = $followers->fetchColumn();
+  return (string) $num;
+}
+
+
 
   function is_Logged_User_Subscribed($id){
     // si la fonction est appelée c que id != userLoggedID donc pas besoin de revérifier
@@ -49,7 +58,8 @@
         
     // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
 
-    $html.="<p>".count_Followers($id)." abonné(s)</p>";
+    $html.="<p>".count_Followers($id)." abonné(s) &emsp;";
+    $html.=count_Followers($id)." abonnement(s)</p>";
 
     // afficher les posts du profil
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = ? ORDER BY Posts.post_id DESC LIMIT 20');
