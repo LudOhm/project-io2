@@ -15,8 +15,8 @@
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     $followers = $pdo->prepare('SELECT count(*) FROM Followings WHERE following_id = ? AND user_id = ?');
     $followers->execute(array($id, $_SESSION['LOGGED_ID']));
-    $num = $followers->fetchAll();
-    return ($num > 0 );
+    $num = $followers->fetchColumn();
+    return ($num > 0);
   }
   
   function display_Profil($id){
