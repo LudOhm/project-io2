@@ -1,4 +1,6 @@
 <?php
+
+include_once('traitementLikes.php');
 	
 	function isAdmin($usertoCheck){
 		//pour savoir si admin
