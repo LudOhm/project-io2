@@ -72,9 +72,9 @@
        		</aside>";
         if($id != $_SESSION['LOGGED_ID']){
             if(is_Logged_User_Subscribed($id)){
-              $html .= "<li><a href=\"index.php?action=unfollow&ampid=;".$id."\">Se désabonner</a></li>";
+              $html .= "<li><a href=\"index.php?action=unfollow&amp;id=;".$id."\">Se désabonner</a></li>";
             }else{
-              $html .= "<li><a href=\"index.php?action=subscribe&ampid=;".$id."\">Suivre</a></li>";
+              $html .= "<li><a href=\"index.php?action=subscribe&amp;id=;".$id."\">Suivre</a></li>";
             }
         }else{
           $html .=  "<li><a href=\"index.php?action=publier\">Ajouter une nouvelle publication></a></li>
