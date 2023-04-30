@@ -1,4 +1,6 @@
 <?php
+
+include_once('traitementLikes.php');
 	
 	function isAdmin($usertoCheck){
 		//pour savoir si admin
@@ -9,23 +11,11 @@
 		return $isadmin;
 	}
     function display_Accueil(){
-	// include('suppression.php')
-		if(!isset($_SESSION['LOGGED_MDP'])&&!isset($_SESSION['LOGGED_PSEUDO'])){ 
-		header('Location: index.php?action=bienvenue');
-		}
-       $html =  "<html lang=\"fr\"> 
-        <head>
-        <meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
-        <title>InstaPets</title> 
-        <link href=\"accueil.css\" rel=\"stylesheet\">
-        </head>
-        <body>
-	    <header>
-	    </header>
-	    <main>";
+	
+       $html =  "<main>";
        
         
-		$loggedUser = $_SESSION['LOGGED_ID'];
+	$loggedUser = $_SESSION['LOGGED_ID'];
         $html.="<h2>Recent Posts</h2>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
@@ -39,7 +29,7 @@
 			//ajout du bouton seulement si admin
 			//on peut faire un test si le post appartient au user logged il peut supprimer son post
 				if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
-				$html .= "<a href=\"index.php?action=suppression&amp;id=".$post['post_id']."\">Supprimer la publication</a>"; 
+				$html .= "<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
 				}
 	
 			}
@@ -50,7 +40,7 @@
       <li><a href=\"index.php?action=publier\">Publier</a></li>
       <li><a href=\"index.php?action=profil&ampid=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         </ul>
-        </aside></body></html>";
+        </aside>";
  
         return $html;
     }

@@ -1,8 +1,6 @@
 <?php
     function publier(){
-        $html = "<html lang=\"fr\"> <head><meta charset=\"utf-8\">
-        <title>InstaPets</title></head>
-        <body><main>
+        $html = "<main>
         <h2>Nouvelle publication</h2>
         <form method=\"POST\" enctype=\"multipart/form-data\">
 
@@ -29,30 +27,20 @@
             $post_picture = null;
 
 
-            if (isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] === UPLOAD_ERR_OK) {
-
-                //au final le format est deja tester dans le input donc pas obliger ça fait des erreurs pour rien
-                //$fileName = $_FILES['post_picture']['name'];
-                //$fileExtension = explode('.',$fileName);
-                //$validExtensions = ['jpg','jpeg','png', 'mp4', 'avi', 'mov', 'flv'];
-                // if(!(in_array($fileExtension,$validExtensions))){
-                //     $html.=  "<script type=\"text/javascript\">window.alert('Format du fichier invalide')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button></body></html>";
-                //     return $html;
-                // }
-
-                if($_FILES['post_picture']['error'] === 0) {
+     
+                if(isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] === 0) {
                     $post_picture = file_get_contents($_FILES['post_picture']['tmp_name']);
                 
                 } else{
-                    $html.= "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button></body></html>";
+                    $html.= "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button>";
                     return $html;
 
                 }
-            }
+            
 
             $stmt = $pdo->prepare('INSERT INTO Posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
             $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
-            $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button></body></html>";
+            $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button>";
             return $html;
             //A REPRENDRE UN PEU SURTOUT POUR GERER LES REDIRECTIONS 
 
@@ -61,6 +49,13 @@
         return $html;
        
     }   
+
+    function delete($id){//j'ai enlevé le html pour la suprression parce que cv poser probleme
+	    $db = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+	    $stmt = $db->prepare("DELETE FROM Posts WHERE post_id = ?");
+	    $stmt->execute([$id]);
+    }
+
 
 
     ?>
