@@ -8,6 +8,12 @@
     return (string) $num;
 }
 
+  function delete($id){//j'ai enlevé le html pour la suprression parce que cv poser probleme
+	$db = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+	$stmt = $db->prepare("DELETE FROM Posts WHERE post_id = ?");
+	$stmt->execute([$id]);
+  }
+
 
   function is_Logged_User_Subscribed($id){
     // si la fonction est appelée c que id != userLoggedID donc pas besoin de revérifier
@@ -52,15 +58,15 @@
     $html.="<p>".count_Followers($id)." abonné(s)</p>";
 
     // afficher les posts du profil
-		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
+		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
 		$stmt2->execute([$id]);
 		$posts = $stmt2->fetchAll();
 		foreach ($posts as $post) {
-				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
-        "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
-        if($isAdmin){
-          $html.=delete(); // a créer
-        } 
+			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
+       				 "</p><p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";// verifer si conenu et picture ne sont pas null ???
+       			 if($isAdmin){
+          			$html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
+        		} 
 		}
 	// en dessous je vais m'occuper d'un peu réorganiser tout ça je fais une petite pause
 	  $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
