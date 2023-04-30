@@ -31,7 +31,7 @@
                 if(isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] == 0) {
                     $post_picture = file_get_contents($_FILES['post_picture']['tmp_name']);
                 
-                } else if((isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] != 0){
+                } else if((isset($_FILES['post_picture']['error'])) && $_FILES['post_picture']['error'] != 0){
                     $html.= "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button>";
                     return $html;
 
