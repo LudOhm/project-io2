@@ -48,8 +48,7 @@
 	if($isAdmin){$affichageH2.=" &#9733;"; }
     }
  
-    $html = "<html lang=\"fr\"> <head><meta  http-equiv='Content-Type' content='text/html; charset=utf-8'>
-    <title>InstaPets</title><link href=\"profil.css\" rel=\"stylesheet\"></head><body>
+    $html = "
     <h2>".$affichageH2."</h2><h3>Publications</h3><main>";
 
         
@@ -87,8 +86,6 @@
           <li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>";
         }
 
-    $html .="</body></html>";
- 
     return $html;
     }
 
