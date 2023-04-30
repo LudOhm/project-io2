@@ -35,7 +35,7 @@ CREATE TABLE Posts (
   user_id INTEGER NOT NULL,
   post_title VARCHAR(500) NOT NULL,
   post_contenu VARCHAR(5000) NOT NULL,
-  post_picture LONGBLOB NOT NULL,
+  post_picture LONGBLOB NULL,
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
