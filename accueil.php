@@ -15,17 +15,24 @@ include_once('traitementLikes.php');
        $html =  "<main>";
        
         
-	$loggedUser = $_SESSION['LOGGED_ID'];
+	//$loggedUser = $_SESSION['LOGGED_ID'];
         $html.="<h2>Recent Posts</h2>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
-		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id ORDER BY Posts.post_id DESC LIMIT 20');
-		$stmt->execute();
+		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
+		FROM Posts 
+		INNER JOIN Users ON Posts.user_id = Users.user_id 
+		INNER JOIN Followings ON Posts.user_id = Followings.following_id
+		WHERE Followings.user_id = ? 
+		ORDER BY Posts.post_id DESC 
+		LIMIT 20
+		');
+		$stmt->execute([$_SESSION['LOGGED_ID']]);
 		$posts = $stmt->fetchAll();
 		foreach ($posts as $post) {
 			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
-			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']); "\" alt=\"Post Picture\">";
-			$html .= "<br>" . htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
+			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\"><br></p><p>";
+			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
 				
 			//ajout du bouton seulement si admin
 			//on peut faire un test si le post appartient au user logged il peut supprimer son post
