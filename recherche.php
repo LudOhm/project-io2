@@ -8,8 +8,8 @@
         
            
 	    $html = "<h2>Résultat pour '".$user."'</h2>";
-            $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `Users` WHERE user_pseudo LIKE "%'.$user.'%" ORDER BY id DESC'); 
-            $stmt->execute();
+            $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `Users` WHERE user_pseudo LIKE ? ORDER BY id DESC'); 
+            $stmt->execute(array($user));
 	    $utilisateurs = $stmt->fetchAll();
 
        
