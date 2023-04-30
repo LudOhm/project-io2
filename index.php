@@ -94,7 +94,8 @@
                 		break;
 			
 			case 'search':
-				$fonction = search();
+				$user = $_GET['q'];
+				$fonction = search($user);
 				$style = "recherche.css";
 				$title = "Rechercher un utilisateur";
 				break;
