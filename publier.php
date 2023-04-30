@@ -30,6 +30,8 @@
 
 
             if (isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] === UPLOAD_ERR_OK) {
+
+                //au final le format est deja tester dans le input donc pas obliger ça fait des erreurs pour rien
                 //$fileName = $_FILES['post_picture']['name'];
                 //$fileExtension = explode('.',$fileName);
                 //$validExtensions = ['jpg','jpeg','png', 'mp4', 'avi', 'mov', 'flv'];
