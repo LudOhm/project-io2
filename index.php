@@ -109,7 +109,7 @@
 </head>
 <body>
 <h1> Insta Pets</h1>
-<main><?php echo $fonction?></main>
+<?php echo $fonction?>
 <footer>
 		<p>&copy; 2023 InstaPets</p>
         <p>KACI Amel & PERRIER-BABIN Ludivine</p>
