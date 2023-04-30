@@ -23,7 +23,7 @@ include_once('traitementLikes.php');
 		$stmt->execute();
 		$posts = $stmt->fetchAll();
 		foreach ($posts as $post) {
-			$html .="<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_contenu']) . "</p><img src=\"data:image/jpg;charset=utf8;base64,\"" . base64_encode($post['post_picture']) ."/>
+			$html .="<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_contenu']) . "</p><img src=\"data:image/jpg;charset=utf8;base64," . base64_encode($post['post_picture']) ."\"/>
        				 <p class=\"meta\">Posted by" . htmlspecialchars($post['user_pseudo'])."</p></article>";
 			//ajout du bouton seulement si admin
 			//on peut faire un test si le post appartient au user logged il peut supprimer son post
