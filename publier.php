@@ -21,7 +21,8 @@
 
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-        $user_id = $_SESSION['LOGGED_ID'];;
+        $user_id = $_SESSION['LOGGED_ID'];
+        //qd le form a été envoyé
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $post_title = $_POST['post_title'];
             $post_contenu = $_POST['post_contenu'];
@@ -46,7 +47,7 @@
 
                 }
             }
-            
+
             $stmt = $pdo->prepare('INSERT INTO Posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
             $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
             $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button></body></html>";
