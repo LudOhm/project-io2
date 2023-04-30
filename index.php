@@ -8,6 +8,9 @@
     include_once('profil.php');
     include_once('publier.php');
     include_once('recherche.php');
+	
+     $title = "InstaPets"; //par defaut on sait jamais
+     $style = "defaut.css"; //a creer
 
    if(!isset($_SESSION['LOGGED_MDP'])){
         if(isset($_GET['action'])){
@@ -59,41 +62,64 @@
             $style = "bienvenue.css";
         }
    } else {
-    if(isset($_GET['action'])){
-        switch($_GET['action']){
-            case 'modifier' :
-                $fonction = print_form(true);
-                $title = "Modification des informations";
-                $style = "inscription.css";
-                break;
-            case 'update' :
-                if(modificationValidee()){
-                    $fonction =felicitations(true);
-                    $style = "felicitations.css";
-                    $title = "Modifications des informations enregistrée";
-                    break;
-                }else{
-                    $fonction = print_form(true);
-                    $title = "Inscription";
-                    $style = "inscription.css";
-                    break;
-                }
-            case 'profil' :
-		$id = $_GET['id'];
-                $fonction = display_profil($id);
-                $style = "profil.css";
-                $title = "Votre profil";
-                break;
-            case 'publier' :
-                $fonction = publier();
-                $style = "accueil.css";
-                $title = "Nouvelle publication";
-                break;
-            default : $fonction = $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
-        }
-    }else{
-        $fonction = "EN CONSTRUCTION";
-    }
+    	if(isset($_GET['action'])){
+        	switch($_GET['action']){
+            		case 'modifier' :
+                		$fonction = print_form(true);
+                		$title = "Modification des informations";
+                		$style = "inscription.css";
+                		break;
+            		case 'update' :
+                		if(modificationValidee()){
+                   			$fonction =felicitations(true);
+                    			$style = "felicitations.css";
+                    			$title = "Modifications des informations enregistrée";
+                    			break;
+          			}else{
+                   		 	$fonction = print_form(true);
+                    		 	$title = "Inscription";
+                    			$style = "inscription.css";
+                   			 break;
+                		}
+            		case 'profil' :
+				$id = $_GET['id'];
+                		$fonction = display_Profil($id);
+                		$style = "profil.css";
+                		$title = "Profil utilisateur";
+                		break;
+            		case 'publier' :
+               			$fonction = publier();
+                		$style = "publier.css"; // a creer
+                		$title = "Nouvelle publication";
+                		break;
+			
+			case 'search':
+				// a reprendre
+				$fonction =
+				break;
+				
+			case 'subscribe':
+				$id=$_GET['id'];
+				follow($id);
+				$fonction = display_Profil($id);
+				$style = "profil.css";
+                		$title = "Profil utilisateur";
+				break;
+			
+			case 'unfollow':
+				$id=$_GET['id'];
+				unFollow($id)
+				$fonction = display_Profil($id);
+				$style = "profil.css";
+                		$title = "Profil utilisateur";
+				break;
+			
+	
+            		default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
+       		}
+    	}else{
+        	$fonction = display_Accueil();$title = "Mon fil d'actualité"; $style = "accueil.css";
+    	}
    }
 ?>
 <html>
