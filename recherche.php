@@ -13,7 +13,7 @@
 	    $utilisateurs = $stmt->fetchAll();
 
        
-        if($utilisateurs->rowCount() > 0){
+        if(count($utilisateurs) > 0){
             	foreach($utilisateurs as $ut){
             		$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a>";
 	   	 }
