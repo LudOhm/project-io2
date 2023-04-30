@@ -1,14 +1,13 @@
 <?php
     function search(){
-    	 $searched = htmlspecialchars($_GET['q']);
-	 $html = "<h2>Résultat pour '".$_GET['q']."'</h2>";
-	 
+    
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
         $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` ORDER BY id DESC');
 		$stmt->execute();
 		$utilisateurs = $stmt->fetchAll();
         if(isset($_GET['q']) && !empty($_GET['q'])){
             $recherche = htmlspecialchars($_GET['q']);
+	    $html = "<h2>Résultat pour '".$_GET['q']."'</h2>";
             $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` WHERE user_pseudo LIKE "%'.$recherche.'%" ORDER BY id DESC'); 
             $stmt->execute();
 		    $utilisateurs = $stmt->fetchAll();
