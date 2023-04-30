@@ -1,5 +1,5 @@
 <?php
-    function search(){
+    function search($user){
     
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
         $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` ORDER BY id DESC');
