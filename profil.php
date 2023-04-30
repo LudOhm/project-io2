@@ -26,7 +26,7 @@
     $Recup = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
     $Recup->execute(array($id));
     // on vérifie que l'id correspond bien à un utilisateur
-    if($Recup->rowCount()==0){/*message erreur profil inexistant*/} 
+    if($Recup->rowCount()==0){$erreur ="<h1>page non trouvée</h1><a href=\"index.php\">Retour à l'accueil</a>"; return $erreur} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
 
     //pour test admin car sinon les false ne passent pas dans un fetch tout court

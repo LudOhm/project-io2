@@ -96,7 +96,7 @@
 			case 'search':
 				$fonction = search();
 				$style = "recherche.css";
-				$title = "Rechercher un utilisateur"
+				$title = "Rechercher un utilisateur";
 				break;
 				
 			case 'subscribe':
@@ -109,7 +109,7 @@
 			
 			case 'unfollow':
 				$id=$_GET['id'];
-				unFollow($id)
+				unFollow($id);
 				$fonction = display_Profil($id);
 				$style = "profil.css";
                 		$title = "Profil utilisateur";
