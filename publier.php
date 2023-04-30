@@ -21,14 +21,14 @@
 
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
-    $user_id = $_COOKIE['LOGGED_USER'];;
+    $user_id = $_SESSION['LOGGED_ID'];;
     if(isset ($_POST['submit'])){
         $post_title = $_POST['post_title'];
         $post_contenu = $_POST['post_contenu'];
         $post_picture = null;
 
 
-        if (isset($_FILES['post_picture'])) {
+        if (!empty($_FILES['post_picture'])) {
             $fileName = $_FILES['post_picture']['name'];
             $fileExtension = explode('.',$fileName);
             $validExtensions = ['jpg','jpeg','png', 'mp4', 'avi', 'mov', 'flv'];
@@ -53,6 +53,8 @@
         //A REPRENDRE UN PEU SURTOUT POUR GERER LES REDIRECTIONS 
 
         }
+        //pour test mais du coup ça ne met pas dans la base de donnée alors que il peut y avoir les erreurs lié a la photo
+        return $html;
        
     }   
 

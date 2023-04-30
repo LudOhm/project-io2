@@ -9,6 +9,7 @@
     include_once('traitementModification.php');
     include_once('accueil.php');
     include_once('profil.php');
+    include_once('publier.php');
    if(!isset($_SESSION['LOGGED_MDP'])){
         if(isset($_GET['action'])){
             switch($_GET['action']){
@@ -78,10 +79,15 @@
                     break;
                 }
             case 'profil' :
-                    $fonction = display_profil($_SESSION['LOGGED_ID']);
-                    $style = "profil.css";
-                    $title = "Votre profil";
-                    break;
+                $fonction = display_profil($_SESSION['LOGGED_ID']);
+                $style = "profil.css";
+                $title = "Votre profil";
+                break;
+            case 'publier' :
+                $fonction = publier();
+                $style = "accueil.css";
+                $title = "Nouvelle publication";
+                break;
             default : $fonction = $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
         }
     }else{
