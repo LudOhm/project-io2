@@ -24,7 +24,7 @@ include_once('traitementLikes.php');
 		$posts = $stmt->fetchAll();
 		foreach ($posts as $post) {
 			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
-			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']); "\" alt=\"Post Picture\">";
+			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']) "\" alt=\"Post Picture\">";
 			$html .= "<br>" . htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
 			
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
