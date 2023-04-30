@@ -15,7 +15,7 @@ include_once('traitementLikes.php');
        $html =  "<main>";
        
         
-	//$loggedUser = $_SESSION['LOGGED_ID'];
+
         $html.="<h2>Recent Posts</h2>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
@@ -33,19 +33,37 @@ include_once('traitementLikes.php');
 			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
 			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\"><br></p><p>";
 			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
+
+			$mot = countPostLikes($post_id) > 1 ? "likes" : "like";
+			$html.= countPostLikes($post_id) . $mot;
+			if(isPostLiked($post[post_id], $_SESSION['LOGGED_ID'])){
+				$html.= "<form action=\"post\">
+				<button type=\"submit\" name=\"unlike\"><i id=likeButton class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";// coeur rouge
+				if(isset($_POST['unlike']){
+					$html .= "<style>.likeButton{color : #000000;}</style>";
+					likePost($post[post_id], $_SESSION['LOGGED_ID']);
+				}
 				
-			//ajout du bouton seulement si admin
-			//on peut faire un test si le post appartient au user logged il peut supprimer son post
-				if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
+			}else{
+				$html.= "<form action=\"post\">
+				<button type=\"submit\" name=\"like\"><i id=likeButton class=\"fa-solid fa-heart\" style=\"color: #000000;\"></i></button></form>";//coeur noir
+				if(isset($_POST['like']){
+					$html .= "<style>.likeButton{color : #e32400;}</style>";
+					likePost($post[post_id], $_SESSION['LOGGED_ID']);
+				}
+			}
+			
+			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
 				$html .= "<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
 				}
 	
-			}
+		}
 	
 	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form>
         <ul>
-		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
+
+	<li><a href=\"index.php?action=accueil\">Accueil</a></li>
       <li><a href=\"index.php?action=publier\">Publier</a></li>
       <li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         </ul>
