@@ -26,7 +26,7 @@
     $Recup = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
     $Recup->execute(array($id));
     // on vérifie que l'id correspond bien à un utilisateur
-    if($Recup->rowCount()==0){$erreur ="<h1>page non trouvée</h1><a href=\"index.php\">Retour à l'accueil</a>"; return $erreur} 
+    if($Recup->rowCount()==0){$erreur ="<h1>page non trouvée</h1><a href=\"index.php\">Retour à l'accueil</a>"; return $erreur;} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
 
     //pour test admin car sinon les false ne passent pas dans un fetch tout court
@@ -72,9 +72,9 @@
        		</aside>";
         if($id != $_SESSION['LOGGED_ID']){
             if(is_Logged_User_Subscribed($id)){
-              $html .= "<li><a href=\"index.php?action=unfollow&ampid=;".$id."\">Se désabonner</a></li>";
+              $html .= "<li><a href=\"index.php?action=unfollow&amp;id=;".$id."\">Se désabonner</a></li>";
             }else{
-              $html .= "<li><a href=\"index.php?action=subscribe&ampid=;".$id."\">Suivre</a></li>";
+              $html .= "<li><a href=\"index.php?action=subscribe&amp;id=;".$id."\">Suivre</a></li>";
             }
         }else{
           $html .=  "<li><a href=\"index.php?action=publier\">Ajouter une nouvelle publication></a></li>

@@ -1,22 +1,21 @@
 <?php
-    function search(){
-    	 $searched = htmlspecialchars($_GET['q']);
-	 $html = "<h2>Résultat pour '".$_GET['q']."'</h2>";
-	 
+    function search($user){
+    
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-        $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` ORDER BY id DESC');
+        $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `Users` ORDER BY id DESC');
 		$stmt->execute();
 		$utilisateurs = $stmt->fetchAll();
-        if(isset($_GET['q']) && !empty($_GET['q'])){
-            $recherche = htmlspecialchars($_GET['q']);
-            $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `users` WHERE user_pseudo LIKE "%'.$recherche.'%" ORDER BY id DESC'); 
-            $stmt->execute();
-		    $utilisateurs = $stmt->fetchAll();
+        
+           
+	    $html = "<h2>Résultat pour '".$user."'</h2>";
+            $stmt = $pdo->prepare('SELECT user_pseudo,user_id FROM `Users` WHERE user_pseudo LIKE ? ORDER BY id DESC'); 
+            $stmt->execute(array($user));
+	    $utilisateurs = $stmt->fetchAll();
 
-        }
-        if($utilisateurs->rowCount() > 0){
-            	while($user = $utilisateurs->fetchAll()){
-            		$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\" >".$user['user_pseudo']."</a>";
+       
+        if(count($utilisateurs) > 0){
+            	foreach($utilisateurs as $ut){
+            		$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a>";
 	   	 }
 		$html.= "
 	   <form action=\"index.php?action=search\" method=\"get\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
