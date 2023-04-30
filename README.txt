@@ -31,5 +31,5 @@ mdp = root
 ( quand il y a un changement dans le fichier de la base il faut la supp et la recréer :
 DROP DATABASE instapets; )
 source /Applications/MAMP/htdocs/project-io2/base.sql
-exit(); pour sortir du sql. la base de donnée a été créé on peut donc aller sur le site ]
+exit pour sortir du sql. la base de donnée a été créé on peut donc aller sur le site ]
 

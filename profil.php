@@ -5,9 +5,10 @@
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     $followers = $pdo->prepare('SELECT count(*) FROM Followers WHERE user_id = ?');
     $followers->execute(array($id));
-    $num = $followers->fetchAll();
-    return $num;
-  }
+    $num = $followers->fetchColumn();
+    return (string) $num;
+}
+
 
   function is_Logged_User_Subscribed($id){
     // si la fonction est appelée c que id != userLoggedID donc pas besoin de revérifier
@@ -27,7 +28,11 @@
     // on vérifie que l'id correspond bien à un utilisateur
     if($Recup->rowCount()==0){/*message erreur profil inexistant*/} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
-    $isAdmin = $Recup->fetch()['user_admin'] ;
+
+    //pour test admin car sinon les false ne passent pas dans un fetch tout court
+    $result = $Recup->fetch();
+    $isAdmin = $result ? $result['user_admin'] : false;
+
     // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
@@ -45,11 +50,11 @@
         
     // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
 
-    $html.="<p>".(string)count_Followers($id)." abonné(s)</p>";
+    $html.="<p>".count_Followers($id)." abonné(s)</p>";
 
     // afficher les posts du profil
 		$stmt2 = $pdo->prepare('SELECT Posts.post_title, Posts.post_content, Posts.post_picture, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = ? ORDER BY DESC LIMIT 20');
-		$stmt2->execute($id);
+		$stmt2->execute([$id]);
 		$posts = $stmt2->fetchAll();
 		foreach ($posts as $post) {
 				$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" . htmlspecialchars($post['post_picture']) . "</p><p>" . htmlspecialchars($post['post_content']) .
