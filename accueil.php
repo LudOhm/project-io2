@@ -30,6 +30,10 @@ include_once('traitementLikes.php');
 		$stmt->execute([$_SESSION['LOGGED_ID'], $_SESSION['LOGGED_ID']]);
 		$posts = $stmt->fetchAll();
 	    
+		if(empty($posts)){
+			$html .= "<p> il n'y a aucun poste à afficher pour le moment ! abonne toi à des gens ou poste quelque chose ! </p> ";
+		}
+
 		foreach ($posts as $post) {
 			
 			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
