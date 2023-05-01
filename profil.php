@@ -70,8 +70,10 @@ function count_Followings($id){
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = ? ORDER BY Posts.post_id DESC LIMIT 20');
     		$stmt->execute([$id]);
     		$posts = $stmt->fetchAll();
-        if(empty($posts)){
+        if(empty($posts)&& $id == $_SESSION['LOGGED_ID']){
           $html .= "<p>il n'y a aucun poste à afficher pour le moment ! poste quelque chose ! </p>";
+        } else if(empty($posts)){
+          $html .= "<p>il n'y a aucun poste à afficher pour le moment ! </p>";
         }
 		    foreach ($posts as $post) {
         		$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
