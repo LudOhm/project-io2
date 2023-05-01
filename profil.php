@@ -41,16 +41,16 @@ function count_Followings($id){
 
     //pour test admin car sinon les false ne passent pas dans un fetch tout court
     $result = $Recup->fetch();
-    $isAdmin = $result ? $result['user_admin'] : false;
+    //$isAdmin = $result ? $result['user_admin'] : false;
 
     // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
 	$affichageH2 .= $pseudo_profil;
-	if($isAdmin) {$affichageH2.=" &#9733;"; }// petie étoile de certification ;)
+	if((isAdmin($_SESSION['LOGGED_ID']))) {$affichageH2.=" &#9733;"; }// petie étoile de certification ;)
     } else{
       	$affichageH2 .= "Moi";
-	if($isAdmin){$affichageH2.=" &#9733;"; }
+	if((isAdmin($_SESSION['LOGGED_ID']))){$affichageH2.=" &#9733;"; }
     }
  
     $html = "
