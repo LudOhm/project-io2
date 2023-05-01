@@ -122,13 +122,7 @@
 				$title = "Mon fil d'actualité"; 
 				$style = "accueil.css";
 				break;
-            /*case 'like' :
-                $user = $_GET['user'];
-                $post = $_GET['id'];
-                likePost($post, $user);
-                header('Location'.$_SERVER['HTTP_REFERER']);
-                exit;*/
-
+           
 	
             	default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
        		}
