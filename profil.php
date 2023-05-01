@@ -131,9 +131,7 @@ function count_Followings($id){
         	<ul>
 		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
         	<li><a href=\"index.php?action=publier\">Publier</a></li>
-        	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
-        	</ul>
-       		</aside>";
+        	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>";
         if($id != $_SESSION['LOGGED_ID']){
             if(is_Logged_User_Subscribed($id)){
               $html .= "<li><a href=\"index.php?action=unfollow&amp;id=".$id."\">Se désabonner</a></li>";
@@ -142,7 +140,9 @@ function count_Followings($id){
             }
         }else{
           $html .=  "<li><a href=\"index.php?action=publier\">Ajouter une nouvelle publication></a></li>
-          <li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>";
+          <li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>
+          <li><a href=\"index.php?action=deconnexion\">Se déconecter></a></li></ul>
+          </aside>";
         }
 
     return $html;
