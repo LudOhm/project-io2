@@ -1,5 +1,6 @@
 <?php 
  include_once('traitementLikes.php');
+ include_once('accueil.php');
 
   function count_Followers($id){
     $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
@@ -38,9 +39,13 @@ function count_Followings($id){
     if($Recup->rowCount()==0){$erreur ="<h1>page non trouvée</h1><a href=\"index.php\">Retour à l'accueil</a>"; return $erreur;} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
 
+
     //pour test admin car sinon les false ne passent pas dans un fetch tout court
-    $result = $Recup->fetch();
-    $isAdmin = $result ? $result['user_admin'] : false;
+    $adm = $pdo->prepare('SELECT user_admin FROM Users WHERE user_id = ?');
+    $adm->execute(array($id));
+    $result = $adm->fetch();
+    $isAdmin = $result !== false ? $result['user_admin'] : false;
+
 
     // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
@@ -62,37 +67,35 @@ function count_Followings($id){
     $html.=count_Followings($id)." abonnement(s)</p>";
 
     // afficher les posts du profil
-		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = ? ORDER BY Posts.post_id DESC LIMIT 20');
+		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = ? ORDER BY Posts.post_id DESC LIMIT 20');
     		$stmt->execute([$id]);
     		$posts = $stmt->fetchAll();
 		    foreach ($posts as $post) {
         		$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
-        		$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\"><br></p><p>";
+            if($post['post_picture']!== null){
+        		  $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" ><br></p><p>";
+            }
         		$html .=  htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$id."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
 			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
 			$html.= countPostLikes($post['post_id']) . $mot;
-			$html.= "<script type=\"text/javascript\">
-				function CouleurLike(btn){
-				
-					document.getElementById(btn).style.color = \"#e32400\"; 
-				}
-				function CouleurUnlike(btn){
-					document.getElementById(btn).style.color = \"#ffffff\";
-				}
-			</script>";
-			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
-				$html.= "<form method=\"post\">
-				<button onclick=\"CouleurUnlike('likeButton')\" type=\"submit\" name=\"unlike\"><i id=\"likeButton\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
-				if(isset($_POST['unlike'])){
+
+      if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
+				$html .= "<form method=\"post\">
+				<button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
+				</form>";
+				if(isset($_POST['unlike' . $post['post_id']])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
+
 				
 			}else{
-				$html.= "<form method=\"post\">
-				<button onclick()=\" CouleurLike('likeButton')\" type=\"submit\" name=\"like\"><i id=likeButton class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i>Double CLick to like!</button></form>";
-				if(isset($_POST['like'])){
+				$html .= "<form method=\"post\">
+				<button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Double click to Like !</button>
+				</form>";
+				if(isset($_POST['like' . $post['post_id']])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
+
 			}
           		 if($isAdmin || $id == $_SESSION['LOGGED_ID']){
 				 $html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
