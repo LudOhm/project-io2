@@ -11,7 +11,7 @@
            
 	    $html = "<h2>Résultat pour '".$user."'</h2>";
        
-        if(count($utilisateurs) > 0){
+        if(isset($utilisateurs) && count($utilisateurs) > 0){
             	foreach($utilisateurs as $ut){
             		$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a></li>";
 	   	}
