@@ -55,7 +55,7 @@ include_once('traitementLikes.php');
 				
 			}else{
 				$html.= "<form method=\"post\">
-				<button onclick()=\" CouleurLike('likeButton".$numPost."')\" type=\"submit\" name=\"like\"><i id=likeButton".$numPost." class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i>Double CLick to like!</button></form>";
+				<button onclick()=\" CouleurLike('likeButton".$numPost."')\" type=\"submit\" name=\"like\"><i id=\"likeButton".$numPost."\" class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i>Double CLick to like!</button></form>";
 				if(isset($_POST['like'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
