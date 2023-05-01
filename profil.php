@@ -39,18 +39,22 @@ function count_Followings($id){
     if($Recup->rowCount()==0){$erreur ="<h1>page non trouvée</h1><a href=\"index.php\">Retour à l'accueil</a>"; return $erreur;} 
     $pseudo_profil = $Recup->fetch()['user_pseudo'];
 
+
     //pour test admin car sinon les false ne passent pas dans un fetch tout court
-    $result = $Recup->fetch();
-    //$isAdmin = $result ? $result['user_admin'] : false;
+    $adm = $pdo->prepare('SELECT user_admin FROM Users WHERE user_id = ?');
+    $adm->execute(array($id));
+    $result = $adm->fetch();
+    $isAdmin = $result !== false ? $result['user_admin'] : false;
+
 
     // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
 	$affichageH2 .= $pseudo_profil;
-	if((isAdmin($_SESSION['LOGGED_ID']))) {$affichageH2.=" &#9733;"; }// petie étoile de certification ;)
+	if($isAdmin) {$affichageH2.=" &#9733;"; }// petie étoile de certification ;)
     } else{
       	$affichageH2 .= "Moi";
-	if((isAdmin($_SESSION['LOGGED_ID']))){$affichageH2.=" &#9733;"; }
+	if($isAdmin){$affichageH2.=" &#9733;"; }
     }
  
     $html = "
