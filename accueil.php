@@ -45,14 +45,14 @@ include_once('traitementLikes.php');
 				}
 			</script>";
 			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
-				$html.= "<form action=\"post\">
+				$html.= "<form method=\"post\">
 				<button onclick=\"CouleurUnlike('likeButton')\" type=\"submit\" name=\"unlike\"><i id=\"likeButton\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
 				if(isset($_POST['unlike'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
 				
 			}else{
-				$html.= "<form action=\"post\">
+				$html.= "<form method=\"post\">
 				<button onclick()=\" CouleurLike('likeButton')\" type=\"submit\" name=\"like\"><i id=likeButton class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i></button></form>";
 				if(isset($_POST['like'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
