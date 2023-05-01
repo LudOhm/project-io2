@@ -2,11 +2,14 @@
     function search($user){
     
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+		$stmt = $pdo->prepare('SELECT user_pseudo, user_id FROM `Users` ORDER BY user_id DESC'); 
+		if(isset($user)&&!empty($user)){
+			$stmt = $pdo->prepare('SELECT user_pseudo, user_id FROM `Users` WHERE user_pseudo LIKE ? ORDER BY user_id DESC'); 
+			$stmt->execute(array('%' . $user . '%'));
+			$utilisateurs = $stmt->fetchAll();
+		}
            
 	    $html = "<h2>Résultat pour '".$user."'</h2>";
-        $stmt = $pdo->prepare('SELECT user_pseudo, user_id FROM `Users` WHERE user_pseudo = ? ORDER BY user_id DESC'); 
-		$stmt->execute(array($user));
-		$utilisateurs = $stmt->fetchAll();
        
         if(count($utilisateurs) > 0){
             	foreach($utilisateurs as $ut){
