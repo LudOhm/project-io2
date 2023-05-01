@@ -37,25 +37,17 @@ include_once('traitementLikes.php');
 			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
 			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
 			$html.= countPostLikes($post['post_id']) . $mot;
-			$html.= "<script type=\"text/javascript\">
-				function CouleurLike(btn){
-				
-					document.getElementById(btn).style.color = \"#e32400\"; 
-				}
-				function CouleurUnlike(btn){
-					document.getElementById(btn).style.color = \"#ffffff\";
-				}
-			</script>";
+			
 			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
 				$html.= "<form method=\"post\">
-				<button onclick=\"CouleurUnlike('".$post['post_id']."')\" type=\"submit\" name=\"unlike\"><i id=\"".$post['post_id']."\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
+				<button type=\"submit\" name=\"unlike\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
 				if(isset($_POST['unlike'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
 				
 			}else{
 				$html.= "<form method=\"post\">
-				<button onclick()=\" CouleurLike('".$post['post_id']."')\" type=\"submit\" name=\"like\"><i id=\"".$post['post_id']."\" class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i>Double CLick to like!</button></form>";
+				<button type=\"submit\" name=\"like\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i></button></form>";
 				if(isset($_POST['like'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
