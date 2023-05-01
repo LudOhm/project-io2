@@ -65,7 +65,7 @@ include_once('traitementLikes.php');
 			
 		}
 	
-	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"get\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form>
         <ul>
 
