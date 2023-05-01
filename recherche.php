@@ -12,7 +12,7 @@
             	foreach($utilisateurs as $ut){
             		$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a></li>";
 	   	}
-		$html.= "
+		$html.= "<br>
 	   <form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
   		<label for=\"recherche\">Modifier ma recherche :</label><input type=\"submit\" value=\"Ok !\">
 	   </form><aside><a href = \"index.php\">Retour à l'accueil</a></aside>";
