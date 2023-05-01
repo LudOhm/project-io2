@@ -62,6 +62,11 @@ function count_Followings($id){
 
         
     // afficher nombre d'abonnes et abonnement corespondants à $id EN PARAMETRES DE LA FONCTION
+    // <ul>
+		// <li><a href=\"index.php?action=LikedBy\"> $mot </a></li>
+    //     	<li><a href=\"index.php?action=publier\">Publier</a></li>
+    //     	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
+    // </ul>
 
     $html.="<p>".count_Followers($id)." abonné(s) &emsp;";
     $html.=count_Followings($id)." abonnement(s)</p>";
@@ -81,30 +86,37 @@ function count_Followings($id){
         		  $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" ><br></p><p>";
             }
         		$html .=  htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$id."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
-			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
-			$html.= countPostLikes($post['post_id']) . $mot;
+            $mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
 
-      if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
-				$html .= "<form method=\"post\">
-				<button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
-				</form>";
-				if(isset($_POST['unlike' . $post['post_id']])){
-					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
-				}
+            //si c'est notre compte on peut voir les gens qui ont like les posts
+            if($id == $_SESSION['LOGGED_ID']){
+              $motfin = countPostLikes($post['post_id']) . $mot;
+              $html.= "<a href=\"index.php?action=LikedBy&amp;id=".$post['post_id']."\">$motfin </a>" ;
+            }else {
+              $html.= countPostLikes($post['post_id']) . $mot;
+            }
 
-				
-			}else{
-				$html .= "<form method=\"post\">
-				<button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Double click to Like !</button>
-				</form>";
-				if(isset($_POST['like' . $post['post_id']])){
-					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
-				}
+            if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
+              $html .= "<form method=\"post\">
+              <button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
+              </form>";
+              if(isset($_POST['unlike' . $post['post_id']])){
+                likePost($post['post_id'], $_SESSION['LOGGED_ID']);
+              }
 
-			}
-          		 if($isAdmin || $id == $_SESSION['LOGGED_ID']){
-				 $html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
-        		} 
+              
+            }else{
+              $html .= "<form method=\"post\">
+              <button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Double click to Like !</button>
+              </form>";
+              if(isset($_POST['like' . $post['post_id']])){
+                likePost($post['post_id'], $_SESSION['LOGGED_ID']);
+              }
+
+            }
+                    if($isAdmin || $id == $_SESSION['LOGGED_ID']){
+              $html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
+            } 
 		}
 	// en dessous je vais m'occuper d'un peu réorganiser tout ça je fais une petite pause
 	  $html .= "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">

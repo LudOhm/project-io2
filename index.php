@@ -122,7 +122,12 @@
 				$title = "Mon fil d'actualité"; 
 				$style = "accueil.css";
 				break;
-           
+            case 'LikedBy':
+                $id = $_GET['id'];
+                $fonction = getUsersWhoLikedPost($id);
+                $title = "aimé par"; 
+				$style = "likedBy.css";
+                break;
 	
             	default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
        		}
