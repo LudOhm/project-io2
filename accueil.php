@@ -33,8 +33,8 @@ include_once('traitementLikes.php');
 			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
 			$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\"><br></p><p>";
 			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
-			$mot = countPostLikes($post[post_id]) > 1 ? "likes" : "like";
-			$html.= countPostLikes($post[post_id]) . $mot;
+			$mot = countPostLikes($post['post_id']) > 1 ? "likes" : "like";
+			$html.= countPostLikes($post['post_id']) . $mot;
 			$html.= "<script type=\"text/javascript\">
 				function CouleurLike(btn){
 				
@@ -44,18 +44,18 @@ include_once('traitementLikes.php');
 					document.getElementById(btn).style.color = \"#ffffff\";
 				}
 			</script>";
-			if(isPostLiked($post[post_id], $_SESSION['LOGGED_ID'])){
-				$html.= "<form action=\"post\">
+			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
+				$html.= "<form method=\"post\">
 				<button onclick=\"CouleurUnlike('likeButton')\" type=\"submit\" name=\"unlike\"><i id=\"likeButton\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
 				if(isset($_POST['unlike'])){
-					likePost($post[post_id], $_SESSION['LOGGED_ID']);
+					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
 				
 			}else{
-				$html.= "<form action=\"post\">
+				$html.= "<form method=\"post\">
 				<button onclick()=\" CouleurLike('likeButton')\" type=\"submit\" name=\"like\"><i id=likeButton class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i></button></form>";
 				if(isset($_POST['like'])){
-					likePost($post[post_id], $_SESSION['LOGGED_ID']);
+					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
 			}
 			

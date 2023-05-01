@@ -115,15 +115,22 @@
 				$style = "profil.css";
                 		$title = "Profil utilisateur";
 				break;
-			case 'delete':
+			case 'delet':
 				$id=$_GET['id'];
 				delet($id);
 				$fonction = display_Accueil(); 
 				$title = "Mon fil d'actualité"; 
 				$style = "accueil.css";
 				break;
+            /*case 'like' :
+                $user = $_GET['user'];
+                $post = $_GET['id'];
+                likePost($post, $user);
+                header('Location'.$_SERVER['HTTP_REFERER']);
+                exit;*/
+
 	
-            		default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
+            	default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
        		}
     	}else{
         	$fonction = display_Accueil();$title = "Mon fil d'actualité"; $style = "accueil.css";
