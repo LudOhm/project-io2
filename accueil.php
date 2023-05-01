@@ -41,18 +41,22 @@ include_once('traitementLikes.php');
 			$html.= countPostLikes($post['post_id']) . $mot;
 			
 			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
-				$html.= "<form method=\"post\">
-				<button type=\"submit\" name=\"unlike\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
-				if(isset($_POST['unlike'])){
+				$html .= "<form method=\"post\">
+				<button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
+				</form>";
+				if(isset($_POST['unlike' . $post['post_id']])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
+
 				
 			}else{
-				$html.= "<form method=\"post\">
-				<button type=\"submit\" name=\"like\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i></button></form>";
-				if(isset($_POST['like'])){
+				$html .= "<form method=\"post\">
+				<button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Double click to Like !</button>
+				</form>";
+				if(isset($_POST['like' . $post['post_id']])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
+
 			}
 			
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
