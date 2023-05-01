@@ -122,8 +122,9 @@
 				$title = "Mon fil d'actualité"; 
 				$style = "accueil.css";
 				break;
+           
 	
-            		default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
+            	default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
        		}
     	}else{
         	$fonction = display_Accueil();$title = "Mon fil d'actualité"; $style = "accueil.css";

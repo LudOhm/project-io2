@@ -29,7 +29,9 @@ include_once('traitementLikes.php');
 		');
 		$stmt->execute([$_SESSION['LOGGED_ID'], $_SESSION['LOGGED_ID']]);
 		$posts = $stmt->fetchAll();
+	    	$numPost =0;
 		foreach ($posts as $post) {
+			
 			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
 			if($post['post_picture']!== null){
 				$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" ><br></p><p>";
@@ -48,14 +50,14 @@ include_once('traitementLikes.php');
 			</script>";
 			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
 				$html.= "<form method=\"post\">
-				<button onclick=\"CouleurUnlike('likeButton')\" type=\"submit\" name=\"unlike\"><i id=\"likeButton\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
+				<button onclick=\"CouleurUnlike('likeButton".$numPost."')\" type=\"submit\" name=\"unlike\"><i id=\"likeButton".$numPost."\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button></form>";
 				if(isset($_POST['unlike'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
 				
 			}else{
 				$html.= "<form method=\"post\">
-				<button onclick()=\" CouleurLike('likeButton')\" type=\"submit\" name=\"like\"><i id=likeButton class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i></button></form>";
+				<button onclick()=\" CouleurLike('likeButton".$numPost."')\" type=\"submit\" name=\"like\"><i id=likeButton".$numPost." class=\"fa-solid fa-heart\" style=\"color: #ffffff;\"></i>Double CLick to like!</button></form>";
 				if(isset($_POST['like'])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
@@ -64,7 +66,7 @@ include_once('traitementLikes.php');
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
 				$html .= "<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
 				}
-	
+			$numPost=$numPost+1;
 		}
 	
 	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
