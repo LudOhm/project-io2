@@ -94,7 +94,7 @@ function count_Followings($id){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
 			}
-          		 if($isAdmin){
+          		 if($isAdmin || $id == $_SESSION['LOGGED_ID']){
 				 $html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
         		} 
 		}
