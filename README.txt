@@ -1,32 +1,12 @@
 faire un site web style réseau social un peu comme instagram pour un projet d'université.
 
--il faut faire publier qui est l'endroit ou les publication sont mises. --> publier c'est juste une fonction qui ajoute un post à la base
--Sur le profil, tous les posts du profil; Sur Acceuil: seulement les posts des profils auxquels l'utilisateur connecté est abonné
--pour le profil il faudra que l'url soit 'profil.php?user_id=' avec l'id du user qui viendra de la base pour que ça soit plus facile avec les Followers et Followings.
-
--la page Rechercher aussi.
--le css est a refaire partout.
-- ajouter une colonne isAdmin dans la base ???? (Comptes administrateurs : Certains comptes pourront être d ́esignés comme administrateurs. Ces comptes pourront effacer les publications de tous les autres utilisateurs.) ELLE EST LA MA CERTIFICATION !!!
-- affichage dans index.php seulement, je m'occupe de remettre les pages en fonctions php (page inscription à priori terminée)
--il faudra a un moment qd les cookies seront fait faire des fonction de chiffrage et dechiffrage de mot de passe avant de le mettre dans la base de donnée et en le recupérant pour le comparer
--faire la page follow et unfollow qui seront deux autres fichiers je pense
--pareil pour les likes a rajouter dans publier le lien vers le fichier like je pense
-
-
-
-
-/!\ LA FONCTION SETCOOKIE IL FAUDRA LA METTRE AU TOUT DEBUT DE INDEX.PHP AVEC LE SESSION START SINON PROBLEME /!\
-
-$_SESSION['LOGGED_USER'] existe plus ; remplacé par $_SESSION['LOGGED_ID']
-
-j'ai un doute si les header vont fonctionner dans les autres du coup je pense les enlever
-
 UPDATE : maintenant il va juste falloir gerer les fichiers css; pour si il en faut des nouveaux -> se référer à index.php (une fonction(celle qui font de l'affichage seulement) = un style et pas un fichier=un style)
 
 
 Début du texte pour faire fonctionner le site : 
 
 Si la base de donnée n'a pas été créer :
+Le fichier base.sql représente l'entiereté de la base de donnée
 [ Sur un terminal dans /Applications/MAMP/htdocs/project-io2 faire :
 /Applications/MAMP/Library/bin/mysql -u root -p
 mdp = root
@@ -35,3 +15,7 @@ DROP DATABASE instapets; )
 source /Applications/MAMP/htdocs/project-io2/base.sql
 exit pour sortir du sql. la base de donnée a été créé on peut donc aller sur le site ]
 
+sur le lien http://localhost:8888/phpMyAdmin5/index.php?route=/sql&pos=0&db=instapets&table=Users
+on peut modifier les users pour définir les admins en mettant 1 à user_admin après qie les comptes soient créé sur le site en lui même
+
+quand on va dans le dossier on arrive direct sur la page de connexion ou d'inscription si l'utilisateur n'as pas encore ouvert le site et s'est connecté
