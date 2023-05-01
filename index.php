@@ -94,7 +94,7 @@
                 		break;
 			
 			case 'search':
-				$user = htmlspecialchars($_GET['q']);
+				$user = htmlspecialchars($_POST['q']);
 				$fonction = search($user);
 				$style = "recherche.css";
 				$title = "Rechercher un utilisateur";
