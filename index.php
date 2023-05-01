@@ -115,7 +115,7 @@
 				$style = "profil.css";
                 		$title = "Profil utilisateur";
 				break;
-			case 'delet':
+			case 'delete':
 				$id=$_GET['id'];
 				delet($id);
 				$fonction = display_Accueil(); 
