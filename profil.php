@@ -102,7 +102,7 @@ function count_Followings($id){
         		} 
 		}
 	// en dessous je vais m'occuper d'un peu réorganiser tout ça je fais une petite pause
-	  $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"get\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+	  $html .= "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
   		<input type=\"submit\" value=\"Ok !\"></form> 
         	<ul>
 		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
