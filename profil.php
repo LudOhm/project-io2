@@ -141,8 +141,7 @@ function count_Followings($id){
               </aside>";
             }
         }else{
-          $html .=  "<li><a href=\"index.php?action=publier\">Ajouter une nouvelle publication></a></li>
-          <li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>
+          $html .=  "<li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>
           <li><a href=\"index.php?action=deconnexion\">Se déconecter></a></li></ul>
           </aside>";
         }
