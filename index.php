@@ -158,7 +158,7 @@
 <link href="<?php echo $style?>" rel="stylesheet">
 </head>
 <body>
-<h1> InstaPets</h1>
+	<header><h1> InstaPets</h1></header>
 <a href="index.php"><img src="INSTAPETS-2.png" width="60" height="60" id=logo alt=Logo></a>
 	
 <?php echo $fonction?>
