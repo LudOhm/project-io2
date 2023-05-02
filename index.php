@@ -158,7 +158,9 @@
 <link href="<?php echo $style?>" rel="stylesheet">
 </head>
 <body>
-<h1> Insta Pets</h1>
+<h1> InstaPets</h1>
+<a href="index.php"><img src="INSTAPETS-2.png" width="60" height="60" id=logo alt=Logo></a>
+	
 <?php echo $fonction?>
 <footer>
 		<p>&copy; 2023 InstaPets</p>
