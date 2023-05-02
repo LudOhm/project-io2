@@ -200,13 +200,13 @@ function count_Followings($id){
       $stmt->execute(array($user));
       $users = $stmt->fetchAll();
       
-      $html = "<h2>Les personnes qui te suive</h2>";
+      $html = "<h2>Abonnés</h2>";
       if(count($users) > 0) {
         foreach($users as $user) {
           $html .= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
         }
       } else {
-        $html .= "<p>Aucune personne ne te suis</p>";
+        $html .= "<p>Aucun abonné</p>";
       }
       $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>";
       
@@ -223,13 +223,13 @@ function count_Followings($id){
       $stmt->execute(array($user));
       $users = $stmt->fetchAll();
       
-      $html = "<h2>Les personnes que tu suis :</h2>";
+      $html = "<h2>Abonnements :</h2>";
       if(count($users) > 0) {
           foreach($users as $user) {
               $html .= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
           }
       } else {
-          $html .= "<p>Tu ne suis personne pour le moment</p>";
+          $html .= "<p>Aucun abonnement</p>";
       }
       $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>";
       
