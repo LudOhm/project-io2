@@ -122,8 +122,27 @@
 				$title = "Mon fil d'actualité"; 
 				$style = "accueil.css";
 				break;
-           
-	
+            case 'LikedBy':
+                $id = $_GET['id'];
+                $fonction = getUsersWhoLikedPost($id);
+                $title = "aimé par"; 
+				$style = "likedBy.css";
+                break;
+            case 'abonne':
+                $id = $_GET['id'];
+                $fonction = getUsersWhoFollow($id);
+                $title = "abonné"; 
+				$style = "abonne.css";
+                break;
+            case 'abonnement':
+                $id = $_GET['id'];
+                $fonction = getUsersWhoFollowed($id);
+                $title = "abonnement"; 
+				$style = "abonnement.css";
+                break;
+            case 'deconnexion':
+                deconnexion();
+                break;
             	default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
        		}
     	}else{

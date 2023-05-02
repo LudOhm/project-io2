@@ -29,6 +29,31 @@ function countPostLikes($post_id) {
     $stmt->execute([$post_id]);
     return $stmt->fetchColumn();
   }
+
+  function getUsersWhoLikedPost($postId) {
+    $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
+    $stmt = $pdo->prepare('SELECT Users.user_pseudo, Users.user_id 
+                           FROM Likes 
+                           JOIN Users ON Likes.user_id = Users.user_id 
+                           WHERE Likes.post_id = ? 
+                           ORDER BY Users.user_id DESC');
+    $stmt->execute(array($postId));
+    $users = $stmt->fetchAll();
+    
+    $html = "<h2>Les personnes qui ont aimé ce post</h2>";
+    if(count($users) > 0) {
+        foreach($users as $user) {
+            $html .= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
+        }
+    } else {
+        $html .= "<p>aucune personne l'a like ce post </p>";
+
+    }
+    $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>";
+    
+    return $html;
+}
+
   
 
 
