@@ -52,7 +52,7 @@ function print_form($modifier) {
     <label for=\"mdp\">Mot de passe : </label>
     <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
     <br>
-    <input type=\"submit\" value=\"$mot\">
+    <button type=\"submit\">".$mot."</button>
     </form>";
     return $html;
 }
