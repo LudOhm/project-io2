@@ -5,16 +5,19 @@
         <form method=\"POST\" enctype=\"multipart/form-data\">
 
         <label for=\"post_title\">Title:</label>
-        <input type=\"text\" name=\"post_title\" required>
+        <input type=\"text\" name=\"post_title\" required><br>
         
         <label for=\"post_contenu\">Content:</label>
-        <textarea name=\"post_contenu\" rows=\"5\" required></textarea>
+        <textarea name=\"post_contenu\" rows=\"5\" required></textarea><br>
         
         <label for=\"post_picture\">Picture:</label>
-        <input type=\"file\" accept=\".jpeg, .jpg, .png, .mp4, .avi, .mov, .flv\" name=\"post_picture\">
+        <input type=\"file\" accept=\".jpeg, .jpg, .png, .mp4, .avi, .mov, .flv\" name=\"post_picture\"><br>
         
         <button type=\"submit\" name=\"submit\">Publier</button>
-        </form></main>";
+        </form>
+
+        <a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>
+        </main>";
 
 
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
@@ -28,24 +31,22 @@
 
 
      
-                if(isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] == 0) {
-                    $post_picture = file_get_contents($_FILES['post_picture']['tmp_name']);
-                
-                } else if((isset($_FILES['post_picture']['error'])) && $_FILES['post_picture']['error'] != 4){
-                    $html.= "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button>";
-                    return $html;
+            if(isset($_FILES['post_picture']['error']) && $_FILES['post_picture']['error'] == 0) {
+                $post_picture = file_get_contents($_FILES['post_picture']['tmp_name']);
+            
+            } else if((isset($_FILES['post_picture']['error'])) && $_FILES['post_picture']['error'] != 4){
+                $html.= "<script type=\"text/javascript\">window.alert('Une erreur est survenue, veuillez réessayer')</script><button type=\"button\"><a href=\"index.php?action=publier\">Réessayer</a></button>";
+                return $html;
 
-                }
+            }
             
 
             $stmt = $pdo->prepare('INSERT INTO Posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
             $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
             $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button>";
             return $html;
-            //A REPRENDRE UN PEU SURTOUT POUR GERER LES REDIRECTIONS 
 
         }
-        //pour test mais du coup ça ne met pas dans la base de donnée jsp pq alors que le script javascript s'affiche bien
         return $html;
        
     }   

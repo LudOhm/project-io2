@@ -9,8 +9,8 @@
     include_once('publier.php');
     include_once('recherche.php');
 	
-     $title = "InstaPets"; //par defaut on sait jamais
-     $style = "defaut.css"; //a creer
+    $title = "InstaPets"; //par defaut on sait jamais
+    $style = "defaut.css"; //a creer
 
    if(!isset($_SESSION['LOGGED_MDP'])){
         if(isset($_GET['action'])){
@@ -64,87 +64,90 @@
    } else {
     	if(isset($_GET['action'])){
         	switch($_GET['action']){
-            		case 'modifier' :
-                		$fonction = print_form(true);
-                		$title = "Modification des informations";
-                		$style = "inscription.css";
-                		break;
-            		case 'update' :
-                		if(modificationValidee()){
-                   			$fonction =felicitations(true);
-                    			$style = "felicitations.css";
-                    			$title = "Modifications des informations enregistrée";
-                    			break;
-          			}else{
-                   		 	$fonction = print_form(true);
-                    		 	$title = "Inscription";
-                    			$style = "inscription.css";
-                   			 break;
-                		}
-            		case 'profil' :
-				$id = $_GET['id'];
-                		$fonction = display_Profil($id);
-                		$style = "profil.css";
-                		$title = "Profil utilisateur";
-                		break;
-            		case 'publier' :
-               			$fonction = publier();
-                		$style = "publier.css"; // a creer
-                		$title = "Nouvelle publication";
-                		break;
+                case 'modifier' :
+                    $fonction = print_form(true);
+                    $title = "Modification des informations";
+                    $style = "inscription.css";
+                    break;
+                case 'update' :
+                    if(modificationValidee()){
+                        $fonction =felicitations(true);
+                        $style = "felicitations.css";
+                        $title = "Modifications des informations enregistrée";
+                        break;
+                    }else{
+                        $fonction = print_form(true);
+                        $title = "Inscription";
+                        $style = "inscription.css";
+                        break;
+                    }
+                case 'profil' :
+                    $id = $_GET['id'];
+                    $fonction = display_Profil($id);
+                    $style = "profil.css";
+                    $title = "Profil utilisateur";
+                    break;
+                case 'publier' :
+                    $fonction = publier();
+                    $style = "publier.css"; // a creer
+                    $title = "Nouvelle publication";
+                    break;
 			
-			case 'search':
-				$user = htmlspecialchars($_POST['q']);
-				$fonction = search($user);
-				$style = "recherche.css";
-				$title = "Rechercher un utilisateur";
-				break;
-				
-			case 'subscribe':
-				$id=$_GET['id'];
-				follow($id);
-				$fonction = display_Profil($id);
-				$style = "profil.css";
-                		$title = "Profil utilisateur";
-				break;
-			
-			case 'unfollow':
-				$id=$_GET['id'];
-				unFollow($id);
-				$fonction = display_Profil($id);
-				$style = "profil.css";
-                		$title = "Profil utilisateur";
-				break;
-			case 'delete':
-				$id=$_GET['id'];
-				delet($id);
-				$fonction = display_Accueil(); 
-				$title = "Mon fil d'actualité"; 
-				$style = "accueil.css";
-				break;
-            case 'LikedBy':
-                $id = $_GET['id'];
-                $fonction = getUsersWhoLikedPost($id);
-                $title = "aimé par"; 
-				$style = "likedBy.css";
-                break;
-            case 'abonne':
-                $id = $_GET['id'];
-                $fonction = getUsersWhoFollow($id);
-                $title = "abonné"; 
-				$style = "abonne.css";
-                break;
-            case 'abonnement':
-                $id = $_GET['id'];
-                $fonction = getUsersWhoFollowed($id);
-                $title = "abonnement"; 
-				$style = "abonnement.css";
-                break;
-            case 'deconnexion':
-                deconnexion();
-                break;
-            	default : $fonction = display_Accueil(); $title = "Mon fil d'actualité"; $style = "accueil.css";
-       		}
+                case 'search':
+                    $user = htmlspecialchars($_POST['q']);
+                    $fonction = search($user);
+                    $style = "recherche.css";
+                    $title = "Rechercher un utilisateur";
+                    break;
+                    
+                case 'subscribe':
+                    $id=$_GET['id'];
+                    follow($id);
+                    $fonction = display_Profil($id);
+                    $style = "profil.css";
+                    $title = "Profil utilisateur";
+                    break;
+                
+                case 'unfollow':
+                    $id=$_GET['id'];
+                    unFollow($id);
+                    $fonction = display_Profil($id);
+                    $style = "profil.css";
+                    $title = "Profil utilisateur";
+                    break;
+                case 'delete':
+                    $id=$_GET['id'];
+                    delet($id);
+                    $fonction = display_Accueil(); 
+                    $title = "Mon fil d'actualité"; 
+                    $style = "accueil.css";
+                    break;
+                case 'LikedBy':
+                    $id = $_GET['id'];
+                    $fonction = getUsersWhoLikedPost($id);
+                    $title = "aimé par"; 
+                    $style = "likedBy.css";
+                    break;
+                case 'abonne':
+                    $id = $_GET['id'];
+                    $fonction = getUsersWhoFollow($id);
+                    $title = "abonné"; 
+                    $style = "abonne.css";
+                    break;
+                case 'abonnement':
+                    $id = $_GET['id'];
+                    $fonction = getUsersWhoFollowed($id);
+                    $title = "abonnement"; 
+                    $style = "abonnement.css";
+                    break;
+                case 'deconnexion':
+                    deconnexion();
+                    break;
+                default : 
+                    $fonction = display_Accueil(); 
+                    $title = "Mon fil d'actualité"; 
+                    $style = "accueil.css";
+            }
     	}else{
         	$fonction = display_Accueil();$title = "Mon fil d'actualité"; $style = "accueil.css";
     	}
