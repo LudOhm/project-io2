@@ -14,7 +14,7 @@ include_once('traitementLikes.php');
 	
        	$html =  "<main>";
 
-        $html.="<h2>Recent Posts</h2>";
+        $html.="<h2>Dernières publications</h2>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
