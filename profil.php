@@ -82,7 +82,7 @@ function count_Followings($id){
     }
 
     // afficher les posts du profil
-	  $html.="<h3 class=\"publications\">Publications:</h3><div class=\"post\">";
+	  $html.="<h3 class=\"publications\">&nbsp;&nbsp;Publications:</h3><div class=\"post\">";
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id 
                   FROM Posts 
                   INNER JOIN Users 
