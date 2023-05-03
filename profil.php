@@ -98,11 +98,12 @@ function count_Followings($id){
       $html .= "<p>il n'y a aucun poste à afficher pour le moment ! </p>";
     }
     foreach ($posts as $post) {
-      $html .= "<article><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
+      $html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
+      html .=  "<p>".htmlspecialchars($post['post_contenu'])."</p></div>"; 
       if($post['post_picture']!== null){
-        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"300\" height=\"300\" ><br>";
+        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\" ><br>";
       }
-      $html .=  "<p>".htmlspecialchars($post['post_contenu']) . /* "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$id."\">". htmlspecialchars($post['user_pseudo'])."</a>*/ ."</p> </article>";
+      $html.="</article>";
       $mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
 
       //si c'est notre compte on peut voir les gens qui ont like les posts
