@@ -98,7 +98,7 @@ function count_Followings($id){
       $html .= "<p>il n'y a aucun poste à afficher pour le moment ! </p>";
     }
     foreach ($posts as $post) {
-      $html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+      $html .= "<article><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
       if($post['post_picture']!== null){
         $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"300\" height=\"300\" ><br></p><p>";
       }
