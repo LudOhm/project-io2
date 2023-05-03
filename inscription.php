@@ -54,7 +54,7 @@ function print_form($modifier) {
     <br>
     <button type=\"submit\">".$mot."</button>
     </form></main>";
-  if(!$modifier){$html.="<a href=\"index.php?action=connexion\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>J'ai déjà un compte</a>";}
+  if(!$modifier){$html.="<dic class=\"connexion\"><a href=\"index.php?action=connexion\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>J'ai déjà un compte</a></div>";}
     return $html;
 }
 
