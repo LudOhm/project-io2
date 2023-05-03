@@ -18,7 +18,7 @@
        
         if(isset($utilisateurs) && count($utilisateurs) > 0){
             foreach($utilisateurs as $ut){
-            	$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a></li>";
+            	$html.= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a></li>";
 	   		}
 			$html.= "</main><br>
 			<aside><form action=\"index.php?action=search\" method=\"post\"><label for=\"recherche\">Modifier ma recherche :</label><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
