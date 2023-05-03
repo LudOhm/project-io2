@@ -16,7 +16,7 @@ footer {
   font-family:  sans-serif;
 }
 
-header{
+h1{
   position:relative;
     margin:0 auto;
     clear:left;
@@ -36,4 +36,36 @@ img{
   
 left:45;
 top: 0;
+}
+
+li{
+  list-style-type: circle;
+  text-align: center;
+    background-color: #63512e;
+ 
+  inline-size: 30%;
+  border-block-width: 10px;
+  font-size: large;
+    color : white;
+  position: relative;
+    top: 315px;
+  left: 35%;
+  
+}
+
+a{
+  color : white;
+}
+
+h2{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  transform: translate(-40%, -40%);
+  text-align: center;
+  color : white;
+  font-family:  sans-serif;
+  font-style: italic;
 }
