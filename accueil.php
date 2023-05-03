@@ -28,7 +28,7 @@ include_once('traitementLikes.php');
 		$posts = $stmt->fetchAll();
 	    
 		if(empty($posts)){
-			$html .= "<p> il n'y a aucun poste à afficher pour le moment ! abonne toi à des gens ou poste quelque chose ! </p> ";
+			$html .= "<p> il n'y a aucun poste à afficher pour le moment ! abonne toi à des utilisateurs ou poste quelque chose ! </p> ";
 		}
 
 		foreach ($posts as $post) {
