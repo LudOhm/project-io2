@@ -77,8 +77,8 @@ function count_Followings($id){
         $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=subscribe&amp;id=".$id."\">Suivre</a></button></div>";
       }
     }else{
-      $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos></a></button>
-     <button type=\"button\"><a href=\"index.php?action=deconnexion\">Se déconnecter></a></button></div></div>";
+      $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos</a></button>
+     <button type=\"button\"><a href=\"index.php?action=deconnexion\">Se déconnecter</a></button></div></div>";
     }
 
     // afficher les posts du profil
