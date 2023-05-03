@@ -39,7 +39,7 @@ include_once('traitementLikes.php');
 		  	}
 			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
 			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
-			$html.= countPostLikes($post['post_id']) . $mot;
+			$html.= "<p>".countPostLikes($post['post_id']) . $mot."</p>";
 			
 			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
 				$html .= "<form method=\"post\">
