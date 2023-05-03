@@ -12,21 +12,18 @@ include_once('traitementLikes.php');
 	}
     function display_Accueil(){
 	
-       $html =  "<main>";
-       
-        
+       	$html =  "<main>";
 
         $html.="<h2>Recent Posts</h2>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
-		FROM Posts 
-		INNER JOIN Users ON Posts.user_id = Users.user_id 
-		LEFT JOIN Followings ON Posts.user_id = Followings.following_id AND Followings.user_id = ?
-    	WHERE Posts.user_id = ? OR Followings.following_id IS NOT NULL
-		ORDER BY Posts.post_id DESC 
-		LIMIT 20
-		');
+					FROM Posts 
+					INNER JOIN Users ON Posts.user_id = Users.user_id 
+					LEFT JOIN Followings ON Posts.user_id = Followings.following_id AND Followings.user_id = ?
+					WHERE Posts.user_id = ? OR Followings.following_id IS NOT NULL
+					ORDER BY Posts.post_id DESC 
+					LIMIT 20');
 		$stmt->execute([$_SESSION['LOGGED_ID'], $_SESSION['LOGGED_ID']]);
 		$posts = $stmt->fetchAll();
 	    
@@ -65,17 +62,16 @@ include_once('traitementLikes.php');
 			
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
 				$html .= "<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
-				}
+			}
 			
 		}
 	
 	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form>
         <ul>
-
-	<li><a href=\"index.php?action=accueil\">Accueil</a></li>
-      <li><a href=\"index.php?action=publier\">Publier</a></li>
-      <li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
+		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
+      	<li><a href=\"index.php?action=publier\">Publier</a></li>
+      	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
         </ul>
         </aside>";
  

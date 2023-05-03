@@ -12,41 +12,41 @@ function print_form($modifier) {
     <label for=\"pseudo\">Pseudo :</label>
     <input type=\"text\" id=\"pseudo\"  required=\"required\" name=\"Pseudo\" ";
     if($modifier) {
-      $html .= "value= \"".$_SESSION['LOGGED_PSEUDO']."\">";
+        $html .= "value= \"".$_SESSION['LOGGED_PSEUDO']."\">";
     }else{
-     $html .= "placeholder=\"Votre pseudo\">";
+        $html .= "placeholder=\"Votre pseudo\">";
     }
     $html.= "<br>
     <label for=\"nom\">Nom :</label>
     <input type=\"text\" id=\"nom\" required=\"required\" name=\"nom\"";
     if($modifier) {
-      $html .= "value= \"".$_SESSION['LOGGED_NOM']."\">";
+        $html .= "value= \"".$_SESSION['LOGGED_NOM']."\">";
     }else{
-     $html .= "placeholder=\"Votre nom\">";
+        $html .= "placeholder=\"Votre nom\">";
     }
     $html.= "<br>
     <label for=\"prenom\">Prenom :</label>
     <input type=\"text\" id=\"prenom\"  required=\"required\" name=\"prenom\"";
     if($modifier) {
-      $html .= "value= \"".$_SESSION['LOGGED_PRENOM']."\">";
+        $html .= "value= \"".$_SESSION['LOGGED_PRENOM']."\">";
     }else{
-     $html .= "placeholder=\"Votre prénom\">";
+        $html .= "placeholder=\"Votre prénom\">";
     }
     $html.="<br>
     <label for=\"date\">Date de naissance :</label>
     <input type=\"date\" id=\"date\" required=\"required\" name=\"date\"";
     if($modifier) {
-      $html .= "value= \"".$_SESSION['LOGGED_DATE']."\">";
+        $html .= "value= \"".$_SESSION['LOGGED_DATE']."\">";
     } else{
-      $html .= ">";
+        $html .= ">";
     }
     $html .="<br>
     <label for=\"mail\">Adresse mail : </label>
     <input type=\"email\" id =\"mail\" name=\"mail\" required=\"required\" pattern=\"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\"";
     if($modifier) {
-      $html .= "value= \"".$_SESSION['LOGGED_MAIL']."\">";
+        $html .= "value= \"".$_SESSION['LOGGED_MAIL']."\">";
     }else{
-     $html .= "placeholder=\"ex: toto@mail.com\">";
+        $html .= "placeholder=\"ex: toto@mail.com\">";
     }
     $html.="<br>
     <label for=\"mdp\">Mot de passe : </label>
@@ -54,7 +54,7 @@ function print_form($modifier) {
     <br>
     <input type=\"submit\" value=\"$mot\">
     </form>";
-  return $html;
+    return $html;
 }
 
 function inscriptionValidee(){
@@ -104,7 +104,8 @@ function inscriptionValidee(){
             $userpassword = sha1($_POST['mdp']); //crypter le mdp
         } else return false; 
 
-        $sqlQuery = 'INSERT INTO Users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
+        $sqlQuery = 'INSERT INTO Users(user_pseudo,user_prenom,user_nom,user_naissance,user_email,user_motdepasse) 
+        VALUES (:user_pseudo,:user_prenom,:user_nom,:user_naissance,:user_email,:user_motdepasse);';
         $insertUsers = $pdo->prepare($sqlQuery);
         $insertUsers->execute([
             'user_pseudo' => $userPseudo,
