@@ -57,20 +57,21 @@ function count_Followings($id){
 	    if($isAdmin){$affichageH2.=" &#9733;"; }
     }
  
-    $html = "<h2>".$affichageH2."</h2><h3>Publications</h3><main>";
+    $html = "<main><h2>".$affichageH2."</h2>";
 
 
     if($id == $_SESSION['LOGGED_ID']){
       $nbFollowers = count_Followers($id) . " abonné(s)";
-      $html.= "<p><a href=\"index.php?action=abonne&amp;id=".$id."\">$nbFollowers</a> &emsp;";
+      $html.= "<div class=\"abo\"><p><a href=\"index.php?action=abonne&amp;id=".$id."\">$nbFollowers</a> &emsp;";
       $nbFollowings = count_Followings($id)." abonnement(s)</p>";
-      $html .= "<a href=\"index.php?action=abonnement&amp;id=".$id."\">$nbFollowings</a></p>";
+      $html .= "<a href=\"index.php?action=abonnement&amp;id=".$id."\">$nbFollowings</a></p></div>";
     }else {
-      $html.="<p>".count_Followers($id)." abonné(s) &emsp;";
-      $html.=count_Followings($id)." abonnement(s)</p>";
+      $html.="<div class=\"abo\"><p>".count_Followers($id)." abonné(s) &emsp;";
+      $html.=count_Followings($id)." abonnement(s)</p></div>";
     }
 
     // afficher les posts du profil
+	  $html.="<div class=\"posts\"><h3>Publications</h3>";
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id 
                   FROM Posts 
                   INNER JOIN Users 
@@ -124,7 +125,7 @@ function count_Followings($id){
       } 
 		}
 
-	  $html .= "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+	  $html .= "</div></main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
   	<input type=\"submit\" value=\"Ok !\"></form> 
     <ul>
 		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
