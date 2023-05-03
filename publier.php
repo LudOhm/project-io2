@@ -43,7 +43,7 @@
 
             $stmt = $pdo->prepare('INSERT INTO Posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
             $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
-            $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button>";
+            $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><div class=\"retour\"><a href=\"index.php\">Retour à mon fil d'actualité</a></div>";
             return $html;
 
         }
