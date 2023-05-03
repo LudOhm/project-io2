@@ -16,7 +16,7 @@
         <button type=\"submit\" name=\"submit\">Publier</button>
         </form>
 
-        <a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>
+        <div class=\"retour\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a></div>
         </main>";
 
 
