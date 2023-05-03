@@ -16,7 +16,7 @@ footer {
   font-family:  sans-serif;
 }
 
-header{
+h1{
   position:relative;
     margin:0 auto;
     clear:left;
@@ -30,14 +30,168 @@ header{
   inline-size: 30%;
   border-block-width: 10px;
 }
-img{
+#logo{
   border-radius: 50%;
   position:absolute;
-  
-left:45;
-top: 0;
+  left:45;
+  top: 0;
 }
 
+
+
+h2{
+  position:relative;
+  top: 20%;
+  text-align: center;
+  color : white;
+  font-family:  sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+main{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.infos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
   
-    
+}
+
+.infos button{
+  font-size: 24px;
+  padding: 5px 20px;
+  border-radius: 8px;
+  border: 2px solid #B67645;
+  background-color: white;
+  transition-duration: 0.4s;
+  color : #B67645;
+}
+
+.infos button:hover{
+  background-color:  #a89d71;; 
+  color: white;
+}
+
+
+
+
+.post button{
+  position: relative;
+  font-size: 15px;
+  font-weight: bolder; 
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 3px solid #e32400;
+  background-color: white;
+  transition-duration: 0.4s;
+  color : #63512e;
+}
+
+.post button:hover {
+  background-color:  #a89d71;; 
+  color: white;
+}
+
+.post p{
+  margin-bottom: 10px;
+}
+
+a{
+  color :#63512e;
+  font-size: large;
+}
+
+.post{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+article{
+  position: relative;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.publication-horsphoto{
+  position:relative;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 50px;
+  margin-top : -40px;
+  width : 60%;
+  color : white;
+  z-index: 1;
+}
+.publication-horsphoto p{
+   margin-top : -30px;
+}
+
+#pic{
+  position: absolute;
+  top: 115px;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.titre{
   
+    font-size: 26px;
+  font-weight: bold;
+  margin-bottom : 42px;
+  
+}
+
+.publications{
+  font-size: 25px;
+   display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color : white;
+    background-color: #63512e;
+  border-radius: 50% 20% / 10% 40%;
+  width : 200px;
+  
+}
+
+.supp button{
+  font-size: 5px;
+  font-weight: bolder; 
+   border: 2px solid red;
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 8px;
+  
+}
+
+.supp button:hover{
+  background-color:  red; 
+  
+  
+}
+.supp a{
+  color: red;
+  font-size: 12px;
+}
+.supp a:hover{
+  color: white;
+}
+
+aside{
+  position: absolute;
+  top : 20%;
+  right : 80%;
+ 
+ 
+
+  
+}
