@@ -10,7 +10,7 @@
         <label for=\"mdp\">Mot de passe : </label>
         <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
         <br>
-        <input type=\"submit\" value=\"Valider\">
+        <button type=\"submit\">Valider</button> 
         </form>
         </main><aside><p>Pas encore inscrit ? </p><a href=\"index.php?action=inscription\"> Rejoignez-nous!</a></aside>";
         return $html;
