@@ -43,7 +43,7 @@ function countPostLikes($post_id) {
     $html = "<h2>Les personnes qui ont aimé ce post</h2>";
     if(count($users) > 0) {
       foreach($users as $user) {
-          $html .= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
+          $html .= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
       }
     } else {
       $html .= "<p>aucune personne l'a like ce post </p>";
