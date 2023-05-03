@@ -14,7 +14,7 @@
 			$utilisateurs = $stmt->fetchAll();
 		}
            
-	    $html = "<main><h2>Résultat pour '".$user."'</h2>";
+	    $html = "<main><h2>Résultat(s) pour '".$user."'</h2>";
        
         if(isset($utilisateurs) && count($utilisateurs) > 0){
             foreach($utilisateurs as $ut){
