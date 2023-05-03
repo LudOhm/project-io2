@@ -4,13 +4,13 @@
         <h2>Nouvelle publication</h2>
         <form method=\"POST\" enctype=\"multipart/form-data\">
 
-        <label for=\"post_title\">Title:</label>
+        <label for=\"post_title\">Titre:</label>
         <input type=\"text\" name=\"post_title\" required><br>
         
-        <label for=\"post_contenu\">Content:</label>
+        <label for=\"post_contenu\">Contenu:</label>
         <textarea name=\"post_contenu\" rows=\"5\" required></textarea><br>
         
-        <label for=\"post_picture\">Picture:</label>
+        <label for=\"post_picture\">Image:</label>
         <input type=\"file\" accept=\".jpeg, .jpg, .png, .mp4, .avi, .mov, .flv\" name=\"post_picture\"><br>
         
         <button type=\"submit\" name=\"submit\">Publier</button>
