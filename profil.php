@@ -100,7 +100,7 @@ function count_Followings($id){
     foreach ($posts as $post) {
       $html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
       if($post['post_picture']!== null){
-        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" ><br></p><p>";
+        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"300\" height=\"300\" ><br></p><p>";
       }
       $html .=  htmlspecialchars($post['post_contenu']) . /* "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$id."\">". htmlspecialchars($post['user_pseudo'])."</a>*/ ."</p> </article>";
       $mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
