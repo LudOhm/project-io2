@@ -6,7 +6,7 @@ function print_form($modifier) {
   // AJOUT PHOTO DE PROFIL ???? vrmnt si on a le temps
 
   $html =
-    "<h2>$mot</h2>
+    "<main><h2>$mot</h2>
     
     <form action='index.php?action=$destination' method='post'>
     <label for=\"pseudo\">Pseudo :</label>
@@ -53,7 +53,7 @@ function print_form($modifier) {
     <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
     <br>
     <button type=\"submit\">".$mot."</button>
-    </form>";
+    </form></main>";
   if(!$modifier){$html.="<a href=\"index.php?action=connexion\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>J'ai déjà un compte</a>";}
     return $html;
 }
