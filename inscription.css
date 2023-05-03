@@ -89,6 +89,17 @@ label{
   font-weight: bolder; 
   
 }
+
+a{
+  color : white;
+  font-size: large;
+}
+
+.connexion{
+  position: absolute;
+  top: 50%;
+  left: 30px;
+}
   
   /* Style for the form error messages */
   input:invalid {
