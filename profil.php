@@ -203,7 +203,7 @@ function count_Followings($id){
           $html .= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
         }
       } else {
-        $html .= "<p>Aucun abonné</p>";
+        $html .= "<div class=\"text\"><p>Aucun abonné</p></div>";
       }
       $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>Retour sur mon profil</a>";
       
@@ -226,7 +226,7 @@ function count_Followings($id){
             $html .= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
         }
       } else {
-        $html .= "<p>Aucun abonnement</p>";
+        $html .= "<div class=\"text\"><p>Aucun abonnement</p></div>";
       }
       $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>Retour sur mon profil</a>";
       
