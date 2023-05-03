@@ -49,7 +49,7 @@ function countPostLikes($post_id) {
       $html .= "<p>aucune personne l'a like ce post </p>";
 
     }
-    $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>";
+    $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>Retour sur mon profil</a>";
     
     return $html;
 }
