@@ -57,7 +57,7 @@ function count_Followings($id){
 	    if($isAdmin){$affichageH2.=" &#9733;"; }
     }
  
-    $html = "<main><h2>".$affichageH2."</h2>";
+    $html = "<main><div class=\"infos\"><h2>".$affichageH2."</h2>";
 
 
     if($id == $_SESSION['LOGGED_ID']){
@@ -77,8 +77,8 @@ function count_Followings($id){
         $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=subscribe&amp;id=".$id."\">Suivre</a></button></div>";
       }
     }else{
-      $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos></a>
-     <a href=\"index.php?action=deconnexion\">Se déconecter></a></button></div>";
+      $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos></a></button>
+     <a href=\"index.php?action=deconnexion\">Se déconecter></a></button></div></div>";
     }
 
     // afficher les posts du profil
