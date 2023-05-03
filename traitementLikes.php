@@ -46,7 +46,7 @@ function countPostLikes($post_id) {
           $html .= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
       }
     } else {
-      $html .= "<p>aucune personne l'a like ce post </p>";
+      $html .= "<div class=\"text\"><p>Aucun like</p></div>";
 
     }
     $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>Retour sur mon profil</a>";
