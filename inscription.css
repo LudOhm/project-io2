@@ -1,15 +1,44 @@
 /* Apply box-sizing property to all elements */
-* {
-    box-sizing: border-box;
-  }
+body{
+  background-color: #a89d71;
+}
   
-  /* Style for the header */
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-  }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #361607;
+  text-align: center;
+  font-weight: bolder; 
+  opacity: 0.8;
+  background-image: url("https://i.pinimg.com/564x/bc/81/8d/bc818d55cf4b7d62c245743b76aee349.jpg");
+  font-family:  sans-serif;
+}
+
+header{
+  position:relative;
+    margin:0 auto;
+    clear:left;
+    height:auto;
+    z-index: 0;
+  text-align: center;
+  font-family:  cursive;
+  color: white;
+  background-color: #63512e;
+  border-radius: 50% 20% / 10% 40%;
+  inline-size: 30%;
+  border-block-width: 10px;
+}
+img{
+  border-radius: 50%;
+  position:absolute;
   
+left:45;
+top: 0;
+}
+
   /* Style for the main content */
   main {
     margin: 20px;
