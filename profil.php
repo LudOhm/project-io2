@@ -78,7 +78,7 @@ function count_Followings($id){
       }
     }else{
       $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos></a></button>
-     <a href=\"index.php?action=deconnexion\">Se déconecter></a></button></div></div>";
+     <button type=\"button\"><a href=\"index.php?action=deconnexion\">Se déconnecter></a></button></div></div>";
     }
 
     // afficher les posts du profil
