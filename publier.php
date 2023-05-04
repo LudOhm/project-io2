@@ -7,7 +7,7 @@
         <label for=\"post_title\">Titre:</label>
         <input type=\"text\" name=\"post_title\" required><br>
         
-        <label for=\"post_contenu\">Contenu:</label>
+        <label for=\"post_contenu\">Contenu:</label><br>
         <textarea name=\"post_contenu\" rows=\"5\" required></textarea><br>
         
         <label for=\"post_picture\">Image:</label>
