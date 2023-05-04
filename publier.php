@@ -4,19 +4,19 @@
         <h2>Nouvelle publication</h2>
         <form method=\"POST\" enctype=\"multipart/form-data\">
 
-        <label for=\"post_title\">Title:</label>
+        <label for=\"post_title\">Titre:</label>
         <input type=\"text\" name=\"post_title\" required><br>
         
-        <label for=\"post_contenu\">Content:</label>
+        <label for=\"post_contenu\">Contenu:</label>
         <textarea name=\"post_contenu\" rows=\"5\" required></textarea><br>
         
-        <label for=\"post_picture\">Picture:</label>
+        <label for=\"post_picture\">Image:</label>
         <input type=\"file\" accept=\".jpeg, .jpg, .png, .mp4, .avi, .mov, .flv\" name=\"post_picture\"><br>
         
         <button type=\"submit\" name=\"submit\">Publier</button>
         </form>
 
-        <a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>
+        <div class=\"retour\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a></div>
         </main>";
 
 
@@ -43,7 +43,7 @@
 
             $stmt = $pdo->prepare('INSERT INTO Posts (user_id, post_title, post_contenu, post_picture) VALUES (?, ?, ?, ?)');
             $stmt->execute([$user_id, $post_title, $post_contenu, $post_picture]);
-            $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><button type=\"button\"><a href=\"index.php\">Retour à mon fil d'actualité</a></button>";
+            $html.= "<script type=\"text/javascript\">window.alert('Publication publiée avec succès !')</script><div class=\"retour\"><a href=\"index.php\">Retour à mon fil d'actualité</a></div>";
             return $html;
 
         }

@@ -57,20 +57,32 @@ function count_Followings($id){
 	    if($isAdmin){$affichageH2.=" &#9733;"; }
     }
  
-    $html = "<h2>".$affichageH2."</h2><h3>Publications</h3><main>";
+    $html = "<main><div class=\"infos\"><h2>".$affichageH2."</h2>";
 
 
     if($id == $_SESSION['LOGGED_ID']){
       $nbFollowers = count_Followers($id) . " abonné(s)";
-      $html.= "<p><a href=\"index.php?action=abonne&amp;id=".$id."\">$nbFollowers</a> &emsp;";
+      $html.= "<div class=\"abo\"><p><a href=\"index.php?action=abonne&amp;id=".$id."\">$nbFollowers</a> &emsp;";
       $nbFollowings = count_Followings($id)." abonnement(s)</p>";
-      $html .= "<a href=\"index.php?action=abonnement&amp;id=".$id."\">$nbFollowings</a></p>";
+      $html .= "<a href=\"index.php?action=abonnement&amp;id=".$id."\">$nbFollowings</a></p></div>";
     }else {
-      $html.="<p>".count_Followers($id)." abonné(s) &emsp;";
-      $html.=count_Followings($id)." abonnement(s)</p>";
+      $html.="<div class=\"abo\"><p>".count_Followers($id)." abonné(s) &emsp;";
+      $html.=count_Followings($id)." abonnement(s)</p></div>";
+    }
+	  
+    if($id != $_SESSION['LOGGED_ID']){
+      if(is_Logged_User_Subscribed($id)){
+        $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=unfollow&amp;id=".$id."\">Se désabonner</a></button></div></div>";
+      }else{
+        $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=subscribe&amp;id=".$id."\">Suivre</a></button></div></div>";
+      }
+    }else{
+      $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos</a></button>
+     <button type=\"button\"><a href=\"index.php?action=deconnexion\">Se déconnecter</a></button></div></div>";
     }
 
     // afficher les posts du profil
+	  $html.="<h3 class=\"publications\">&nbsp;&nbsp;Publications:</h3><div class=\"post\">";
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id 
                   FROM Posts 
                   INNER JOIN Users 
@@ -86,25 +98,26 @@ function count_Followings($id){
       $html .= "<p>il n'y a aucun poste à afficher pour le moment ! </p>";
     }
     foreach ($posts as $post) {
-      $html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+      $html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
+      html .=  "<p>".htmlspecialchars($post['post_contenu'])."</p></div>"; 
       if($post['post_picture']!== null){
-        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" ><br></p><p>";
+        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\" ><br>";
       }
-      $html .=  htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$id."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
+      $html.="</article>";
       $mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
 
       //si c'est notre compte on peut voir les gens qui ont like les posts
       if($id == $_SESSION['LOGGED_ID']){
         $motfin = countPostLikes($post['post_id']) . $mot;
-        $html.= "<a href=\"index.php?action=LikedBy&amp;id=".$post['post_id']."\">$motfin </a>" ;
+        $html.= "<div class=\"like\"><a href=\"index.php?action=LikedBy&amp;id=".$post['post_id']."\">$motfin </a>" ;
       }else {
-        $html.= countPostLikes($post['post_id']) . $mot;
+        $html.= "<div class=\"like\"><p>".countPostLikes($post['post_id']) . $mot."</p>";
       }
 
       if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
         $html .= "<form method=\"post\">
         <button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
-        </form>";
+        </form></div>";
         if(isset($_POST['unlike' . $post['post_id']])){
           likePost($post['post_id'], $_SESSION['LOGGED_ID']);
         }
@@ -112,38 +125,25 @@ function count_Followings($id){
 
       }else{
         $html .= "<form method=\"post\">
-        <button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Double click to Like !</button>
-        </form>";
+        <button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Like!</button>
+        </form></div>";
         if(isset($_POST['like' . $post['post_id']])){
           likePost($post['post_id'], $_SESSION['LOGGED_ID']);
         }
 
       }
       if(isAdmin($_SESSION['LOGGED_ID']) || $id == $_SESSION['LOGGED_ID']){
-        $html.="<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
+        $html.="<div class=\"supp\"><button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button></div>"; 
       } 
 		}
 
-	  $html .= "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
-  	<input type=\"submit\" value=\"Ok !\"></form> 
-    <ul>
-		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
-    <li><a href=\"index.php?action=publier\">Publier</a></li>
-    <li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>";
-    if($id != $_SESSION['LOGGED_ID']){
-      if(is_Logged_User_Subscribed($id)){
-        $html .= "<li><a href=\"index.php?action=unfollow&amp;id=".$id."\">Se désabonner</a></li></ul>
-        </aside>";
-      }else{
-        $html .= "<li><a href=\"index.php?action=subscribe&amp;id=".$id."\">Suivre</a></li></ul>
-        </aside>";
-      }
-    }else{
-      $html .=  "<li><a href=\"index.php?action=modifier\">Modifier mes infos></a></li>
-      <li><a href=\"index.php?action=deconnexion\">Se déconecter></a></li></ul>
-      </aside>";
-    }
-
+	  $html .= "</div></main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+  	<button type=\"submit\">Ok !</button></form></div> 
+    <div class=\"redirect\">
+		 <button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button><button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>";
+    if($id != $_SESSION['LOGGED_ID']){ $html.="<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>";}
+    
+    $html.="</div></aside>";
     return $html;
   }
 
@@ -200,12 +200,12 @@ function count_Followings($id){
       $html = "<h2>Abonnés</h2>";
       if(count($users) > 0) {
         foreach($users as $user) {
-          $html .= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
+          $html .= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
         }
       } else {
-        $html .= "<p>Aucun abonné</p>";
+        $html .= "<div class=\"text\"><p>Aucun abonné</p></div>";
       }
-      $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>";
+      $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>Retour sur mon profil</a>";
       
       return $html;
     }
@@ -223,12 +223,12 @@ function count_Followings($id){
       $html = "<h2>Abonnements :</h2>";
       if(count($users) > 0) {
         foreach($users as $user) {
-            $html .= "<li><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
+            $html .= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$user['user_id']."\">" . $user['user_pseudo'] . "</a></li>";
         }
       } else {
-        $html .= "<p>Aucun abonnement</p>";
+        $html .= "<div class=\"text\"><p>Aucun abonnement</p></div>";
       }
-      $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">Retour sur mon profil</a>";
+      $html .= "<a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>Retour sur mon profil</a>";
       
       return $html;
   }

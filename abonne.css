@@ -38,55 +38,19 @@ left:45;
 top: 0;
 }
 
-
-
-h2{
+li{
+  list-style-type:none;
   text-align: center;
-  color : white;
-  font-family:  sans-serif;
-  font-style: italic;
-}
-
-main{
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
-  transform: translate(-35%, -50%);
-  width:600px;
-	height:50px;
-}
-
-input {
-  width: 100%;
-  height:20px;
-   padding: 10px 20px;
-  border-radius: 8px;
-  border: 2px solid #63512e;
-  
-}
-
-button{
+    background-color: #63512e;
+ width:40px;
+	height:40px;
+  inline-size: 30%;
+  border-block-width: 10px;
+  font-size: large;
+    color : white;
   position: relative;
-  font-size: 20px;
-  font-weight: bolder; 
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 2px solid #63512e;
-  background-color: white;
-  transition-duration: 0.4s;
-  color : #63512e;
-}
-
-button:hover {
-  background-color:  #a89d71;; 
-  color: white;
-}
-
-label{
-  color : #63512e;
-  font-weight: bolder; 
+    top: 90px;
+  left: 35%;
   
 }
 
@@ -95,14 +59,29 @@ a{
   font-size: large;
 }
 
-.connexion{
+h2{
   position: absolute;
-  top: 50%;
-  left: 30px;
+  top: 30%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  transform: translate(-35%, -40%);
+  width:600px;
+	height:50px;
+  text-align: center;
+  color : white;
+  font-family:  sans-serif;
+  font-style: italic;
 }
+
+.text{
+  text-align: center;
+  color : white;
+  font-family:  sans-serif;
+  font-size: large;
+  position: relative;
+    top: 90px;
+  left: -15px;
   
-  /* Style for the form error messages */
-  input:invalid {
-    border: 1px solid red;
-  }
   
+}

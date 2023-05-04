@@ -14,7 +14,7 @@ include_once('traitementLikes.php');
 	
        	$html =  "<main>";
 
-        $html.="<h2>Recent Posts</h2>";
+        $html.="<h3 class=\"publications\">Dernières Publications:</h3><div class=\"post\">";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
@@ -28,23 +28,26 @@ include_once('traitementLikes.php');
 		$posts = $stmt->fetchAll();
 	    
 		if(empty($posts)){
-			$html .= "<p> il n'y a aucun poste à afficher pour le moment ! abonne toi à des gens ou poste quelque chose ! </p> ";
+			$html .= "<p> il n'y a aucun poste à afficher pour le moment ! abonne toi à des utilisateurs ou poste quelque chose ! </p> ";
 		}
 
 		foreach ($posts as $post) {
 			
-			$html .= "<article><h3>" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+			$html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+			$html.="<p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>" . htmlspecialchars($post['user_pseudo'])."</a></p>";
+			
+			$html .= htmlspecialchars($post['post_contenu']) . "</p></div>";
 			if($post['post_picture']!== null){
-				$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" ><br></p><p>";
+				$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\"><br>";
 		  	}
-			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></article>";
+			$html.="</article>";
 			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
-			$html.= countPostLikes($post['post_id']) . $mot;
+			$html.= "<div class=\"like\"><p>".countPostLikes($post['post_id']) . $mot."</p>";
 			
 			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
 				$html .= "<form method=\"post\">
 				<button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
-				</form>";
+				</form></div>";
 				if(isset($_POST['unlike' . $post['post_id']])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
@@ -52,8 +55,8 @@ include_once('traitementLikes.php');
 				
 			}else{
 				$html .= "<form method=\"post\">
-				<button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Double click to Like !</button>
-				</form>";
+				<button type=\"submit\" name=\"like{$post['post_id']}\"><i id=\"like\" class=\"fa-regular fa-heart\" style=\"color: #e32400;\"></i>Like!</button>
+				</form></div>";
 				if(isset($_POST['like' . $post['post_id']])){
 					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
 				}
@@ -61,19 +64,19 @@ include_once('traitementLikes.php');
 			}
 			
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
-				$html .= "<button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button>"; 
+				$html .= "<div class=\"supp\"><button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button></div>"; 
 			}
 			
 		}
 	
-	    $html = $html. "</main><aside><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
-        <input type=\"submit\" value=\"Ok !\"></form>
-        <ul>
-		<li><a href=\"index.php?action=accueil\">Accueil</a></li>
-      	<li><a href=\"index.php?action=publier\">Publier</a></li>
-      	<li><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></li>
-        </ul>
-        </aside>";
+	    $html = $html. "</div></main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+        <input type=\"submit\" value=\"Ok !\"></form></div>
+	<div class=\"redirect\">
+       <button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button><button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>";
+   $html.="<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>";
+    
+    $html.="</div></aside>";
+
  
         return $html;
     }

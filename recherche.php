@@ -14,21 +14,21 @@
 			$utilisateurs = $stmt->fetchAll();
 		}
            
-	    $html = "<h2>Résultat pour '".$user."'</h2>";
+	    $html = "<main><h2>Résultat(s) pour '".$user."'</h2>";
        
         if(isset($utilisateurs) && count($utilisateurs) > 0){
             foreach($utilisateurs as $ut){
-            	$html.= "<li><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a></li>";
+            	$html.= "<li><i class=\"fa-solid fa-user\" style=\"color: #ada368;\"></i><a href=\"index.php?action=profil&amp;id=" .$ut['user_id']."\" >".$ut['user_pseudo']."</a></li>";
 	   		}
-			$html.= "<br>
-			<form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
-			<label for=\"recherche\">Modifier ma recherche :</label><input type=\"submit\" value=\"Ok !\">
-			</form><aside><a href = \"index.php\">Retour à l'accueil</a></aside>";
+			$html.= "</main><br>
+			<aside><form action=\"index.php?action=search\" method=\"post\"><label for=\"recherche\">Modifier ma recherche :</label><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+			<div class=\"valider\"><button type=\"submit\" >Ok !</button></div>
+			</form><div class=\"retour\"><a href = \"index.php\">Retour à l'accueil</a></div></aside>";
         } else{
-           $html.= "<h3> Aucun utilisateur trouvé</h3>
-			<form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
-			<label for=\"recherche\">Modifier ma recherche :</label><input type=\"submit\" value=\"Ok !\">
-			</form><aside><a href = \"index.php\">Retour à l'accueil</a></aside>";
+           $html.= "<h3> Aucun utilisateur trouvé</h3></main>
+			<aside><form action=\"index.php?action=search\" method=\"post\"><label for=\"recherche\">Modifier ma recherche :</label><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+			<div class=\"valider\"><button type=\"submit\">Ok !</button></div>
+			</form><div class=\"retour\"><a href = \"index.php\">Retour à l'accueil</a></div></aside>";
         }
        return $html;
     }
