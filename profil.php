@@ -111,7 +111,7 @@ function count_Followings($id){
         $motfin = countPostLikes($post['post_id']) . $mot;
         $html.= "<div class=\"like\"><a href=\"index.php?action=LikedBy&amp;id=".$post['post_id']."\">$motfin </a>" ;
       }else {
-        $html.= countPostLikes($post['post_id']) . $mot;
+        $html.= "<div class=\"like\"><p>".countPostLikes($post['post_id']) . $mot."</p>";
       }
 
       if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
