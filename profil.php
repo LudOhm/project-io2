@@ -72,9 +72,9 @@ function count_Followings($id){
 	  
     if($id != $_SESSION['LOGGED_ID']){
       if(is_Logged_User_Subscribed($id)){
-        $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=unfollow&amp;id=".$id."\">Se désabonner</a></button></div>";
+        $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=unfollow&amp;id=".$id."\">Se désabonner</a></button></div></div>";
       }else{
-        $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=subscribe&amp;id=".$id."\">Suivre</a></button></div>";
+        $html .= "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=subscribe&amp;id=".$id."\">Suivre</a></button></div></div>";
       }
     }else{
       $html .=  "<div class=\"actions\"><button type=\"button\"><a href=\"index.php?action=modifier\">Modifier mes infos</a></button>
