@@ -99,7 +99,7 @@ function count_Followings($id){
     }
     foreach ($posts as $post) {
       $html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
-      html .=  "<p>".htmlspecialchars($post['post_contenu'])."</p></div>"; 
+      $html .=  "<p>".htmlspecialchars($post['post_contenu'])."</p></div>"; 
       if($post['post_picture']!== null){
         $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\" ><br>";
       }
