@@ -34,8 +34,9 @@ include_once('traitementLikes.php');
 		foreach ($posts as $post) {
 			
 			$html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+			$html.="<p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>" . htmlspecialchars($post['user_pseudo'])."</a></p>";
 			
-			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></div>";
+			$html .= htmlspecialchars($post['post_contenu']) . "</p></div>";
 			if($post['post_picture']!== null){
 				$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\"><br>";
 		  	}
