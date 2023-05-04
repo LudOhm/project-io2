@@ -14,7 +14,7 @@ include_once('traitementLikes.php');
 	
        	$html =  "<main>";
 
-        $html.="<h2>Dernières publications</h2>";
+        $html.="<h3 class=\"publications\">Dernières Publications:</h3><div class=\"post\">";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
@@ -33,11 +33,11 @@ include_once('traitementLikes.php');
 
 		foreach ($posts as $post) {
 			
-			$html .= "<div class=\"post\"><article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+			$html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
 			
 			$html .= htmlspecialchars($post['post_contenu']) . "</p><p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\">" . htmlspecialchars($post['user_pseudo'])."</a></p></div>";
 			if($post['post_picture']!== null){
-				$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" ><br>";
+				$html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\"><br>";
 		  	}
 			$html.="</article>";
 			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
