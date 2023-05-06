@@ -2,8 +2,6 @@
 function print_form($modifier) {
   $mot = $modifier ? "Modifier mes informations" : "S'inscrire";
   $destination = $modifier ? "update" : "sauvegarder";
-  //$valDate = strlen($date) > 0 ? '$date' : 'jj/mm/aaaa';
-  // AJOUT PHOTO DE PROFIL ???? vrmnt si on a le temps
 
   $html =
     "<main><h2>$mot</h2>
@@ -152,7 +150,7 @@ function modificationValidee(){
         "oldMdp" =>   $_SESSION['LOGGED_MDP'] ,
         "oldPrenom" =>  $_SESSION['LOGGED_PRENOM'], 
         "oldNom" => $_SESSION['LOGGED_NOM'],
-        "oldDate" => $_SESSION['LOGGED_DATE']// faire attention au format recuperer
+        "oldDate" => $_SESSION['LOGGED_DATE']
     );
 
     // recuperer les données du formulaire ->htmlspecialchars ; sha1(); 

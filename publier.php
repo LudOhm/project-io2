@@ -51,7 +51,7 @@
        
     }   
 
-    function delet($id){//j'ai enlevé le html pour la suprression parce que cv poser probleme
+    function delet($id){
 	    $db = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
         $stmt2 = $db->prepare("DELETE FROM Likes WHERE post_id = ?");

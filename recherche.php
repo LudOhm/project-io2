@@ -3,7 +3,6 @@
     
 
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
-		//$stmt = $pdo->prepare('SELECT user_pseudo, user_id FROM `Users` ORDER BY user_id DESC'); 
 		if(isset($user)&&!empty($user)){
 			$stmt = $pdo->prepare('SELECT user_pseudo, user_id 
 						FROM `Users` 

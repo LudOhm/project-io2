@@ -14,7 +14,7 @@ include_once('traitementLikes.php');
 	
        	$html =  "<main>";
 
-        $html.="<h3 class=\"publications\">Dernières Publications:</h3><div class=\"post\">";
+        $html.="<h3 class=\"publications\">&nbsp;&nbsp;Dernières Publications:</h3>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
@@ -33,7 +33,8 @@ include_once('traitementLikes.php');
 
 		foreach ($posts as $post) {
 			
-			$html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
+			$html .= "<div class=\"post\"><article>
+			<div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3><p>" ;
 			$html.="<p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>" . htmlspecialchars($post['user_pseudo'])."</a></p>";
 			
 			$html .= htmlspecialchars($post['post_contenu']) . "</p></div>";
@@ -66,10 +67,10 @@ include_once('traitementLikes.php');
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
 				$html .= "<div class=\"supp\"><button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button></div>"; 
 			}
-			
+			$html .= "</div>";
 		}
 	
-	    $html = $html. "</div></main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+	    $html = $html. "</main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form></div>
 	<div class=\"redirect\">
        <button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button><button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>";

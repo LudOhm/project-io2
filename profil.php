@@ -47,7 +47,6 @@ function count_Followings($id){
     $isAdmin = $result !== false ? $result['user_admin'] : false;
 
 
-    // ... peut etre recuperer d'autres infos selon nos preferences a voir +tard
     $affichageH2 ="&commat;"; //'@'
     if($id != $_SESSION['LOGGED_ID']){
 	    $affichageH2 .= $pseudo_profil;
@@ -151,7 +150,7 @@ function count_Followings($id){
       if(isset($_SESSION['LOGGED_MDP']) && isset($_SESSION['LOGGED_PSEUDO'])) {
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
     
-        // verifie que le user a follow existe (je pense pas que c'est obligatoire mais bon)
+        // verifie que le user a follow existe
         $stmt = $pdo->prepare('SELECT * FROM Users WHERE user_id = ?');
         $stmt->execute([$id]);
         $user = $stmt->fetch();
