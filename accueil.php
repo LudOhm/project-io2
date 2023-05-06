@@ -12,9 +12,7 @@ include_once('traitementLikes.php');
 	}
     function display_Accueil(){
 	
-       	$html =  "<main>";
-
-        $html.="<h3 class=\"publications\">&nbsp;&nbsp;Dernières Publications:</h3>";
+        $html ="<main><h3 class=\"publications\">&nbsp;&nbsp;Dernières Publications:</h3>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id
@@ -67,16 +65,16 @@ include_once('traitementLikes.php');
 			if((isAdmin($_SESSION['LOGGED_ID']))||($_SESSION['LOGGED_ID']==$post['user_id'])) {
 				$html .= "<div class=\"supp\"><button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button></div>"; 
 			}
-			$html .= "</div>";
+			$html .= "</div><br>";
 		}
 	
 	    $html = $html. "</main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form></div>
 	<div class=\"redirect\">
        <button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button><button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>";
-   $html.="<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>";
+   $html.="<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>
+   </div></aside>";
     
-    $html.="</div></aside>";
 
  
         return $html;
