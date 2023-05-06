@@ -116,11 +116,10 @@ a{
 .post{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 40px;
 }
 article{
   position: relative;
-  border: 2px solid #000000;
   box-sizing: border-box;
   width: 200%;
 }

@@ -81,7 +81,7 @@ function count_Followings($id){
     }
 
     // afficher les posts du profil
-	  $html.="<h3 class=\"publications\">&nbsp;&nbsp;Publications:</h3><div class=\"post\">";
+	  $html.="<h3 class=\"publications\">&nbsp;&nbsp;Publications:</h3>";
 		$stmt = $pdo->prepare('SELECT Posts.post_title, Posts.post_contenu, Posts.post_picture, Posts.post_id, Users.user_pseudo, Users.user_id 
                   FROM Posts 
                   INNER JOIN Users 
@@ -97,7 +97,8 @@ function count_Followings($id){
       $html .= "<p>il n'y a aucun poste à afficher pour le moment ! </p>";
     }
     foreach ($posts as $post) {
-      $html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
+      $html .= "<div class=\"post\"><article>
+      <div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
       $html .=  "<p>".htmlspecialchars($post['post_contenu'])."</p></div>"; 
       if($post['post_picture']!== null){
         $html .= "<div class=\"publication-photo\">
@@ -136,15 +137,17 @@ function count_Followings($id){
       if(isAdmin($_SESSION['LOGGED_ID']) || $id == $_SESSION['LOGGED_ID']){
         $html.="<div class=\"supp\"><button type=\"button\"><a href=\"index.php?action=delete&amp;id=".$post['post_id']."\">Supprimer la publication</a></button></div>"; 
       } 
+
+      $html .= "</div><br>";
 		}
 
-	  $html .= "</div></main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+	  $html .= "</main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
   	<button type=\"submit\">Ok !</button></form></div> 
     <div class=\"redirect\">
 		 <button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button><button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>";
     if($id != $_SESSION['LOGGED_ID']){ $html.="<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>";}
     
-    $html.="</div></aside>";
+    $html.="</aside>";
     return $html;
   }
 
