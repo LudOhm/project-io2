@@ -38,7 +38,7 @@ include_once('traitementLikes.php');
 			$html .= htmlspecialchars($post['post_contenu']) . "</p></div>";
 			if($post['post_picture']!== null){
 				$html .= "<div class=\"publication-photo\">
-				<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\">
+				<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"80\" height=\"80\">
 				<br></div>";
 		  	}
 			$html.="</article>";

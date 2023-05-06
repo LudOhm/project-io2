@@ -100,7 +100,9 @@ function count_Followings($id){
       $html .= "<article><div class=\"publication-horsphoto\"><h3 class=\"titre\">" . htmlspecialchars($post['post_title']) . "</h3>" ;
       $html .=  "<p>".htmlspecialchars($post['post_contenu'])."</p></div>"; 
       if($post['post_picture']!== null){
-        $html .= "<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\" ><br>";
+        $html .= "<div class=\"publication-photo\">
+        <img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"50\" height=\"50\" >
+        <br></div>";
       }
       $html.="</article>";
       $mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
@@ -115,7 +117,7 @@ function count_Followings($id){
 
       if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
         $html .= "<form method=\"post\">
-        <button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
+        <button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"like\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
         </form></div>";
         if(isset($_POST['unlike' . $post['post_id']])){
           likePost($post['post_id'], $_SESSION['LOGGED_ID']);

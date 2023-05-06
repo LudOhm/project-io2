@@ -125,7 +125,6 @@ article{
   border: 2px solid #000000;/*pour test les bordures*/
   box-sizing: border-box;
   width: 200%;
-  /*height: 200px;*/
 }
 
 .publication-horsphoto{
@@ -133,7 +132,7 @@ article{
   font-size: 16px;
   font-weight: bold;
   margin-right: 50px;
-  margin-top : -40px;
+  margin-top : -25px;
   width : 60%;
   color : white;
   z-index: 1;
@@ -145,8 +144,8 @@ article{
 
 #pic{
   position: relative;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
 }
 
@@ -154,8 +153,8 @@ article{
   position: relative;
   top: 0px;
   left: 0;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
 }
 
