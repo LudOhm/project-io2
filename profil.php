@@ -118,7 +118,7 @@ function count_Followings($id){
 
       if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
         $html .= "<form method=\"post\">
-        <button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"like\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
+        <button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
         </form></div>";
         if(isset($_POST['unlike' . $post['post_id']])){
           likePost($post['post_id'], $_SESSION['LOGGED_ID']);

@@ -50,7 +50,7 @@ function print_form($modifier) {
     <label for=\"mdp\">Mot de passe : </label>
     <input type=\"password\" name=\"mdp\" placeholder=\"mot de passe\">
     <br>
-    <button type=\"submit\">".$mot."</button>
+    <button type=\"submit\">".$mot."</button><br>
     </form></main>";
   if(!$modifier){$html.="<dic class=\"connexion\"><a href=\"index.php?action=connexion\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>J'ai déjà un compte</a></div>";}
     return $html;
