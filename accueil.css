@@ -116,12 +116,12 @@ a{
 .post{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 20px;
 }
 article{
   position: relative;
   box-sizing: border-box;
-  width: 200%;
+  width: 220px;
 }
 
 .publication-horsphoto{
@@ -130,7 +130,7 @@ article{
   font-weight: bold;
   margin-right: 50px;
   margin-top : -25px;
-  width : 60%;
+  width : 100%;
   color : white;
   z-index: 1;
 }
