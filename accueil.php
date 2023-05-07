@@ -36,21 +36,21 @@ include_once('traitementLikes.php');
 			$html.="<p class=\"meta\">Posted by <a href=\"index.php?action=profil&amp;id=".$post['user_id']."\"><i class=\"fa-solid fa-user\" style=\"color: #553d00;\"></i>" . htmlspecialchars($post['user_pseudo'])."</a></p>";
 			
 			$html .= htmlspecialchars($post['post_contenu']) . "</p></div>";
-			if($post['post_picture']!== null){
+			if($post['post_picture']!== null){//si il y a une photo seulement on l'affiche
 				$html .= "<div class=\"publication-photo\">
 				<img src=\"data:image/jpeg;base64," . base64_encode($post['post_picture']). "\" alt=\"Post Picture\" id=\"pic\" width=\"80\" height=\"80\">
 				<br></div>";
 		  	}
 			$html.="</article>";
-			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like";
+			$mot = countPostLikes($post['post_id']) > 1 ? " likes" : " like"; //fontion qui vient de traitementLikes.php 
 			$html.= "<div class=\"like\"><p>".countPostLikes($post['post_id']) . $mot."</p>";
 			
-			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){
+			if(isPostLiked($post['post_id'], $_SESSION['LOGGED_ID'])){//fontion qui vient de traitementLikes.php 
 				$html .= "<form method=\"post\">
 				<button type=\"submit\" name=\"unlike{$post['post_id']}\"><i id=\"unlike\" class=\"fa-solid fa-heart\" style=\"color: #e32400;\"></i></button>
 				</form></div>";
 				if(isset($_POST['unlike' . $post['post_id']])){
-					likePost($post['post_id'], $_SESSION['LOGGED_ID']);
+					likePost($post['post_id'], $_SESSION['LOGGED_ID']);//fontion qui vient de traitementLikes.php 
 				}
 
 				
@@ -70,12 +70,14 @@ include_once('traitementLikes.php');
 			$html .= "</div><br>";
 		}
 	
-	    $html = $html. "</main><aside><div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
+	    $html = $html. "</main><aside>
+		<div class=\"recherche\"><form action=\"index.php?action=search\" method=\"post\"><input type=\"search\" name=\"q\" placeholder=\"Rechercher\">
         <input type=\"submit\" value=\"Ok !\"></form></div>
-	<div class=\"redirect\">
-       <button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button><button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>";
-   $html.="<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>
-   </div></aside>";
+		<div class=\"redirect\">
+       	<button type=\"button\"><a href=\"index.php?action=publier\">Publier</a></button>
+		<button type=\"button\"><a href=\"index.php?action=accueil\"><i class=\"fa-solid fa-house\" style=\"color: #666100;\"></i></a></button>
+		<button type=\"button\"><a href=\"index.php?action=profil&amp;id=".$_SESSION['LOGGED_ID']."\">MonCompte</a></button>
+		</div></aside>";
     
 
  

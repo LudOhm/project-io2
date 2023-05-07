@@ -51,7 +51,7 @@
        
     }   
 
-    function delet($id){
+    function delet($id){//pour supprimer le post il faut avant supprimer tous les likes associer car il y a une clé étrangère
 	    $db = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 
         $stmt2 = $db->prepare("DELETE FROM Likes WHERE post_id = ?");
