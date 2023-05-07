@@ -12,6 +12,7 @@ include_once('traitementLikes.php');
 	}
     function display_Accueil(){
 	
+
         $html ="<main><h3 class=\"publications\">&nbsp;&nbsp;Dernières Publications:</h3>";
         $pdo = new PDO('mysql:host=localhost;dbname=instapets', 'root', 'root');
 		//pour avoir les posts
